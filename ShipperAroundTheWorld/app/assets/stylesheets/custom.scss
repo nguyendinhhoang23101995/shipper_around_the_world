@@ -1,0 +1,52 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body{
+	background-color: #f5f4f6;
+}
+
+.navbar{
+	background-color: white;
+	margin-bottom: 0;
+	box-shadow: 0 2px 1px 1px #b1b0b0;
+	border: none;
+}
+
+.navbar .container{
+	width: 100%;
+	padding: 0 0;
+}
+
+.navbar .container .navbar-header{
+	background-color: #0083bb;
+	width: 140px;
+	height: 80px;
+	text-align: center;
+}
+
+.navbar .container .navbar-header a#logo{
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 3em;
+}
+
+.navbar .container .navbar-right{
+	padding-right: 15px;
+}
+
+.navbar .container .navbar-right li > a{
+	color: black;
+	padding: 30px 25px;
+	text-transform: uppercase;
+	font-size: 1.1em;
+}
+
+.navbar .container .navbar-right li > a:hover{
+	background-color: transparent;
+	color: #02AAF3;
+	cursor: pointer;
+}
+
+.navbar .container .navbar-right #help-link{
+	border-left: solid 1px #b1b0b0;
+}
