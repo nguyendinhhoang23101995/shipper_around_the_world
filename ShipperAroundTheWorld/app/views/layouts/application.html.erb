@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>ShipperAroundTheWorld</title>
+		<title><%= full_title(yield(:title)) %></title>
 		<link rel="icon" type="image/png" href="/assets/icon.png">
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 		<%= render "layouts/rails_default" %>
 		<%= render "layouts/shim" %>
 	</head>
 
 	<body>
 		<%= render "layouts/header" %>
-		<%= yield %>
+		<main class="main-content">
+			<div class="container">
+				<% flash.each do |message_type, message| %>
+					<div class="alert alert-<%= message_type %>"><%= message %></div>
+				<% end %>
+				<%= yield %>
+			</div>
+		</main>
 	</body>
 </html>

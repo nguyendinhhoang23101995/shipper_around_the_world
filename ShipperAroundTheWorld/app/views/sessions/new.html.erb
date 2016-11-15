@@ -1,0 +1,22 @@
+<% provide(:title, "Log in") %>
+
+<div class="row">
+	<div class="login-form">
+		<div class="login-form-title">
+			<span class="glyphicon glyphicon-lock" aria-hidden="true"></span><h2>Member Login</h2>
+		</div>
+		<div class="login-form-content">
+			<%= form_for(:session, url: login_path) do |f| %>
+				<%= f.label :email %>
+				<%= f.email_field :email, class: 'form-control' %>
+
+				<%= f.label :password %>
+				<%= f.password_field :password, class: 'form-control' %>
+
+				<%= f.submit "Log in", class: "btn btn-primary", id: "btn-login" %>
+			<% end %>
+
+			<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+		</div>
+	</div>
+</div>

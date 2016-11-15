@@ -1,2 +1,23 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<% provide(:title, 'Sign up') %>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="sign-up-form">
+			<%= render 'shared/error_messages' %>
+			<h3>Sign up now</h3>
+			<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+			<h5>Fill in the form below to get instant access</h5>
+			<%= form_for(@user, url: signup_path) do |f| %>
+				<%= f.text_field :name, placeholder: "Name" %>
+
+				<%= f.email_field :email, placeholder: "Email" %>
+
+				<%= f.password_field :password, placeholder: "Password"%>
+
+				<%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %>
+
+				<%= f.submit "Sign me up!", class: "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+</div>
