@@ -1,0 +1,114 @@
+.present{
+	background-color: transparent;
+	background-image: url("hero-static.png");
+	background-position: 30px -70px;
+	background-size: cover;
+	width: 100%;
+	height: 690px;
+}
+
+.present .present-text{
+	display: inline-block;
+	padding: 60px 70px;
+}
+
+.present .present-text h3{
+	font-weight: bold;
+	font-size: 3.3em;
+	font-family: 'Lato', sans-serif;
+	letter-spacing: 2px;
+	margin-bottom: 20px;
+}
+
+.present .present-text a{
+	position: absolute;
+	bottom: 50px;
+	background-color: #00B437;
+	font-size: 1.3em;
+	text-align: center;
+	color: white;
+	padding: 20px 35px;
+	border-radius: 5px;
+	width: 300px;
+	text-decoration: none;
+}
+
+.present .present-text a:hover{
+	background-color: #00902C;
+	transition: background-color .3s ease;
+}
+
+.present .present-text .present-content{
+	font-weight: bold;
+	font-family: 'Lato', sans-serif;
+	font-size: 1.3em;
+	width: 450px;
+	margin-top: 30px;
+}
+
+.about-us{
+	background-color: white;
+	width: 100%;
+	display: inline-block;
+}
+
+.about-us .wrapper{
+	display: inline-block;
+	padding: 0 30px;
+	margin-top: -5px;
+}
+
+.about-us #wrapper1{
+	margin-top: 0;
+}
+
+.about-us #wrapper2{
+	background-color: #f5f4f6;
+}
+
+.about-us .image-wrapper{
+	width: 44%;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+}
+
+.about-us .image-wrapper img{
+	display: inline-block;
+	width: 100%;
+	height: 410px;
+}
+
+.about-us .image-wrapper img:hover{
+	transform: scale(1.1);
+	transition: transform .7s ease;
+}
+
+.about-us .section-content{
+	display: inline-block;
+	width: 56%;
+	height: 410px;
+	padding: 60px 40px 0px 40px;
+	font-family: 'Lato', sans-serif;
+	float: left;
+}
+
+.about-us .section-content .content-title{
+	text-transform: uppercase;
+}
+
+.about-us .section-content .content-title h5{
+	font-size: 0.8em;
+	letter-spacing: 1px;
+	font-weight: bold;
+}
+
+.about-us .section-content .content-title h4{
+	font-size: 1.6em;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+
+.about-us .section-content .content-main{
+	font-size: 1.2em;
+}
