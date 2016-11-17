@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117132628) do
+ActiveRecord::Schema.define(version: 20161117133650) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20161117132628) do
     t.string   "phonenumber"
     t.float    "rank",            limit: 24
     t.integer  "totalvote"
+    t.string   "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
