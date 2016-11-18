@@ -1,0 +1,11 @@
+<% provide(:title, 'All users') %>
+
+<div class="show-all-users">
+	<div class="title">Contributor Page</div>
+	<div class="content">
+		<ul class="users">
+			<%= render @users %>
+		</ul>
+		<%= will_paginate %>
+	</div>
+</div>
