@@ -21,7 +21,7 @@ class RequestsController < ApplicationController
 	private
 
     def request_params
-		params.require(:request).permit(:content, :price)
+		params.require(:request).permit(:content, :price, :origin, :product_type_id)
     end
 
     def correct_user

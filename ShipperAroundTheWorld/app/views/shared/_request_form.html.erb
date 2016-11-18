@@ -3,12 +3,13 @@
 	<div class="field">
 		<%= render 'shared/error_messages', object: f.object %>
 		<%= f.number_field :price, placeholder: "price" %>
-		<%= f.select :origin, options_for_select([["Teacher", "t"], ["Student", "s"]]) %>
+		<%= f.select :origin, options_for_select([["Viet Nam", "vi"], ["Japan", "jp"]]) %>
 		<%= f.select(:product_type_id) do %>
 			<% ProductType.all.each do |c| %>
 				<%= content_tag(:option ,c.name,value: c.id) %>
 			<% end %>
 		<% end %>
+		
 		<%= f.text_area :content, placeholder: "Compose new request..." %>
 	</div>
 	<%= f.submit "Post", class: "btn btn-primary" %>

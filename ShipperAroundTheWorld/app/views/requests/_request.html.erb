@@ -1,6 +1,6 @@
 <li id="request-<%= request.id %>">
 	<span class="user"><%= link_to request.user.name, request.user %></span>
-	<span class="content"><%= request.content %></span>
+	<span class="content">I want to buy a <%= ProductType.find(request.product_type_id).name %> from <%= request.origin %> with atribute <%= request.content %></span>
 	<span class="timestamp">
 		Posted <%= time_ago_in_words(request.created_at) %> ago.
 		<% if current_user?(request.user) %>

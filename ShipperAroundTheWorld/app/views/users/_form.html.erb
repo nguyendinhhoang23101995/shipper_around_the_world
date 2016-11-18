@@ -1,16 +1,15 @@
-<%= form_for(@user) do |f| %>
-	<%= form_for(@user, url: signup_path) do |f| %>
-		<%= render 'shared/error_messages', object: f.object %>
-		<%= f.text_field :name, placeholder: "Name" %>
 
-		<%= f.email_field :email, placeholder: "Email" %>
+<%= form_for(@user, url: signup_path) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.text_field :name, placeholder: "Name" %>
 
-		<%= f.text_field :phonenumber, placeholder: "Phone" %>
+	<%= f.email_field :email, placeholder: "Email" %>
 
-		<%= f.password_field :password, placeholder: "Password"%>
+	<%= f.text_field :phonenumber, placeholder: "Phone" %>
 
-		<%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %>
+	<%= f.password_field :password, placeholder: "Password"%>
 
-		<%= f.submit yield(:button_text), class: "btn btn-primary" %>
-	<% end %>
+	<%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %>
+
+	<%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

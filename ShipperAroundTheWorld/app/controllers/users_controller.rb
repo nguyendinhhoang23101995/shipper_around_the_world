@@ -14,7 +14,6 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@requests = @user.requests.paginate(page: params[:page], :per_page => 6)
 		@request = current_user.requests.build
-		@types = ProductType.all
 
 	end
 
