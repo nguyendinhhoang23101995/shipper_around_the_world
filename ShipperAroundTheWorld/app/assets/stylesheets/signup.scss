@@ -20,17 +20,19 @@
    color: black;  
 }
 
-.sign-up-form{
+.information-form{
 	background-color: white;
 	width: 450px;
 	border-radius: 5px;
 	padding: 20px 20px;
 	margin: 0 auto;
 	margin-top: 50px;
+	margin-bottom: 50px;
 	box-shadow: 0 0 1px 1px #9e9e9e;
+	height: 550px;
 }
 
-.sign-up-form input, textarea, select, .uneditable-input {
+.information-form input, textarea, select, .uneditable-input {
 	border: none;
 	font-size: 1.2em;
 	border-bottom: 1px solid #bbb;
@@ -42,16 +44,16 @@
 	margin-top: 20px;
 }
 
-.sign-up-form input {
+.information-form input {
 	height: auto !important;
 }
 
-.sign-up-form h3{
+.information-form h3{
 	padding-bottom: 10px;
 	display: inline-block;
 }
 
-.sign-up-form .glyphicon-pencil{
+.information-form .glyphicon-pencil{
 	color: #b5b2b2;
 	float: right;
 	font-size: 3em;
@@ -59,19 +61,19 @@
 	margin-right: 20px;
 }
 
-.sign-up-form input#customers-radio{
+.information-form input#customers-radio{
 	width: 50px;
 	float: left;
 	margin-top: 35px;
 }
 
-.sign-up-form input#shipper-radio{
+.information-form input#shipper-radio{
 	width: 50px;
 	float: left;
 	margin-top: 35px;
 }
 
-.sign-up-form label#customers-label{
+.information-form label#customers-label{
 	float: left;
 	font-size: 1.2em;
 	margin-top: 30px;
@@ -79,7 +81,7 @@
 	margin-bottom: 30px;
 }
 
-.sign-up-form label#shipper-label{
+.information-form label#shipper-label{
 	float: left;
 	font-size: 1.2em;
 	margin-top: 30px;

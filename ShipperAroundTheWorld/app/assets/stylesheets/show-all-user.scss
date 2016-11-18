@@ -1,0 +1,72 @@
+.show-all-users {
+	padding-top: 45px;
+}
+
+.show-all-users .title{
+	text-align: center;
+	font-size: 4.2em;
+	text-transform: uppercase;
+}
+
+.show-all-users .content{
+	padding: 30px 50px 20px 170px;
+}
+
+.show-all-users .content .pagination{
+	margin-left: 20px;
+	margin-top: 25px;
+}
+
+.show-all-users .content .users {
+	list-style: none;
+	margin: 0;
+	li {
+		padding: 30px 20px 50px 0;
+		overflow: auto;
+		border-bottom: 1px solid #c5c5c5;
+	}
+}
+
+.show-all-users .content .users img{
+	border-radius: 50%;
+}
+
+.show-all-users .content .users .glyphicon{
+	margin-right: 10px;
+}
+
+.show-all-users .content .users .name{
+	font-weight: bold;
+	margin-left: 25px;
+	display: inline-block;
+}
+
+.show-all-users .content .users .email{
+	margin-left: 25px;
+	margin-top: 20px;
+	display: inline-block;
+}
+
+.show-all-users .content .users .phone{
+	margin-left: 25px;
+	margin-top: 20px;
+	display: inline-block;
+}
+
+.show-all-users .content .users .btn-profile{
+	float: right;
+	background-color: #0083bb;
+	color: white;
+	text-decoration: none;
+	padding: 10px 20px;
+	font-size: 1.1em;
+	border-radius: 10px;
+	cursor: pointer;
+	margin-top: -90px;
+	margin-right: 10px;
+}
+
+.show-all-users .content .users .btn-profile:hover{
+	background-color: #006d9c;
+	transition: background-color .3s ease;
+}

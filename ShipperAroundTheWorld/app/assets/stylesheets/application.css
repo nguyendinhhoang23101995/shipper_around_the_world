@@ -13,8 +13,6 @@
  *= require_tree .
  *= require_self
  */
-@import 'header.scss';
-@import 'footer.scss';
 
 body{
 	background-color: #f5f4f6;
