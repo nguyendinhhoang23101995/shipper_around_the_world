@@ -1,13 +1,13 @@
 class CreateRequests < ActiveRecord::Migration[5.0]
-  def change
-    create_table :requests do |t|
-      t.integer :price
-      t.string :origin
-      t.float :weight
-      t.integer :state
-      t.string :content
+	def change
+		create_table :requests do |t|
+			t.integer :price
+			t.string :origin
+			t.float :weight
+			t.integer :state
+			t.string :content
 
-      t.timestamps
-    end
-  end
+			t.timestamps
+		end
+	end
 end

@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(version: 20161117133650) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "id_card"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "users_id"
-    t.string   "id_card"
     t.index ["users_id"], name: "index_admins_on_users_id", using: :btree
   end
 
@@ -76,12 +76,12 @@ ActiveRecord::Schema.define(version: 20161117133650) do
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "password_digest"
     t.string   "phonenumber"
-    t.float    "rank",            limit: 24
-    t.integer  "totalvote"
+    t.float    "rank",            limit: 24, default: 0.0
+    t.integer  "totalvote",                  default: 0
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "password_digest"
     t.string   "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
