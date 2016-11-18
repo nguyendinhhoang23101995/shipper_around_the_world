@@ -1,7 +1,15 @@
-<%= form_for(@micropost) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
+<%= form_for(@request) do |f| %>
+
 	<div class="field">
-		<%= f.text_area :content, placeholder: "Compose new micropost..." %>
+		<%= render 'shared/error_messages', object: f.object %>
+		<%= f.number_field :price, placeholder: "price" %>
+		<%= f.select :origin, options_for_select([["Teacher", "t"], ["Student", "s"]]) %>
+		<%= f.select(:product_type_id) do %>
+			<% ProductType.all.each do |c| %>
+				<%= content_tag(:option ,c.name,value: c.id) %>
+			<% end %>
+		<% end %>
+		<%= f.text_area :content, placeholder: "Compose new request..." %>
 	</div>
 	<%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>

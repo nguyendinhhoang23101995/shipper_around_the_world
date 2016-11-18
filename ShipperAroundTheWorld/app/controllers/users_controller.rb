@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
 	def index
 		@users = User.paginate(page: params[:page], :per_page => 8)
-		@requests = @user.requests.paginate(page: params[:page], :per_page => 8)
 	end
 
 	def new
@@ -13,6 +12,10 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@requests = @user.requests.paginate(page: params[:page], :per_page => 6)
+		@request = current_user.requests.build
+		@types = ProductType.all
+
 	end
 
 	def create

@@ -20,3 +20,9 @@ User.create!(name:  "Example User",
                password_confirmation: password,
                phonenumber:           phonenumber)
 end
+
+
+10.times do
+  content = Faker::Lorem.sentence(5)
+  ProductType.create!(name: content)
+end
