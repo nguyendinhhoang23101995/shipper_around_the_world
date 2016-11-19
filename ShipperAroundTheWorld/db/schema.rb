@@ -61,10 +61,11 @@ ActiveRecord::Schema.define(version: 20161119025336) do
   create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "price"
     t.string   "origin"
-    t.integer  "state",           default: 0
+    t.float    "weight",          limit: 24
+    t.integer  "state",                      default: 0
     t.string   "content"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "user_id"
     t.integer  "product_type_id"
     t.index ["product_type_id"], name: "index_requests_on_product_type_id", using: :btree
