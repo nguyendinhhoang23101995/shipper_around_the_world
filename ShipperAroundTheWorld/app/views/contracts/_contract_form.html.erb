@@ -1,19 +1,61 @@
-<%= form_for(@contract) do |f| %>
+<% provide(:button_text, 'Create Contract') %>
 
-	<%= render 'shared/error_messages', object: f.object %>
-	<h1>A side </h1>
-	<p>Email: <%= current_user.email %></p>
-	<p>Bank Account: <%= f.text_field :bank_account_a, placeholder:"bank_account_a" %></p>
-	<h1>B side</h1>
-	<p>Email: <%= f.select(:user_id) do %>
-		<% users = User.find_by_sql("SELECT * FROM users WHERE id != #{current_user.id}") %>
-		<% users.each do |c| %>
-			<%= content_tag(:option ,c.email,value: c.id) %>
+<div class="contract-content">
+	<div class="contract-form">
+		<%= form_for(@contract) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+			<h1>Contract Agreement</h1>
+			<hr>
+			<div class="between">
+				<div class="title">Between:</div>
+				<ul>
+					<li>
+						A. 
+						<div class="base-infor">
+							<div class="infor-item">
+								<div class="sub-title">Email:</div>
+								<p class="infor-detail"> <%= current_user.email %></p>
+							</div>
+							<div class="infor-item">
+								<div class="sub-title">Bank Account:</div>
+								<p class="infor-detail"><%= f.text_field :bank_account_a, placeholder:"Bank Account A" %></p>
+							</div>
+						</div>
+					</li>
+					<li>
+						B.
+						<div class="base-infor">
+							<div class="infor-item">
+								<div class="sub-title">Email:</div>
+								<p class="infor-detail">
+									<%= f.select(:user_id) do %>
+										<% users = User.find_by_sql("SELECT * FROM users WHERE id != #{current_user.id}") %>
+										<% users.each do |c| %>
+											<%= content_tag(:option ,c.email,value: c.id) %>
+										<% end %>
+									<% end %> 
+								</p>
+							</div>
+							<div class="infor-item">
+								<div class="sub-title">Bank Account:</div>
+								<p class="infor-detail"><%= f.text_field :bank_account_b, placeholder: "Bank Account B" %></b></p>
+							</div>
+						</div> 
+					</li>
+				</ul>
+			</div>
+			<div class="date">
+				<div class="title">Date: </div>
+				<div id="date-input">
+					<%= f.date_field :deadline %>
+				</div>
+			</div>
+			<%= f.hidden_field :request_id, :value=> @request.id %>
+			<div class="content">
+				<div class="title">Content:</div>
+				<%= f.text_area :content, placeholder: "Content ..." %>
+			</div>
+			<%= f.submit yield(:button_text), class: "btn btn-primary" %>
 		<% end %>
-	<% end %> </p>
-	<p>Bank Account: <%= f.text_field :bank_account_b, placeholder: "bank_account_b" %></b>
-	<%= f.date_field :deadline %>
-	<%= f.hidden_field :request_id, :value=> @request.id %>
-	<%= f.text_area :content, placeholder: "Content" %>
-	<%= f.submit yield(:button_text), class: "btn btn-primary" %>
-<% end %>
+	</div>
+</div>
