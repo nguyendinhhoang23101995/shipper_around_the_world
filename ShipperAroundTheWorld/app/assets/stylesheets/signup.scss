@@ -29,10 +29,15 @@
 	margin-top: 50px;
 	margin-bottom: 50px;
 	box-shadow: 0 0 1px 1px #9e9e9e;
-	height: 550px;
+	height: 580px;
 }
 
-.information-form input, textarea, select, .uneditable-input {
+.information-form .btn{
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+
+.information-form input, textarea, .uneditable-input {
 	border: none;
 	font-size: 1.2em;
 	border-bottom: 1px solid #bbb;
@@ -41,7 +46,7 @@
 	@include box_sizing;
 	outline: 0;
 	padding: 5px 8px;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .information-form input {

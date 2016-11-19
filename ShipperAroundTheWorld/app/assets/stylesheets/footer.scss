@@ -4,13 +4,30 @@ footer{
 	background-color: white;
 	height: 60px;
 	text-align: center;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	position: fixed-bottom;
 }
 
 footer .copyright{
 	display: inline-block;
 	float: left;
+}
+
+footer .contact-information{
+	display: inline-block;
+	float: right;
+	font-size: 1.1em;
+}
+
+.contact-information .glyphicon{
+	margin-right: 10px;
+}
+
+.contact-information .location{
+	display: inline-block;
+	margin-right: 70px;
+}
+
+.contact-information .phone{
+	display: inline-block;
+	margin-right: 50px;
 }
