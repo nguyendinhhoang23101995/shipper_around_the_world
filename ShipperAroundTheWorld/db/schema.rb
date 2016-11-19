@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20161117133650) do
 
   create_table "product_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.string   "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +59,7 @@ ActiveRecord::Schema.define(version: 20161117133650) do
   create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "price"
     t.string   "origin"
+<<<<<<< HEAD
     t.float    "weight",          limit: 24
     t.integer  "state",                      default: 0
     t.string   "content"

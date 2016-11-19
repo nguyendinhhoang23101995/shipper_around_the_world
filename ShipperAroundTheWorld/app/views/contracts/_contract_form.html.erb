@@ -1,0 +1,16 @@
+<%= form_for(@contract) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.text_field :content, placeholder: "Contract" %>
+	<%= f.text_field :bank_account_a, placeholder:"bank_account_a" %>
+	<%= f.text_field :bank_account_b, placeholder: "bank_account_b" %>
+	<%= f.date_field :deadline %>
+	<%= f.select(:user_id) do %>
+		<% users = User.find_by_sql("SELECT * FROM users WHERE id != #{current_user.id}") %>
+		<% users.each do |c| %>
+			<%= content_tag(:option ,c.email,value: c.id) %>
+		<% end %>
+	<% end %>
+	
+
+	<%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

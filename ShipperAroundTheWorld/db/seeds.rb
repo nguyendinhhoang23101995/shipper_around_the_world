@@ -15,19 +15,13 @@ User.create!(name:  "Example User",
 
 		phonenumber = arr.join('')
 	User.create!(name:  name,
-							 email: email,
-							 password:              password,
-							 password_confirmation: password,
-							 phonenumber:           phonenumber)
-end
-
-users = User.order(:created_at).take(6)
-50.times do
-	content = Faker::Lorem.sentence(5)
-	users.each { |user| user.requests.create!(content: content) }
+               email: email,
+               password:              password,
+               password_confirmation: password,
+               phonenumber:           phonenumber)
 end
 
 10.times do
-	content = Faker::Lorem.sentence(5)
-	ProductType.create!(name: content)
+  content = Faker::Lorem.sentence(5)
+  ProductType.create!(name: content)
 end
