@@ -21,7 +21,11 @@ User.create!(name:  "Example User",
                phonenumber:           phonenumber)
 end
 
-10.times do
-  content = Faker::Lorem.sentence(5)
-  ProductType.create!(name: content)
-end
+ProductType.create!(name: "Mobile Phone")
+ProductType.create!(name: "Television")
+ProductType.create!(name: "Refrigrator")
+ProductType.create!(name: "Stolen")
+ProductType.create!(name: "Cars")
+ProductType.create!(name: "Bike")
+ProductType.create!(name: "Motor Bike")
+ProductType.create!(name: "Sports equiment")
