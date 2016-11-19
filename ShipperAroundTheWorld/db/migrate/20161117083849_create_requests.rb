@@ -4,7 +4,7 @@ class CreateRequests < ActiveRecord::Migration[5.0]
 			t.integer :price
 			t.string :origin
 			t.float :weight
-			t.integer :state
+			t.integer :state, default: 0
 			t.string :content
 
 			t.timestamps
