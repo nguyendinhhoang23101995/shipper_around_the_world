@@ -4,8 +4,20 @@
 	<span class="timestamp">
 		Posted <%= time_ago_in_words(request.created_at) %> ago.
 		<% if current_user?(request.user) %>
-	     	<%= link_to "delete", request, method: :delete,
-	                                       data: { confirm: "You sure?" } %>
+			<% if request.state == 0 %>
+		     	<%= link_to "delete", request, method: :delete,
+		                                       data: { confirm: "You sure?" } %>
+		     	<%= link_to "create new contract", new_contract_path(:request_id => request.id) %>
+	    	<% else %>
+	    		<%= link_to "view contract", "#" %>
+	    	<% end %>
+	    <% else %>
+	    	<% if request.state == 1 %>
+	    		<% @contract = Contract.find_by( request_id: request.id) %>
+	    		<% @shipper = User.find_by(id: @contract.user_id) %>
+	    		solved by <%= @shipper.name %>, email: <%= @shipper.email %>
+	    	<% end %>
 	    <% end %>
+
 	</span>
 </li>

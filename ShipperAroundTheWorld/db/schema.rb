@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117133650) do
+ActiveRecord::Schema.define(version: 20161119025336) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "id_card"
@@ -25,12 +25,14 @@ ActiveRecord::Schema.define(version: 20161117133650) do
     t.date     "deadline"
     t.string   "bank_account_a"
     t.string   "bank_account_b"
-    t.integer  "state"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "state",          default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "report_id"
     t.integer  "user_id"
+    t.integer  "request_id"
     t.index ["report_id"], name: "index_contracts_on_report_id", using: :btree
+    t.index ["request_id"], name: "index_contracts_on_request_id", using: :btree
     t.index ["user_id"], name: "index_contracts_on_user_id", using: :btree
   end
 
@@ -65,8 +67,6 @@ ActiveRecord::Schema.define(version: 20161117133650) do
     t.datetime "updated_at",                  null: false
     t.integer  "user_id"
     t.integer  "product_type_id"
-    t.integer  "contract_id"
-    t.index ["contract_id"], name: "index_requests_on_contract_id", using: :btree
     t.index ["product_type_id"], name: "index_requests_on_product_type_id", using: :btree
     t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
   end
@@ -86,10 +86,10 @@ ActiveRecord::Schema.define(version: 20161117133650) do
 
   add_foreign_key "admins", "users"
   add_foreign_key "contracts", "reports"
+  add_foreign_key "contracts", "requests"
   add_foreign_key "contracts", "users"
   add_foreign_key "messages", "requests"
   add_foreign_key "messages", "users"
-  add_foreign_key "requests", "contracts"
   add_foreign_key "requests", "product_types"
   add_foreign_key "requests", "users"
 end
