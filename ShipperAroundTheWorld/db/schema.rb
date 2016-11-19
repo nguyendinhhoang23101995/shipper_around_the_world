@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20161117133650) do
     t.date     "deadline"
     t.string   "bank_account_a"
     t.string   "bank_account_b"
-    t.integer  "state"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "state",          default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "report_id"
     t.integer  "user_id"
     t.index ["report_id"], name: "index_contracts_on_report_id", using: :btree
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 20161117133650) do
   create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "price"
     t.string   "origin"
-<<<<<<< HEAD
     t.float    "weight",          limit: 24
     t.integer  "state",                      default: 0
     t.string   "content"

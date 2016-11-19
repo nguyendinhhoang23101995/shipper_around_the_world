@@ -18,7 +18,7 @@ class ContractsController < ApplicationController
 
 	private
 
-    def contract_params
+	def contract_params
 		params.require(:contract).permit(:content, :deadline, :bank_account_a, :bank_account_b, :user_id)
     end
 end
