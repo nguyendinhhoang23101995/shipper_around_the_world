@@ -22,4 +22,7 @@
 				<%= will_paginate @requests %>
 		<% end %>
 	</div>
+	<% if current_user.id == @user.id %>
+		<%= link_to "New Contract" , "/contract" %>	
+	<% end %>
 </div>

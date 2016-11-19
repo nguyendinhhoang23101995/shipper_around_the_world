@@ -5,7 +5,7 @@ class CreateContracts < ActiveRecord::Migration[5.0]
       t.date :deadline
       t.string :bank_account_a
       t.string :bank_account_b
-      t.integer :state
+      t.integer :state, default: 0
 
       t.timestamps
     end
