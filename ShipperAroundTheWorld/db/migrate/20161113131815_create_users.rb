@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
 			t.string  :name
 			t.string  :email
 			t.string  :phonenumber
+			t.integer :state, default: 0
 			t.float   :rank, default: 0
 			t.integer :totalvote, default: 0
 
