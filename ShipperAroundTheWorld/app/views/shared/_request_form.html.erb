@@ -1,16 +1,30 @@
 <%= form_for(@request) do |f| %>
 
-	<div class="field">
+	<div class="request-form">
 		<%= render 'shared/error_messages', object: f.object %>
-		<%= f.number_field :price, placeholder: "price" %>
-		<%= f.select :origin, options_for_select([["Viet Nam", "vi"], ["Japan", "jp"]]) %>
-		<%= f.select(:product_type_id) do %>
-			<% ProductType.all.each do |c| %>
-				<%= content_tag(:option ,c.name,value: c.id) %>
+		<div class="form-item">
+			<div class="title"><label for="request_price">Price:</label></div>
+			<div class="input-group">
+				<%= f.number_field :price, placeholder: "Price", class: "form-control" %>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></span>
+			</div>
+		</div>
+		<div class="form-item">
+			<div class="title"><label for="#request_origin">Origin:</label></div><% @country_list = ['America', 'Japan', 'England', 'Spain', 
+						'France', 'Germany', 'China',
+						'Laos', 'Singapore', 'Korea', 'Australia', 
+						'Rusia', 'Brazil']; %>
+			<%= f.select :origin, options_for_select(@country_list.map{ |c| [c]}) %>
+		</div>
+		<div class="form-item">
+			<div class="title"><label for="#request_product_type_id">Product Type:</label></div><%= f.select(:product_type_id) do %>
+				<% ProductType.all.each do |c| %>
+					<%= content_tag(:option ,c.name,value: c.id) %>
+				<% end %>
 			<% end %>
-		<% end %>
+		</div>
 		
-		<%= f.text_area :content, placeholder: "Compose new request..." %>
+		<%= f.text_area :content, placeholder: "More Infor ..." %>
+		<%= f.submit "Post", class: "btn btn-primary" %>
 	</div>
-	<%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>

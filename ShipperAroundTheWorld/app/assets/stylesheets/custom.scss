@@ -4,27 +4,13 @@
 /* sidebar */
 
 aside {
-	section.user_info {
-		margin-top: 20px;
-	}
-	section {
-		padding: 10px 0;
-		margin-top: 20px;
-		&:first-child {
-			border: 0;
-			padding-top: 0;
-		}
-		span {
-			display: block;
-			margin-bottom: 3px;
-			line-height: 1;
-		}
-		h1 {
-			font-size: 1.4em;
-			text-align: left;
-			letter-spacing: -1px;
-			margin-bottom: 3px;
-			margin-top: 0px;
+	section.user-info {
+		margin-top: 10px;
+		text-align: center;
+		display: inline-block;
+		margin-left: 20px;
+		img{
+			border-radius: 50%;
 		}
 	}
 }
@@ -59,39 +45,6 @@ aside {
 	.form-control {
 		color: #f60500;
 		border-color: #f60500;
-	}
-}
-
-/* requests */
-
-.requests {
-	list-style: none;
-	padding: 0;
-	li {
-		padding: 10px 0;
-		border-top: 1px solid #e8e8e8;
-	}
-	.user {
-		margin-top: 5em;
-		padding-top: 0;
-	}
-	.content {
-		display: block;
-		margin-left: 60px;
-		img {
-			display: block;
-			padding: 5px 0;
-		}
-	}
-	.timestamp {
-		color: grey;
-		display: block;
-		margin-left: 60px;
-	}
-	.gravatar {
-		float: left;
-		margin-right: 10px;
-		margin-top: 5px;
 	}
 }
 
