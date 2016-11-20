@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+var toggle_mess_list_flag = 0;
+
 function internal_link_click (link) {
 	// Make sure this.hash has a value before overriding default behavior
 	if (link.hash !== "") {
@@ -34,4 +36,20 @@ function internal_link_click (link) {
 		window.location.hash = hash;
 		});
 	} // End if
+}
+
+function toggleMessList(){
+	if(toggle_mess_list_flag == 0){
+		$(".list-messages").toggle();
+		$(".toggle-link").html("<a onclick=\"toggleMessList()\">Message List" + 
+							   "<span class=\"glyphicon " +
+		 					   "glyphicon-chevron-up\" aria-hidden=\"true\"></span></a>");
+	}
+	else{
+		$(".list-messages").toggle();
+		$(".toggle-link").html("<a onclick=\"toggleMessList()\">Message List" + 
+							   "<span class=\"glyphicon " +
+		 					   "glyphicon-chevron-down\" aria-hidden=\"true\"></span></a>");
+	}
+	toggle_mess_list_flag = 1 - toggle_mess_list_flag;
 }

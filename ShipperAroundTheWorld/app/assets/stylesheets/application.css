@@ -21,6 +21,11 @@ body{
 	overflow-x: hidden;
 }
 
+textarea{
+	resize: none;
+	border: solid 1px black;
+}
+
 .main-content{
 	padding: 0 0;
 	margin: 0 0;

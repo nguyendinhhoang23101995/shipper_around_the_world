@@ -12,16 +12,23 @@ aside {
 		img{
 			border-radius: 50%;
 		}
+		#user-email{
+			font-size: 1.2em;
+			display: inline-block;
+			margin-left: 80px;
+			.title{
+				font-size: 1.2em;
+				font-weight: bold;
+				margin-right: 10px;
+				display: inline-block;
+			}
+		}
 	}
 }
 
 .gravatar {
 	float: left;
 	margin-right: 10px;
-}
-
-.gravatar_edit {
-	margin-top: 15px;
 }
 
 /* error messages */
