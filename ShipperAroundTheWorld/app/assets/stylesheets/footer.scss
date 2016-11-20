@@ -1,6 +1,6 @@
 footer{
 	border-top: solid 1px #d6d6d6;
-	padding: 20px 35px;
+	padding: 20px 0 20px 35px;
 	background-color: white;
 	height: 60px;
 	text-align: center;
@@ -22,12 +22,7 @@ footer .contact-information{
 	margin-right: 10px;
 }
 
-.contact-information .location{
+.contact-information .infor-detail{
 	display: inline-block;
 	margin-right: 70px;
-}
-
-.contact-information .phone{
-	display: inline-block;
-	margin-right: 50px;
 }

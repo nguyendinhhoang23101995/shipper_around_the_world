@@ -32,6 +32,11 @@
 	font-size: 1.2em;
 }
 
+.contract-content .contract-form select{
+	background-color: white;
+	padding: 5px 5px;
+}
+
 .contract-content .contract-form h1{
 	text-transform: uppercase;
 	text-align: center;
@@ -72,4 +77,10 @@
 .contract-form .date #date-input{
 	float: right;
 	margin-right: 60px;
+}
+
+.contract-form .content .agreement-content-detail{
+	font-size: 1.3em;
+	margin-top: 10px;
+	margin-left: 30px;
 }
