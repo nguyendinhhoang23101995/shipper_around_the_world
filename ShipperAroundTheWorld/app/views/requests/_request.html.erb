@@ -32,5 +32,16 @@
 		<span class="timestamp">
 			Posted <%= time_ago_in_words(request.created_at) %> ago.
 		</span>
+		<% if current_user.id != request.user.id && request.state == 0 %>
+			<%= render 'messages/message_form', id: request.id %>
+		<% end %>
+		<% if request.state == 0 %>
+			<div class="mess-list-section">
+				<div class="toggle-link">
+					<a onclick="toggleMessList()">Message List<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+				</div>
+				<%= render 'messages/message_list', request: request %>
+			</div>
+		<% end %>
 	</span>
 </li>
