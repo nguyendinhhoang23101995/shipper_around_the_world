@@ -23,7 +23,7 @@
 				<% end %>
 			<% end %>
 		</div>
-		
+		<%= f.hidden_field :state, :value=> 0 %>
 		<%= f.text_area :content, placeholder: "More Infor ..." %>
 		<%= f.submit "Post", class: "btn btn-primary" %>
 	</div>
