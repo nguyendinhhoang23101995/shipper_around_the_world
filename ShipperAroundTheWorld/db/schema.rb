@@ -28,10 +28,8 @@ ActiveRecord::Schema.define(version: 20161120074004) do
     t.integer  "state",          default: 0
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "report_id"
     t.integer  "user_id"
     t.integer  "request_id"
-    t.index ["report_id"], name: "index_contracts_on_report_id", using: :btree
     t.index ["request_id"], name: "index_contracts_on_request_id", using: :btree
     t.index ["user_id"], name: "index_contracts_on_user_id", using: :btree
   end
@@ -54,12 +52,6 @@ ActiveRecord::Schema.define(version: 20161120074004) do
 
   create_table "product_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -93,7 +85,6 @@ ActiveRecord::Schema.define(version: 20161120074004) do
   end
 
   add_foreign_key "admins", "users"
-  add_foreign_key "contracts", "reports"
   add_foreign_key "contracts", "requests"
   add_foreign_key "contracts", "users"
   add_foreign_key "messages", "requests"
