@@ -5,18 +5,28 @@ class ContractsController < ApplicationController
 		@request = Request.find(params[:request_id])
 	end
 
+	def show
+		@contract = Contract.find(params[:contract_id])
+		@customer = User.find(params[:customer_id])
+	end
+
 	def create
 		@contract = Contract.new(contract_params)
+		@request = Request.find_by(id: @contract.request_id)
 
-		if @contract.save
-			@request = Request.find_by(id: @contract.request_id)
-			@request.update_attribute  :state, 1
-
-			flash[:success] = "Contract created!"
-			redirect_to user_path(current_user)
+		if @contract.bank_account_a == @contract.bank_account_b
+			flash[:danger] = "Two bank account can't be the same"
+			redirect_to :back
 		else
-			flash[:danger] = @contract.errors.full_messages.to_sentence
-			redirect_to user_path(current_user)
+			if @contract.save
+				@request.update_attribute  :state, 1
+
+				flash[:success] = "Contract created!"
+				redirect_to user_path(current_user)
+			else
+				flash[:danger] = @contract.errors.full_messages.to_sentence
+				redirect_to :back
+			end
 		end
 	end
 

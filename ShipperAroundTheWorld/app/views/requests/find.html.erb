@@ -1,0 +1,30 @@
+<%= form_for(@request) do |f| %>
+	<div class="title"><label for="#request_origin">Origin:</label></div><% @country_list = ['America', 'Japan', 'England', 'Spain', 
+						'France', 'Germany', 'China',
+						'Laos', 'Singapore', 'Korea', 'Australia', 
+						'Rusia', 'Brazil']; %>
+			<%= f.select :origin, options_for_select(@country_list.map{ |c| [c]}) %>
+	<div class="title"><label for="#request_product_type_id">Product Type:</label></div><%= f.select(:product_type_id) do %>
+				<% ProductType.all.each do |c| %>
+					<%= content_tag(:option ,c.name,value: c.id) %>
+				<% end %>
+			<% end %>
+	<%= f.hidden_field :state, :value=> 5%>
+	<%= f.submit "find" %>
+<% end %>
+
+<% if $requests.size != 0 %>
+	<h2>Result</h2>
+	<% $requests.each do |f| %>
+		<% @request_tmp = Request.find_by(id: f.id) %>
+		<span class="content">
+			<div class="title-quote">Want to buy:</div><%= ProductType.find(@request_tmp.product_type_id).name %> 
+			<br>
+			<div class="title-quote">From:</div><%= @request_tmp.origin %>
+			<br>
+			<div class="title-quote">Features:</div><%= @request_tmp.content %>
+			<br>
+		</span>
+	<% end %>
+
+<%end%>

@@ -1,3 +1,86 @@
 // Place all the styles related to the contracts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.contract-content {
+	width: 100%;
+	text-align: center;
+}
+
+.contract-content .contract-form{
+	background-color: white;
+	display: inline-block;
+	width: 600px;
+	margin-top: 30px;
+	border: solid 1px #848080;
+	border-radius: 5px;
+	padding: 20px 20px;
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+.contract-content .contract-form .title{
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	display: inline-block;
+}
+
+.contract-content .contract-form .btn{
+	width: 100%;
+	font-size: 1.2em;
+}
+
+.contract-content .contract-form select{
+	background-color: white;
+	padding: 5px 5px;
+}
+
+.contract-content .contract-form h1{
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.contract-content .contract-form textarea{
+	resize: none;
+	border : solid 1px black;
+	border-radius: 5px;
+}
+
+.contract-content .contract-form input{
+	padding: 5px 20px;
+}
+
+.contract-content .contract-form ul > li{
+	list-style: none;
+}
+
+.contract-content .contract-form .base-infor .infor-item{
+	display: inline-block;
+	width: 100%;
+}
+
+.contract-form .base-infor .infor-item .sub-title{
+	display: inline-block;
+	font-weight: bold;
+	font-size: 1.1em;
+	float: left;
+	margin-left: 30px;
+}
+
+.contract-form .base-infor .infor-item .infor-detail{
+	float: right;
+	margin-right: 60px;
+}
+
+.contract-form .date #date-input{
+	float: right;
+	margin-right: 60px;
+}
+
+.contract-form .content .agreement-content-detail{
+	font-size: 1.3em;
+	margin-top: 10px;
+	margin-left: 30px;
+}

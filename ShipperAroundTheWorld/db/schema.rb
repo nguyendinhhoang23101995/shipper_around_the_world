@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119025336) do
+ActiveRecord::Schema.define(version: 20161120074004) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "id_card"
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(version: 20161119025336) do
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
+  create_table "origins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "product_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -60,13 +66,14 @@ ActiveRecord::Schema.define(version: 20161119025336) do
 
   create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "price"
-    t.string   "origin"
     t.integer  "state",           default: 0
     t.string   "content"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "user_id"
     t.integer  "product_type_id"
+    t.integer  "origin_id"
+    t.index ["origin_id"], name: "index_requests_on_origin_id", using: :btree
     t.index ["product_type_id"], name: "index_requests_on_product_type_id", using: :btree
     t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
   end
@@ -75,6 +82,7 @@ ActiveRecord::Schema.define(version: 20161119025336) do
     t.string   "name"
     t.string   "email"
     t.string   "phonenumber"
+    t.integer  "state",                      default: 0
     t.float    "rank",            limit: 24, default: 0.0
     t.integer  "totalvote",                  default: 0
     t.datetime "created_at",                               null: false
@@ -90,6 +98,7 @@ ActiveRecord::Schema.define(version: 20161119025336) do
   add_foreign_key "contracts", "users"
   add_foreign_key "messages", "requests"
   add_foreign_key "messages", "users"
+  add_foreign_key "requests", "origins"
   add_foreign_key "requests", "product_types"
   add_foreign_key "requests", "users"
 end

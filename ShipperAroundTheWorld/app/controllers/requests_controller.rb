@@ -1,9 +1,10 @@
 class RequestsController < ApplicationController
 	before_action :correct_user,   only: :destroy
+	
 	def new 
 		@request = Request.new
-		
 	end
+	
 	def create
 		@request = current_user.requests.build(request_params)
 		if @request.state == 0
@@ -21,11 +22,16 @@ class RequestsController < ApplicationController
 	end
 
 	def destroy
+
 		if @request.state != 0
 			@request.destroy
 		    flash[:success] = "Request deleted"
 		    redirect_to request.referrer || root_url
 		end
+
+		@request.destroy
+		flash[:success] = "Request deleted"
+		redirect_to request.referrer || root_url
 	end
 
 	def find
@@ -35,12 +41,17 @@ class RequestsController < ApplicationController
 
 	private
 
+
     def request_params
 		params.require(:request).permit(:content, :price, :origin, :product_type_id,:state)
     end
 
-    def correct_user
-      @request = current_user.requests.find_by(id: params[:id])
-      redirect_to root_url if @request.nil?
-    end
+		def request_params
+			params.require(:request).permit(:content, :price, :origin_id, :product_type_id)
+		end
+
+		def correct_user
+			@request = current_user.requests.find_by(id: params[:id])
+			redirect_to root_url if @request.nil?
+		end
 end

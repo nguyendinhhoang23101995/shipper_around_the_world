@@ -4,7 +4,8 @@
 		<span class="user"><%= link_to request.user.name, request.user %></span>
 		<div class="title-quote">Want to buy:</div><%= ProductType.find(request.product_type_id).name %> 
 		<br>
-		<div class="title-quote">From:</div><%= request.origin %>
+		<% @origin = Origin.find_by(id: request.origin_id) %>
+		<div class="title-quote">From:</div><%= @origin.name %>
 		<br>
 		<div class="title-quote">Features:</div><%= request.content %>
 		<br>
@@ -18,7 +19,8 @@
 				</div>
 			<% else %>
 				<div class="link-list">
-					<%= link_to "View contract", "#" %>
+					<% @contract = Contract.find_by(request_id: request.id) %>
+					<%= link_to "View contract", contract_path(:contract_id => @contract.id, :customer_id => @contract.user_id) %>
 				</div>
 			<% end %>
 		<% end %>
