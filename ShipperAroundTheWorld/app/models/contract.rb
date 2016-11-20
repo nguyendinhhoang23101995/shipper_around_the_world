@@ -11,9 +11,9 @@ class Contract < ApplicationRecord
 
 	def deadline_date_cannot_be_in_the_past
 		if deadline.present? && deadline < Date.today
-			errors.add(:deadline, ": can't be in the past")
+			errors.add(:deadline, "can't be in the past")
 		elsif deadline > ( Date.today + 1.year) && deadline.present?
-			errors.add(:deadline, ": can't longger than 1 year")
+			errors.add(:deadline, "can't longger than 1 year")
 		end
 	end
 end
