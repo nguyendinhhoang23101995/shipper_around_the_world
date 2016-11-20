@@ -1,0 +1,21 @@
+<div class="list-messages">
+	<h3>Mess List</h3>
+	<% @messages = request.messages %>
+	<% @messages.each do |mess| %>
+		<% @user = User.find_by(id: mess.user_id) %>
+		<%= link_to @user.name, @user %>
+		<br>
+		<div id="mess-content">
+			<%= mess.content %>
+		</div>
+		<% if current_user == @user || current_user.id == request.user_id %>
+			<%= link_to "Delete", mess, method: :delete, id: "delete-mess-link",
+				                 data: { confirm: "Are you sure?" } %>
+		<% end %>
+		<br>
+		<span class="timestamp">
+			Posted <%= time_ago_in_words(mess.created_at) %> ago.
+		</span>
+		<hr>
+	<% end %>
+</div>

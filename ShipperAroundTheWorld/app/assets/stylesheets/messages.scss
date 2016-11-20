@@ -1,0 +1,57 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.message-form{
+	display: inline-block;
+	margin-top: 15px;
+}
+
+.mess-list-section{
+	width: 60%;
+	margin-top: 20px;
+}
+
+.mess-list-section .toggle-link{
+	font-size: 1.2em;
+	cursor: pointer;
+}
+
+.mess-list-section .toggle-link .glyphicon{
+	margin-left: 10px;
+}
+
+.list-messages{
+	margin-top: 15px;
+	display: inline-block;
+	width: 100%;
+	padding: 10px 20px;
+	background-color: white;
+	border: solid 1px black;
+	border-radius: 5px;
+	display: none;
+	max-height: 590px;
+	overflow-y :scroll;
+}
+
+.list-messages h3{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.list-messages hr{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-color: #989898;
+}
+
+.list-messages #mess-content{
+	display: inline-block;
+	width: 85%;
+	word-wrap: break-word;
+	margin: 10px 0;
+}
+
+.list-messages #delete-mess-link{
+	float: right;
+}

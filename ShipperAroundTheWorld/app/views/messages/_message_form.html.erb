@@ -1,0 +1,9 @@
+<div class="message-form">
+	<%= form_for(@message) do |f| %>
+		<%= f.label "Message" %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<%= f.hidden_field :request_id, :value => id %>
+		<%= f.text_area :content, placeholder: "Content ..." %>
+		<%= f.submit "Send", class: "btn btn-primary" %>
+	<% end %>
+</div>
