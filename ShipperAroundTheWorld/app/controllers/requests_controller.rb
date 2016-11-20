@@ -18,6 +18,12 @@ class RequestsController < ApplicationController
 	end
 
 	def destroy
+		@messages = @request.messages
+		@contract = @request.messages
+		@contract.destroy
+		@messages.each do |mess|
+			mess.destroy
+		end
 		@request.destroy
 		flash[:success] = "Request deleted"
 		redirect_to request.referrer || root_url
