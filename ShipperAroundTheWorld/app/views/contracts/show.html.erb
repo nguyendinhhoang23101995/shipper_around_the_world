@@ -1,0 +1,51 @@
+<div class="contract-content">
+	<div class="contract-form">
+		<h1>Contract Agreement</h1>
+		<hr>
+		<div class="between">
+			<div class="title">Between:</div>
+			<ul>
+				<li>
+					A. 
+					<div class="base-infor">
+						<div class="infor-item">
+							<div class="sub-title">Email:</div>
+							<p class="infor-detail"> <%= current_user.email %></p>
+						</div>
+						<div class="infor-item">
+							<div class="sub-title">Bank Account:</div>
+							<p class="infor-detail"><%= @contract.bank_account_a %></p>
+						</div>
+					</div>
+				</li>
+				<li>
+					B.
+					<div class="base-infor">
+						<div class="infor-item">
+							<div class="sub-title">Email:</div>
+							<p class="infor-detail">
+								<%= @customer.email %>
+							</p>
+						</div>
+						<div class="infor-item">
+							<div class="sub-title">Bank Account:</div>
+							<p class="infor-detail"><%= @contract.bank_account_b %></b></p>
+						</div>
+					</div> 
+				</li>
+			</ul>
+		</div>
+		<div class="date">
+			<div class="title">Deadline: </div>
+			<div id="date-input">
+				<%= @contract.deadline %>
+			</div>
+		</div>
+		<div class="content">
+			<div class="title">Content:</div>
+			<div class="agreement-content-detail">
+				<%= @contract.content %>
+			</div>
+		</div>
+	</div>
+</div>

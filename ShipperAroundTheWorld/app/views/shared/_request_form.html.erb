@@ -9,16 +9,18 @@
 			</div>
 		</div>
 		<div class="form-item">
-			<div class="title"><label for="#request_origin">Origin:</label></div><% @country_list = ['America', 'Japan', 'England', 'Spain', 
-						'France', 'Germany', 'China',
-						'Laos', 'Singapore', 'Korea', 'Australia', 
-						'Rusia', 'Brazil']; %>
-			<%= f.select :origin, options_for_select(@country_list.map{ |c| [c]}) %>
+			<div class="title"><label for="#request_origin">Origin:</label></div>
+			<%= f.select(:origin_id) do %>
+				<% Origin.order("name ASC").all.each do |c| %>
+					<%= content_tag(:option, c.name, value: c.id) %>
+				<% end %>
+			<% end %>
 		</div>
 		<div class="form-item">
-			<div class="title"><label for="#request_product_type_id">Product Type:</label></div><%= f.select(:product_type_id) do %>
-				<% ProductType.all.each do |c| %>
-					<%= content_tag(:option ,c.name,value: c.id) %>
+			<div class="title"><label for="#request_product_type_id">Product Type:</label></div>
+			<%= f.select(:product_type_id) do %>
+				<% ProductType.order("name ASC").all.each do |c| %>
+					<%= content_tag(:option, c.name, value: c.id) %>
 				<% end %>
 			<% end %>
 		</div>
