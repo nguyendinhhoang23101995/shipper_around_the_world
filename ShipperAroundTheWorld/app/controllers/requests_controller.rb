@@ -16,7 +16,7 @@ class RequestsController < ApplicationController
 				redirect_to user_path(current_user)
 			end
 		else 
-			$requests = Request.find_by_sql("select id from requests where origin = '#{@request.origin}' and product_type_id = #{@request.product_type_id};")
+			$requests = Request.find_by_sql("select id from requests where origin_id = #{@request.origin_id} and product_type_id = #{@request.product_type_id};")
 			redirect_to :action => :find
 		end
 	end
@@ -43,15 +43,11 @@ class RequestsController < ApplicationController
 
 
     def request_params
-		params.require(:request).permit(:content, :price, :origin, :product_type_id,:state)
+		params.require(:request).permit(:content, :price, :origin_id, :product_type_id,:state)
     end
-
-		def request_params
-			params.require(:request).permit(:content, :price, :origin_id, :product_type_id)
-		end
-
-		def correct_user
-			@request = current_user.requests.find_by(id: params[:id])
-			redirect_to root_url if @request.nil?
-		end
+    
+	def correct_user
+		@request = current_user.requests.find_by(id: params[:id])
+		redirect_to root_url if @request.nil?
+	end
 end
