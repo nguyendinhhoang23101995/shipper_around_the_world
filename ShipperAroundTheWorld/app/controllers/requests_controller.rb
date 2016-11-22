@@ -16,7 +16,21 @@ class RequestsController < ApplicationController
 				redirect_to user_path(current_user)
 			end
 		else 
-			$requests = Request.find_by_sql("select id from requests where origin_id = #{@request.origin_id} and product_type_id = #{@request.product_type_id};")
+			
+			if @request.origin_id == -1 
+				if @request.product_type_id == -1
+		
+				else
+					$requests = Request.find_by_sql("select id from requests where product_type_id = #{@request.product_type_id};")
+				end
+			else
+				if @request.product_type_id == -1
+					$requests = Request.find_by_sql("select id from requests where origin_id = #{@request.origin_id};")
+				else
+					$requests = Request.find_by_sql("select id from requests where origin_id = #{@request.origin_id} and product_type_id = #{@request.product_type_id};")
+				end
+			end
+			
 			redirect_to :action => :find
 		end
 	end
