@@ -21,13 +21,13 @@ class RequestsController < ApplicationController
 				if @request.product_type_id == -1
 		
 				else
-					$requests = Request.find_by_sql("select id from requests where product_type_id = #{@request.product_type_id};")
+					$requests = Request.find_by_sql("select id from requests where product_type_id = #{@request.product_type_id} and state = 0;")
 				end
 			else
 				if @request.product_type_id == -1
-					$requests = Request.find_by_sql("select id from requests where origin_id = #{@request.origin_id};")
+					$requests = Request.find_by_sql("select id from requests where origin_id = #{@request.origin_id} and state = 0;")
 				else
-					$requests = Request.find_by_sql("select id from requests where origin_id = #{@request.origin_id} and product_type_id = #{@request.product_type_id};")
+					$requests = Request.find_by_sql("select id from requests where origin_id = #{@request.origin_id} and product_type_id = #{@request.product_type_id} and state = 0;")
 				end
 			end
 			
