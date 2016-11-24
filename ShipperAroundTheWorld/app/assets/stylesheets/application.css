@@ -24,6 +24,7 @@ body{
 textarea{
 	resize: none;
 	border: solid 1px black;
+	border-radius: 5px;
 }
 
 .main-content{
@@ -36,4 +37,8 @@ textarea{
 	padding: 0 0;
 	margin: 0 0;
 	width: 100%;
+}
+
+.gravatar{
+	border-radius: 50%;
 }

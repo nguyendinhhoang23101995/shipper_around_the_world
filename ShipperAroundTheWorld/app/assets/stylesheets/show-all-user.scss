@@ -27,10 +27,6 @@
 	}
 }
 
-.show-all-users .content .users img{
-	border-radius: 50%;
-}
-
 .show-all-users .content .users .glyphicon{
 	margin-right: 10px;
 }
@@ -53,7 +49,7 @@
 	display: inline-block;
 }
 
-.show-all-users .content .users .btn-profile{
+.show-all-users .content .users .btn-custom{
 	float: right;
 	background-color: #0083bb;
 	color: white;
@@ -62,11 +58,11 @@
 	font-size: 1.1em;
 	border-radius: 10px;
 	cursor: pointer;
-	margin-top: -90px;
 	margin-right: 10px;
+	margin-top: -30px;
 }
 
-.show-all-users .content .users .btn-profile:hover{
+.show-all-users .content .users .btn-custom:hover{
 	background-color: #006d9c;
 	transition: background-color .3s ease;
 }

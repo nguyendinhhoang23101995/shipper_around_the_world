@@ -1,24 +1,17 @@
 // Place all the styles related to the Requests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.requests-list {
-	list-style: none;
-	padding: 0;
-	margin-left: 50px;
-	margin-top: 30px;
-	
-	li {
-		padding: 10px 0;
-		border-top: 1px solid #e8e8e8;
-	}
 
+@mixin span_user{
 	.user {
 		margin-top: 5px;
 		padding-top: 0;
 		display: block;
 		margin-bottom: 5px;
 	}
+}
 
+@mixin div_content{
 	.content {
 		display: block;
 		margin-left: 80px;
@@ -30,25 +23,95 @@
 			margin-bottom: 10px;
 		}
 	}
+}
 
+@mixin timestamp{
 	.timestamp {
 		color: grey;
 		display: block;
 		margin-top: 5px;
 	}
-	
-	.gravatar {
-		float: left;
-		margin-right: 10px;
-		margin-top: 5px;
-		border-radius: 50%;
-	}
-	
+}
+
+@mixin link_list{
 	.link-list{
 		margin-top: 5px;
 		margin-bottom: 10px;
 		#delete-post-link{
 			margin-right: 55px;
 		}
+	}
+}
+
+.requests-list {
+	list-style: none;
+	padding: 0;
+	margin-left: 50px;
+	margin-top: 30px;
+	
+	li {
+		padding: 10px 0;
+		border-top: 1px solid #e8e8e8;
+	}
+
+	@include span_user;
+	@include div_content;
+	@include timestamp;
+	@include link_list;
+	
+	.gravatar {
+		float: left;
+		margin-right: 10px;
+		margin-top: 5px;
+	}
+}
+
+.form-filter-requests{
+	float: left;
+	display: inline-block;
+	background-color: white;
+	width: 300px;
+	padding: 20px 30px;
+	border: solid 1px black;
+	border-radius: 5px;
+	margin-left: 30px;
+	margin-top: 50px;
+	
+	select{
+		background-color: white;
+		padding: 5px 10px;
+		width: 150px;
+	}
+	
+	.title{
+		font-size: 1.3em;
+		margin-top: 10px;
+	}
+	
+	.btn{
+		width: 100%;
+		margin-top: 20px;
+	}
+}
+
+.list-all-requests{
+	width: 700px;
+	display: inline-block;
+	float: left;
+	margin-top: 50px;
+	margin-left: 100px;
+	margin-bottom: 20px;
+	background-color: white;
+	padding: 30px 30px;
+	border-radius: 10px;
+	border: solid 1px #a5a4a4;
+	
+	@include span_user;
+	@include div_content;
+	@include timestamp;
+	@include link_list;
+
+	hr{
+		border-color: #a5a5a5;
 	}
 }
