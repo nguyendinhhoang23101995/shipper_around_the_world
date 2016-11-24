@@ -5,11 +5,6 @@ class ContractsController < ApplicationController
 		@request = Request.find(params[:request_id])
 	end
 
-	def show
-		@contract = Contract.find(params[:contract_id])
-		@customer = User.find(params[:customer_id])
-	end
-
 	def create
 		@contract = Contract.new(contract_params)
 		@request = Request.find_by(id: @contract.request_id)
@@ -30,8 +25,16 @@ class ContractsController < ApplicationController
 		end
 	end
 
+	def show
+		@contract = Contract.find(params[:contract_id])
+		@request = Request.find_by(id: @contract.request_id)
+		@owner = User.find_by(id: @request.user_id)
+		@customer = User.find(params[:customer_id])
+	end
+
 	private
-    def contract_params
-		params.require(:contract).permit(:content, :deadline, :bank_account_a, :bank_account_b, :user_id, :request_id)
-    end
+
+		def contract_params
+			params.require(:contract).permit(:content, :deadline, :bank_account_a, :bank_account_b, :user_id, :request_id)
+		end
 end
