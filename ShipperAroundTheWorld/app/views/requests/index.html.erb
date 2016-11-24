@@ -1,0 +1,55 @@
+<div class="form-filter-requests">
+	<%= form_for(@request) do |f| %>
+		<div class="title"><label for="#request_origin">Origin:</label></div>
+		<%= f.select(:origin_id) do %>
+			<%= content_tag(:option, "Country", value: "0") %>
+			<% Origin.order("name ASC").all.each do |c| %>
+				<%= content_tag(:option, c.name, value: c.id) %>
+			<% end %>
+		<% end %>
+		<div class="title"><label for="#request_product_type_id">Product Type:</label></div>
+		<%= f.select(:product_type_id) do %>
+			<%= content_tag(:option, "Product", value: "0") %>
+			<% ProductType.order("name ASC").all.each do |c| %>
+				<%= content_tag(:option, c.name, value: c.id) %>
+			<% end %>
+		<% end %>
+		<%= f.hidden_field :state, :value => 6 %>
+		<br>
+		<%= f.submit "Find", class: "btn btn-primary" %>
+	<% end %>
+</div>
+<div class="list-all-requests">
+	<% if $requests.nil? %>
+		<% @requests = Request.all %>
+		<% @requests.each do |request| %>
+			<% @user = User.find_by(id: request.user_id) %>
+			<%= link_to gravatar_for(@user, size: 50), @user %>
+			<span class="content">
+				<span class="user"><%= link_to @user.name, @user %></span>
+				<div class="title-quote">Want to buy:</div><%= ProductType.find_by(id: request.product_type_id).name %><br>
+				<div class="title-quote">From:</div><%= Origin.find_by(id: request.origin_id).name %><br>
+				<div class="title-quote">Price:</div><%= request.price %> $<br>
+				<div class="title-quote">Features:</div><%= request.content %><br>
+				<%= render 'requests/request_comment', request: request %>
+			</span>
+			<hr>
+		<% end %>
+	<% else %>
+		<% $requests.each do |f| %>
+			<% @request = Request.find_by(id: f.id) %>
+			<% @user = User.find_by(id: @request.user_id) %>
+			<%= link_to gravatar_for(@user, size: 50), @user %>
+			<span class="content">
+				<span class="user"><%= link_to @user.name, @user %></span>
+				<div class="title-quote">Want to buy:</div><%= ProductType.find(@request.product_type_id).name %><br>
+				<div class="title-quote">From:</div><%= Origin.find(@request.origin_id).name %><br>
+				<div class="title-quote">Price:</div><%= @request.price %> $<br>
+				<div class="title-quote">Features:</div><%= @request.content %><br>
+				<%= render 'requests/request_comment', request: @request %>
+			</span>
+			<hr>
+		<% end %>
+		<% $requests = nil %>
+	<%end%>
+</div>

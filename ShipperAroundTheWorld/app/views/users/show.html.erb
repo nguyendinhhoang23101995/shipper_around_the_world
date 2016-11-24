@@ -12,16 +12,16 @@
 				<% end %>
 			</div>
 		</section>
-		<section >
-			<% if current_user.id == @user.id %>
+		<section>
+			<% if current_user.id == @user.id && current_user.admin? == false %>
 				<%= render 'shared/request_form'%>
 			<% end %>
 		</section>
 	</aside>
 	<div class="col-md-8">
 		<% if @user.requests.any? %>
-			<h3 style="margin-left: 50px;">Requests(<%= @user.requests.count %>)</h3>
-			<ol class="requests-list">
+			<h3 style="margin-left: 50px;">Requests - <%= @user.requests.count %></h3>
+			<ol class="list-all-requests">
 				<%= render @requests %>
 			</ol>
 			<%= will_paginate @requests %>

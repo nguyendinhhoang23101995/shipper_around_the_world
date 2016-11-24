@@ -1,5 +1,5 @@
 <li id="request-<%= request.id %>">
-	<%= link_to gravatar_for(current_user, size: 50), current_user %>
+	<%= link_to gravatar_for(@user, size: 50), @user %>
 	<span class="content">
 		<span class="user"><%= link_to request.user.name, request.user %></span>
 		<div class="title-quote">Want to buy:</div><%= ProductType.find(request.product_type_id).name %> 
@@ -9,39 +9,9 @@
 		<br>
 		<div class="title-quote">Features:</div><%= request.content %>
 		<br>
-		<% if current_user?(request.user) %>
-			<% if request.state == 0 %>
-				<div class="link-list">
-					<%= link_to "Delete", request, method: :delete, id: "delete-post-link",
-				                               data: { confirm: "Are you sure?" } %>
-					<%= link_to "Create new contract", new_contract_path(:request_id => request.id), 
-												   id: "create-post-link" %>
-				</div>
-			<% else %>
-				<div class="link-list">
-					<% @contract = Contract.find_by(request_id: request.id) %>
-					<%= link_to "View contract", contract_path(:contract_id => @contract.id, :customer_id => @contract.user_id) %>
-				</div>
-			<% end %>
-		<% end %>
-		<% if request.state == 1 %>
-			<% @contract = Contract.find_by( request_id: request.id) %>
-			<% @shipper = User.find_by(id: @contract.user_id) %>
-			<div class="title-quote">Solved by:</div> <%= @shipper.name %>, email: <%= @shipper.email %>
-		<% end %>
-		<span class="timestamp">
-			Posted <%= time_ago_in_words(request.created_at) %> ago.
-		</span>
-		<% if current_user.id != request.user.id && request.state == 0 %>
-			<%= render 'messages/message_form', id: request.id %>
-		<% end %>
-		<% if request.state == 0 %>
-			<div class="mess-list-section">
-				<div class="toggle-link">
-					<a onclick="toggleMessList()">Message List<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-				</div>
-				<%= render 'messages/message_list', request: request %>
-			</div>
-		<% end %>
+		<div class="title-quote">Price:</div><%= request.price %> $
+		<br>
+		<%= render 'requests/request_comment', request: request %>
 	</span>
+	<hr>
 </li>

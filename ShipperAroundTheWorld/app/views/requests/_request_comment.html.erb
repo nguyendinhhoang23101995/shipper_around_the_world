@@ -1,0 +1,38 @@
+<% if current_user?(request.user) %>
+	<% if request.state == 0 %>
+		<div class="link-list">
+			<%= link_to "Delete", request, method: :delete, id: "delete-post-link",
+		                               data: { confirm: "Are you sure?" } %>
+			<%= link_to "Create new contract", new_contract_path(:request_id => request.id), 
+										   id: "create-post-link" %>
+		</div>
+	<% end %>
+<% end %>
+<% if request.state == 1%>
+	<div class="link-list">
+		<% @contract = Contract.find_by(request_id: request.id) %>
+		<% if current_user.id == @contract.user_id || current_user.id == request.user_id ||
+			current_user.admin? %>
+			<%= link_to "View contract", contract_path(current_user, :contract_id => @contract.id, :customer_id => @contract.user_id) %>
+		<% end %>
+	</div>
+<% end %>
+<% if request.state == 1 %>
+	<% @contract = Contract.find_by( request_id: request.id) %>
+		<% @shipper = User.find_by(id: @contract.user_id) %>
+	<div class="title-quote">Solved by:</div> <%= @shipper.name %>, email: <%= @shipper.email %>
+<% end %>
+<span class="timestamp">
+	Posted <%= time_ago_in_words(request.created_at) %> ago.
+</span>
+<% if current_user.id != request.user.id && request.state == 0 && current_user.admin? == false %>
+	<%= render 'messages/message_form', id: request.id %>
+<% end %>
+<% if request.state == 0 %>
+	<div class="mess-list-section">
+		<div class="toggle-link" id="<%= request.id %>">
+			<a onclick="toggleMessList(<%= request.id %>)">Message List<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+		</div>
+		<%= render 'messages/message_list', request: request %>
+	</div>
+<% end %>

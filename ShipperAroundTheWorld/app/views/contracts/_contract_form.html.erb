@@ -28,12 +28,16 @@
 							<div class="infor-item">
 								<div class="sub-title">Email:</div>
 								<p class="infor-detail">
-									<%= f.select(:user_id) do %>
-										<% users = User.find_by_sql("SELECT * FROM users WHERE id != #{current_user.id}") %>
-										<% users.each do |c| %>
-											<%= content_tag(:option ,c.email,value: c.id) %>
-										<% end %>
-									<% end %> 
+									<% @messages = @request.messages %>
+									<% if @messages.empty? %>
+									<% else %>
+										<%= f.select(:user_id) do %>
+											<% @messages.each do |message| %>
+												<% @user = User.find_by(id: message.user_id) %>
+												<%= content_tag(:option, @user.email, value: @user.id) %>
+											<% end %>
+										<% end %> 
+									<% end %>
 								</p>
 							</div>
 							<div class="infor-item">
@@ -59,3 +63,15 @@
 		<% end %>
 	</div>
 </div>
+
+<script type="text/javascript">
+	var usedNames = {};
+	$("select > option").each(function(){
+		if(usedNames[this.text]) {
+			$(this).remove();
+		} 
+		else {
+			usedNames[this.text] = this.value;
+		}
+	});
+</script>
