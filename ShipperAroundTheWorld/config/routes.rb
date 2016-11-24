@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   	delete '/logout',  to: 'sessions#destroy'
 	get  '/signup',    to: 'users#new'
 	post '/signup',	   to: 'users#create'
-	get '/find', 	   to: 'requests#find'
+	get '/index', 	   to: 'requests#index'
 	resources :users
-	resources :messages,		  only: [:create, :destroy]
+	resources :account_activations, 	only: [:edit]
+	resources :messages,		  		only: [:create, :destroy]
 	resources :contracts
-	resources :requests,          only: [:create, :destroy]
+	resources :requests,         		only: [:create, :destroy]
 end
