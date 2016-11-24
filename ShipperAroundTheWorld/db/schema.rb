@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120074004) do
-
-  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "id_card"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.index ["user_id"], name: "index_admins_on_user_id", using: :btree
-  end
+ActiveRecord::Schema.define(version: 20161124024204) do
 
   create_table "contracts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
@@ -74,17 +66,20 @@ ActiveRecord::Schema.define(version: 20161120074004) do
     t.string   "name"
     t.string   "email"
     t.string   "phonenumber"
-    t.integer  "state",                      default: 0
-    t.float    "rank",            limit: 24, default: 0.0
-    t.integer  "totalvote",                  default: 0
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.float    "rank",              limit: 24, default: 0.0
+    t.integer  "totalvote",                    default: 0
+    t.boolean  "admin",                        default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.string   "activation_digest"
+    t.boolean  "activated"
+    t.datetime "activated_at"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["phonenumber"], name: "index_users_on_phonenumber", unique: true, using: :btree
   end
 
-  add_foreign_key "admins", "users"
   add_foreign_key "contracts", "requests"
   add_foreign_key "contracts", "users"
   add_foreign_key "messages", "requests"

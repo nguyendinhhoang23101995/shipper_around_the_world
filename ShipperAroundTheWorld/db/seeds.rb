@@ -2,7 +2,10 @@ User.create!(name:  "Example User",
 						 email: "example@railstutorial.org",
 						 password:              "foobar",
 						 password_confirmation: "foobar",
-						 phonenumber:           "0923984290")
+						 phonenumber:           "0923984290",
+						 admin: 				true,
+						 activated: true,
+						 activated_at: Time.zone.now)
 
 30.times do |n|
 	name  = Faker::Name.name
@@ -18,7 +21,9 @@ User.create!(name:  "Example User",
                email: email,
                password:              password,
                password_confirmation: password,
-               phonenumber:           phonenumber)
+               phonenumber:           phonenumber,
+               activated: true,
+               activated_at: Time.zone.now)
 end
 
 ProductType.create!(name: "Mobile Phone")
@@ -35,7 +40,7 @@ Origin.create!(name: "America")
 Origin.create!(name: "England")
 Origin.create!(name: "Thailand")
 Origin.create!(name: "Korean")
-Origin.create!(name: "Autralia")
+Origin.create!(name: "Australia")
 Origin.create!(name: "France")
 Origin.create!(name: "Germany")
 Origin.create!(name: "Laos")
