@@ -30,6 +30,17 @@ class ContractsController < ApplicationController
 		@request = Request.find_by(id: @contract.request_id)
 		@owner = User.find_by(id: @request.user_id)
 		@customer = User.find(params[:customer_id])
+
+		@shipper_report = Report.find_by(user_id: params[:customer_id],contract_id: params[:contract_id])
+		# kiem tra shipper da report chua
+
+		if current_user.id == @request.user_id
+			if @shipper_report.nil?
+				customer_report = Report.new
+			else
+				@customer_report = Report.find_by(user_id: @request_id,contract_id: params[:contract_id])
+			end
+		end
 	end
 
 	private

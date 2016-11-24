@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 	get  '/signup',    to: 'users#new'
 	post '/signup',	   to: 'users#create'
 	get '/index', 	   to: 'requests#index'
+	resources :reports
 	resources :users
 	resources :account_activations, 	only: [:edit]
 	resources :messages,		  		only: [:create, :destroy]

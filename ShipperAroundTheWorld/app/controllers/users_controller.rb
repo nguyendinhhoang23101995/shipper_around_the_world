@@ -20,12 +20,25 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		if @user.save
-			@user.send_activation_email
-			flash[:info] = "Please check your email to activate your account."
-			redirect_to root_url
+		if @user.rank == 0
+			if @user.save
+				log_in @user
+				flash[:success] = "Welcome to the SAW!"
+				redirect_to @user
+			else
+				render 'new'
+			end
 		else
-			render 'new'
+			@shipper = User.find_by(email: @user.email)
+			rank = @shipper.rank
+			total_vote = @shipper.totalvote
+			new_rank = (rank * total_vote + @user.rank)/(total_vote +1)
+			@shipper.update_attributes(rank: new_rank)
+			@shipper.update_attributes(totalvote: total_vote +1)
+
+			@contract = Contract.find(params[:user][:contract_id])
+			@contract.update_attributes(state: 2)
+			redirect_to root_url
 		end
 	end
 
@@ -53,7 +66,7 @@ class UsersController < ApplicationController
 
 		def user_params
 			params.require(:user).permit(:name, :email, :phonenumber, :password,
-	                                     :password_confirmation)
+	                                     :password_confirmation, :rank)
 		end
 
 		# Before filters
