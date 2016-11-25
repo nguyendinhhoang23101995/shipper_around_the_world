@@ -37,9 +37,12 @@ class RequestsController < ApplicationController
 	end
 
 	def destroy
+		@request = Request.find(params[:id])
 		@messages = @request.messages
-		@contract = @request.messages
-		@contract.destroy
+		@contract = @request.contract
+		unless @contract.nil?
+			@contract.destroy
+		end
 		@messages.each do |mess|
 			mess.destroy
 		end
