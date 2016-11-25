@@ -68,6 +68,11 @@ class ContractsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@contract = Contract.find_by(id: contract.id)
+		@contract.destroy
+	end
+
 	private
 
 		def contract_params

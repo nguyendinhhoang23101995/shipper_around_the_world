@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
 	end
 
 	def destroy
+		@mess = Message.find(params[:id])
 		@mess.destroy
 		flash[:success] = "Message deleted!"
 		redirect_to :back
