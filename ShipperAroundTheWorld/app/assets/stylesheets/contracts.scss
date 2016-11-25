@@ -4,6 +4,7 @@
 .contract-content {
 	width: 100%;
 	text-align: center;
+	display: inline-block;
 }
 
 .contract-content .contract-form{
@@ -16,6 +17,7 @@
 	padding: 20px 20px;
 	margin-bottom: 20px;
 	text-align: left;
+	float: left;
 }
 
 .contract-content .contract-form .title{

@@ -1,6 +1,18 @@
 <% provide(:button_text, 'Create Contract') %>
 
 <div class="contract-content">
+	<div class="contract-note">
+		<h3>Note</h3>
+		<div class="contract-note-content">
+			If you has problem. Please contact to admin at email, or phone-number below.
+		</div>
+		<div class="phone-number">
+			<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>+84432354324
+		</div>
+		<div class="email">
+			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>nhom495ITSS@gmail.com
+		</div>
+	</div>
 	<div class="contract-form">
 		<%= form_for(@contract) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>

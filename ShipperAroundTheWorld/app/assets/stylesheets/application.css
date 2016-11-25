@@ -23,8 +23,18 @@ body{
 
 textarea{
 	resize: none;
-	border: solid 1px black;
+	border: solid 1px #555;
 	border-radius: 5px;
+}
+
+::-webkit-input-placeholder{
+	/* Chrome, Opera, Safari */
+	color: #555;
+}
+
+::-moz-placeholder{
+	/* Firefox 19+ */
+	color: #555;
 }
 
 .main-content{

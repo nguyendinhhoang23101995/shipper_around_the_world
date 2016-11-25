@@ -68,8 +68,10 @@ class UsersController < ApplicationController
 			@messages = @request.messages
 			@contract = @request.contract
 			unless @contract.nil?
-				@contract.destroy
-			end
+				@reports = @contract.reports
+				@reports.each do |report|
+					report.destroy
+				end
 			@messages.each do |mess|
 				mess.destroy
 			end
@@ -80,6 +82,10 @@ class UsersController < ApplicationController
 			if contract.user_id == @user.id
 				@request = Request.find_by(id: contract.request_id)
 				@request.update_attribute  :state, 0
+				@reports = contract.reports
+				@reports.each do |report|
+					report.destroy
+				end
 				contract.destroy
 			end
 		end
