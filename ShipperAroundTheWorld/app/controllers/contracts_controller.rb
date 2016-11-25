@@ -32,6 +32,11 @@ class ContractsController < ApplicationController
 		@customer = User.find(params[:customer_id])
 	end
 
+	def destroy
+		@contract = Contract.find_by(id: contract.id)
+		@contract.destroy
+	end
+
 	private
 
 		def contract_params
