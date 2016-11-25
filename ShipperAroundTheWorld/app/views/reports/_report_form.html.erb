@@ -1,7 +1,10 @@
-<% @report = Report.new %>
-<%= form_for(@report) do |f| %>
-	<%= f.text_area :context, placeholder: "context" %>
-	<%= f.hidden_field :user_id, :value => current_user.id %>
-	<%= f.hidden_field :contract_id, :value => params[:contract_id] %>
-	<%= f.submit "send" %>
-<% end %>
+<div class="report-form">
+	<h3>Report</h3>
+	<% @report = Report.new %>
+	<%= form_for(@report) do |f| %>
+		<%= f.text_area :context, placeholder: "Context ..." %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<%= f.hidden_field :contract_id, :value => params[:contract_id] %>
+		<%= f.submit "Send", class: "btn btn-primary" %>
+	<% end %>
+</div>
