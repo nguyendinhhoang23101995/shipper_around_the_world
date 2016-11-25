@@ -45,3 +45,9 @@ Origin.create!(name: "France")
 Origin.create!(name: "Germany")
 Origin.create!(name: "Laos")
 Origin.create!(name: "China")
+
+
+BankAccount.create!(bank_account: "AAAA123", money: 20000)
+BankAccount.create!(bank_account: "AABB1223", money: 1000)
+BankAccount.create!(bank_account: "AAAA12222", money: 1500)
+BankAccount.create!(bank_account: "AANN3838", money: 3000)

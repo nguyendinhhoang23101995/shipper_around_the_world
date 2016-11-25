@@ -59,7 +59,7 @@
 				<div class="title">Content:</div>
 				<%= f.text_area :content, placeholder: "Content ..." %>
 			</div>
-			<%= f.submit yield(:button_text), class: "btn btn-primary" %>
+			<%= f.submit yield(:button_text), class: "btn btn-primary", data:{ confirm: "This step will take money from your bank account"} %>
 		<% end %>
 	</div>
 </div>

@@ -10,6 +10,15 @@ class ReportsController < ApplicationController
       @request = Request.find_by(id: @contract.request_id)
 
       if @report.user_id == @request.user_id
+        @bank_account = BankAccount.find_by(bank_account: "AAAA123")
+        @bank_account_b = BankAccount.find_by(bank_account: @contract.bank_account_b)
+
+        new_money = @bank_account.money - @request.price
+        @bank_account.update_attributes(money: new_money)
+
+        new_money = @bank_account_b.money + @request.price
+        @bank_account_b.update_attributes(money: new_money)
+
         @request.update_attribute :state, 2
         @contract.update_attribute :state, 1
       end
