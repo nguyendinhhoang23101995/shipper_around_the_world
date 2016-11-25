@@ -49,3 +49,38 @@
 		</div>
 	</div>
 </div>
+<% if @request.state == 2 %>
+	<% if current_user.id == @request.user_id %>
+		<% if @contract.state != 2 %>
+			<% @user = User.new %>
+			<%= form_for(@user) do |f| %>
+				<%= f.hidden_field :contract_id, :value => @contract.id %>
+				<%= f.hidden_field :email, :value => @customer.email %>
+				<%= f.select(:rank) do %>
+					<%= content_tag(:option, "1", value: 1) %>
+					<%= content_tag(:option, "2", value: 2) %>
+					<%= content_tag(:option, "3", value: 3) %>
+					<%= content_tag(:option, "4", value: 4) %>
+					<%= content_tag(:option, "5", value: 5) %>
+				<% end %>
+				<%= f.submit "post"%>
+			<% end %>
+		<% end %>
+	<% end %>
+<% else %>
+	<% if current_user.id == @request.user_id %>
+		<!-- ng mua -->
+		<% if @shipper_report.nil? %>
+			<h3>shipper doesn't have any report</h3>
+		<% else %>
+			<% if @customer_report.nil? %>
+				<%= render "reports/report_form" %>
+			<% end %>
+		<% end %>
+	<% else %>
+		<!-- shipper -->
+		<% if @shipper_report.nil? %>
+			<%= render "reports/report_form"%>
+		<% end %>
+	<% end %>
+<% end %>

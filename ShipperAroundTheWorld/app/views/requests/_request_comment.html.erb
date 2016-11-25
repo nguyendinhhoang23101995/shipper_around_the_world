@@ -3,12 +3,14 @@
 		<div class="link-list">
 			<%= link_to "Delete", request, method: :delete, id: "delete-post-link",
 		                               data: { confirm: "Are you sure?" } %>
-			<%= link_to "Create new contract", new_contract_path(:request_id => request.id), 
+			<% if request.messages.size != 0 %>
+				<%= link_to "Create new contract", new_contract_path(:request_id => request.id), 
 										   id: "create-post-link" %>
+			<% end %>
 		</div>
 	<% end %>
 <% end %>
-<% if request.state == 1%>
+<% if request.state != 0%>
 	<div class="link-list">
 		<% @contract = Contract.find_by(request_id: request.id) %>
 		<% if current_user.id == @contract.user_id || current_user.id == request.user_id ||

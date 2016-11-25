@@ -11,6 +11,7 @@
 					<div class="title">Email:</div><%= @user.email %>
 				<% end %>
 			</div>
+			<h3><%= @user.rank %> point / <%= @user.totalvote %> total votes</h3>
 		</section>
 		<section>
 			<% if current_user.id == @user.id && current_user.admin? == false %>
