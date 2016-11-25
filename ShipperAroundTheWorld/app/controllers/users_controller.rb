@@ -72,8 +72,6 @@ class UsersController < ApplicationController
 				@reports.each do |report|
 					report.destroy
 				end
-				@contract.destroy
-			end
 			@messages.each do |mess|
 				mess.destroy
 			end
