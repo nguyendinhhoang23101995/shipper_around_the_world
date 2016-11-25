@@ -1,6 +1,6 @@
 class Contract < ApplicationRecord
-	has_one :request
-
+	belongs_to :request
+	has_many :reports
 	validates :content, length: {minimum: 6}
 	validates :bank_account_a, presence: true,length: {minimum: 3}
 	validates :bank_account_b, presence: true,length: {minimum: 3}

@@ -32,7 +32,6 @@ class ContractsController < ApplicationController
 		@customer = User.find(params[:customer_id])
 
 		@shipper_report = Report.find_by(user_id: params[:customer_id],contract_id: params[:contract_id])
-		# kiem tra shipper da report chua
 
 		if current_user.id == @request.user_id
 			if @shipper_report.nil?
@@ -45,6 +44,10 @@ class ContractsController < ApplicationController
 
 	def destroy
 		@contract = Contract.find_by(id: contract.id)
+		@reports = @contract.reports
+		@reports.each do |report|
+			report.destroy
+		end
 		@contract.destroy
 	end
 
