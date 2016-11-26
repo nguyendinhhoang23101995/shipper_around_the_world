@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125025934) do
+ActiveRecord::Schema.define(version: 20161126093642) do
 
   create_table "bank_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "bank_account"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 20161125025934) do
     t.string   "activation_digest"
     t.boolean  "activated"
     t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["phonenumber"], name: "index_users_on_phonenumber", unique: true, using: :btree
   end

@@ -12,4 +12,5 @@ Rails.application.routes.draw do
 	resources :messages,		  		only: [:create, :destroy]
 	resources :contracts
 	resources :requests,         		only: [:create, :destroy]
+	resources :password_resets,     	only: [:new, :create, :edit, :update]
 end
