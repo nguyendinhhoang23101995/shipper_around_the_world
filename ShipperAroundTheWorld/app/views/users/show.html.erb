@@ -21,7 +21,7 @@
 	</aside>
 	<div class="col-md-8">
 		<% if @user.requests.any? %>
-			<h3 style="margin-left: 50px;">Requests - <%= @user.requests.count %></h3>
+			<h3 style="margin-left: 50px;" id="request-count">Requests <span class="badge"><%= @user.requests.count %></span></h3>
 			<ol class="list-all-requests">
 				<%= render @requests %>
 			</ol>
