@@ -6,6 +6,13 @@ User.create!(name:  "Example User",
 						 admin: 				true,
 						 activated: true,
 						 activated_at: Time.zone.now)
+User.create!(name:  "tuan",
+						 email: "tuan@mail.com",
+						 password:              "123456",
+						 password_confirmation: "123456",
+						 phonenumber:           "0923921323",
+						 activated: true,
+						 activated_at: Time.zone.now)
 
 30.times do |n|
 	name  = Faker::Name.name
