@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+	default :from => 'nhom495itss@gmail.com'
 
 	def account_activation(user)
 		@user = user
