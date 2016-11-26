@@ -49,8 +49,11 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 		if @user.update_attributes(user_params)
-			flash[:success] = "Profile updated"
-			redirect_to @user
+			# flash[:success] = "Profile updated"
+			# redirect_to @user
+			UserMailer.account_activation(@user).deliver_now
+			flash[:info] = "Please check your email to activate your account."
+			redirect_to root_url
 		else
 			render 'edit'
 		end
