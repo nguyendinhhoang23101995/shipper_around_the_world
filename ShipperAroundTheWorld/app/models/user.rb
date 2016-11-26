@@ -11,7 +11,7 @@ class User < ApplicationRecord
 						uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-	validates :phonenumber, presence: true, uniqueness: true
+	validates :phonenumber, presence: true, uniqueness: true, numericality: true
 
 	# Returns the hash digest of the given string.
 	def User.digest(string)
@@ -70,6 +70,13 @@ class User < ApplicationRecord
 	# Returns true if a password reset has expired.
 	def password_reset_expired?
 		reset_sent_at < 3.hours.ago
+	end
+
+
+	def self.search name
+		if name
+			User.where("name like ?", "%#{name}%")
+		end
 	end
 
 	private

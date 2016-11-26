@@ -2,6 +2,12 @@
 
 <div class="show-all-users">
 	<div class="title">Contributor Page</div>
+	<div class="input-group">
+		<%= form_tag users_path, :method => 'get' do %>
+			<%= text_field_tag :name, params[:name], id: "input-text", placeholder: "User's Name" %>
+			<%= submit_tag "Search", class: "btn btn-primary", id: "input-submit" %>
+		<% end %>
+	</div>
 	<div class="content">
 		<ul class="users">
 			<%= render @users %>

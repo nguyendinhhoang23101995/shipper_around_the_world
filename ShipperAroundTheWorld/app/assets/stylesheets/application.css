@@ -27,6 +27,11 @@ textarea{
 	border-radius: 5px;
 }
 
+select{
+	outline: none;
+	border: solid 1px #555;
+}
+
 ::-webkit-input-placeholder{
 	/* Chrome, Opera, Safari */
 	color: #555;

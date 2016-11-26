@@ -38,6 +38,24 @@
 	text-transform: uppercase;
 }
 
+.navbar .container .navbar-right .dropdown-toggle{
+	display:inline-block;
+	padding: 15px 15px 10px 15px;
+	.ava{
+		float: left;
+	}
+	.name{
+		margin-top: 15px;
+		float: left;
+		text-transform: none;
+		font-size: 1.2em;
+	}
+}
+
+.navbar .container .navbar-right img{
+	width: 50px;
+}
+
 .navbar .container .navbar-right li > a:hover{
 	background-color: transparent;
 	color: #02AAF3;
