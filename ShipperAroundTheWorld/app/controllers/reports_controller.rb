@@ -21,6 +21,9 @@ class ReportsController < ApplicationController
 
 				@request.update_attribute :state, 2
 				@contract.update_attribute :state, 1
+				@shipper = User.find_by(id: @contract.user_id)
+				
+				UserMailer.transaction_successful(@shipper, @contract).deliver_now
 			end
 			flash[:success] = "Report created!"
 			redirect_to :back

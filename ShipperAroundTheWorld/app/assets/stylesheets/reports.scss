@@ -36,6 +36,21 @@
 
 .report-form{
 	@include form_style;
+	.reports-list{
+		text-align: left;
+		.content{
+			float: right;
+		}
+		div{
+			display: inline-block;
+		}
+		ul{
+			padding-left: 0;
+		}
+		ul > li{
+			list-style: none;
+		}
+	}
 }
 
 .rate-form{

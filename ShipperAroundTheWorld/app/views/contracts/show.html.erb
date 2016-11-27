@@ -87,12 +87,12 @@
 				<% flash.now[:danger] = "Shipper hasn't reported" %>
 			<% else %>
 				<% if @customer_report.nil? %>
-					<%= render "reports/report_form" %>
+					<%= render "reports/report_form", contract: @contract %>
 				<% end %>
 			<% end %>
 		<% else %>
 			<% if @shipper_report.nil? %>
-				<%= render "reports/report_form"%>
+				<%= render "reports/report_form", contract: @contract %>
 			<% end %>
 		<% end %>
 	<% end %>
