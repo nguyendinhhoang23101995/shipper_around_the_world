@@ -34,9 +34,8 @@ class ContractsController < ApplicationController
 
 							@request.update_attribute  :state, 1
 							@shipper = User.find_by(id: @contract.user_id)
-							@current_user = User.find_by(id: current_user.id)
 
-							UserMailer.annouce_create_contract(@shipper, @current_user, @contract).deliver_now
+							UserMailer.annouce_create_contract(@shipper, @contract).deliver_now
 							flash[:success] = "Contract created!"
 							redirect_to user_path(current_user)
 						else

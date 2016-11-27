@@ -2,7 +2,7 @@
 
 <p>To view contract click the link below:</p>
 
-<%= link_to "View contract", contract_url(@current_user, contract_id: @contract.id, 
-													 customer_id: @shipper.id) %>
+<%= link_to "View contract", contract_url(@shipper, contract_id: @contract.id, 
+													shipper_id: @shipper.id) %>
 
 <p>If you have any problem please contact to us at : nhom495itss@gmail.com</p>
