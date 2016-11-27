@@ -1,5 +1,5 @@
 User.create!(name:  "Example User",
-						 email: "example@railstutorial.org",
+						 email: "nhom495itss@gmail.com",
 						 password:              "barbar",
 						 password_confirmation: "barbar",
 						 phonenumber:           "0923984290",
@@ -11,6 +11,30 @@ User.create!(name:  "tuan",
 						 password:              "123456",
 						 password_confirmation: "123456",
 						 phonenumber:           "0923921323",
+						 activated: true,
+						 activated_at: Time.zone.now)
+
+User.create!(name:  "anh",
+						 email: "anh@mail.com",
+						 password:              "123456",
+						 password_confirmation: "123456",
+						 phonenumber:           "0925921323",
+						 activated: true,
+						 activated_at: Time.zone.now)
+
+User.create!(name:  "anhtt",
+						 email: "anhtt@mail.com",
+						 password:              "123456",
+						 password_confirmation: "123456",
+						 phonenumber:           "0929921323",
+						 activated: true,
+						 activated_at: Time.zone.now)
+
+User.create!(name:  "ttanh",
+						 email: "ttanh@mail.com",
+						 password:              "123456",
+						 password_confirmation: "123456",
+						 phonenumber:           "0825921323",
 						 activated: true,
 						 activated_at: Time.zone.now)
 
@@ -53,8 +77,7 @@ Origin.create!(name: "Germany")
 Origin.create!(name: "Laos")
 Origin.create!(name: "China")
 
-
 BankAccount.create!(bank_account: "AAAA123", money: 20000)
-BankAccount.create!(bank_account: "AABB1223", money: 1000)
-BankAccount.create!(bank_account: "AAAA12222", money: 1500)
-BankAccount.create!(bank_account: "AANN3838", money: 3000)
+BankAccount.create!(bank_account: "AABB1223", money: 10000)
+BankAccount.create!(bank_account: "AAAA12222", money: 15000)
+BankAccount.create!(bank_account: "AANN3838", money: 30000)
