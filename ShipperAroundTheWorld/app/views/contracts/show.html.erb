@@ -60,39 +60,41 @@
 			</div>
 		</div>
 	</div>
-	<% if @request.state == 2 %>
-		<% if current_user.id == @request.user_id %>
-			<% if @contract.state != 2 %>
-				<% @user = User.new %>
-				<div class="rate-form">
-					<h3>Rate</h3>
-					<%= form_for(@user) do |f| %>
-						<%= f.hidden_field :contract_id, :value => @contract.id %>
-						<%= f.hidden_field :email, :value => @shipper.email %>
-						<%= f.select(:rank) do %>
-							<%= content_tag(:option, "1", value: 1) %>
-							<%= content_tag(:option, "2", value: 2) %>
-							<%= content_tag(:option, "3", value: 3) %>
-							<%= content_tag(:option, "4", value: 4) %>
-							<%= content_tag(:option, "5", value: 5) %>
+	<% if current_user.admin? == false %>
+		<% if @request.state == 2 %>
+			<% if current_user.id == @request.user_id%>
+				<% if @contract.state != 2 %>
+					<% @user = User.new %>
+					<div class="rate-form">
+						<h3>Rate</h3>
+						<%= form_for(@user) do |f| %>
+							<%= f.hidden_field :contract_id, :value => @contract.id %>
+							<%= f.hidden_field :email, :value => @shipper.email %>
+							<%= f.select(:rank) do %>
+								<%= content_tag(:option, "1", value: 1) %>
+								<%= content_tag(:option, "2", value: 2) %>
+								<%= content_tag(:option, "3", value: 3) %>
+								<%= content_tag(:option, "4", value: 4) %>
+								<%= content_tag(:option, "5", value: 5) %>
+							<% end %>
+							<%= f.submit "Rate", class: "btn btn-primary" %>
 						<% end %>
-						<%= f.submit "Rate", class: "btn btn-primary" %>
-					<% end %>
-				</div>
-			<% end %>
-		<% end %>
-	<% else %>
-		<% if current_user.id == @request.user_id %>
-			<% if @shipper_report.nil? %>
-				<% flash.now[:danger] = "Shipper hasn't reported" %>
-			<% else %>
-				<% if @customer_report.nil? %>
-					<%= render "reports/report_form", contract: @contract %>
+					</div>
 				<% end %>
 			<% end %>
 		<% else %>
-			<% if @shipper_report.nil? %>
-				<%= render "reports/report_form", contract: @contract %>
+			<% if current_user.id == @request.user_id %>
+				<% if @shipper_report.nil? %>
+					<% flash.now[:danger] = "Shipper hasn't reported" %>
+				<% else %>
+					<% if @customer_report.nil? %>
+						<%= render "reports/report_form", contract: @contract %>
+					<% end %>
+				<% end %>
+			<% else %>
+				<% if @shipper_report.nil? %>
+					<%= render "reports/report_form", contract: @contract %>
+				<% end %>
 			<% end %>
 		<% end %>
 	<% end %>
