@@ -3,24 +3,49 @@
 
 /* sidebar */
 
-aside {
-	section.user-info {
-		margin-top: 10px;
-		text-align: center;
+@mixin style_name_email{
+	font-size: 1.2em;
+	display: inline-block;
+	float: left;
+	.title{
+		font-size: 1.2em;
+		font-weight: bold;
+		margin-right: 10px;
 		display: inline-block;
+	}
+	width: 100%;
+}
+
+aside {
+	display: inline-block;
+	section.user-info {
+		margin-top: 20px;
 		margin-left: 20px;
-		img{
-			border-radius: 50%;
-		}
-		#user-email{
-			font-size: 1.2em;
+		display: inline-block;
+		width: 500px;
+		.user-img{
 			display: inline-block;
-			margin-left: 80px;
-			.title{
-				font-size: 1.2em;
-				font-weight: bold;
-				margin-right: 10px;
+			float: left;
+			img{
+				border-radius: 50%;
+			}
+			width: 20%;
+		}
+		.user-info-detail{
+			width: 80%;
+			float: left;
+			display: inline-block;
+			.user-name{
+				@include style_name_email;
+			}
+			.user-email{
+				@include style_name_email;
+			}
+			.rank-and-vote{
+				font-size: 1.5em;
+				float: left;
 				display: inline-block;
+				width: 100%;
 			}
 		}
 	}

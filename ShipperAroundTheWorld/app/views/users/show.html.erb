@@ -2,18 +2,20 @@
 <div class="row">
 	<aside class="col-md-4">
 		<section class="user-info">
-			<h1>
+			<div class="user-img">
 				<%= gravatar_for @user %>
-				<%= @user.name %>
-			</h1>
-			<div id="user-email">
-				<% if current_user != @user %>
-					<div class="title">Email:</div><%= @user.email %>
-				<% end %>
 			</div>
-			<h3><%= @user.rank %> point / <%= @user.totalvote %> total votes</h3>
+			<div class="user-info-detail">
+				<div class="user-name">
+					<div class="title">Name:</div><%= @user.name %>
+				</div>
+				<div class="user-email">
+					<div class="title">Email:</div><%= @user.email %>
+				</div>
+				<div class="rank-and-vote"><%= @user.rank %> point / <%= @user.totalvote %> total votes</div>
+			</div>
 		</section>
-		<section>
+		<section class="request-form-section">
 			<% if current_user.id == @user.id && current_user.admin? == false %>
 				<%= render 'shared/request_form'%>
 			<% end %>
@@ -21,7 +23,7 @@
 	</aside>
 	<div class="col-md-8">
 		<% if @user.requests.any? %>
-			<h3 style="margin-left: 50px;" id="request-count">Requests <span class="badge"><%= @user.requests.count %></span></h3>
+			<h3 style="margin-left: 100px;" id="request-count">Requests <span class="badge"><%= @user.requests.count %></span></h3>
 			<ol class="list-all-requests">
 				<%= render @requests %>
 			</ol>

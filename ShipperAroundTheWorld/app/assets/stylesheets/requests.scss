@@ -48,17 +48,14 @@
 	padding: 0;
 	margin-left: 50px;
 	margin-top: 30px;
-	
 	li {
 		padding: 10px 0;
 		border-top: 1px solid #e8e8e8;
 	}
-
 	@include span_user;
 	@include div_content;
 	@include timestamp;
 	@include link_list;
-	
 	.gravatar {
 		float: left;
 		margin-right: 10px;
@@ -76,18 +73,15 @@
 	border-radius: 5px;
 	margin-left: 30px;
 	margin-top: 50px;
-	
 	select{
 		background-color: white;
 		padding: 5px 10px;
 		width: 150px;
 	}
-	
 	.title{
 		font-size: 1.3em;
 		margin-top: 10px;
 	}
-	
 	.btn{
 		width: 100%;
 		margin-top: 20px;
@@ -105,12 +99,10 @@
 	padding: 30px 30px;
 	border-radius: 10px;
 	border: solid 1px #a5a4a4;
-	
 	@include span_user;
 	@include div_content;
 	@include timestamp;
 	@include link_list;
-
 	hr{
 		border-color: #a5a5a5;
 	}

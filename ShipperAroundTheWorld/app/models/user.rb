@@ -75,7 +75,7 @@ class User < ApplicationRecord
 
 	def self.search name
 		if name
-			User.where("name like ?", "%#{name}%")
+			User.where("lower(name) like ?", "%#{name.downcase}%")
 		end
 	end
 
