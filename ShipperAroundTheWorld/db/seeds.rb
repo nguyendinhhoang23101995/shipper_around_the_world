@@ -1,4 +1,4 @@
-User.create!(name:  "Example User",
+User.create!(name:  "Admin",
 						 email: "nhom495itss@gmail.com",
 						 password:              "barbar",
 						 password_confirmation: "barbar",
@@ -7,7 +7,7 @@ User.create!(name:  "Example User",
 						 activated: true,
 						 activated_at: Time.zone.now)
 User.create!(name:  "tuan",
-						 email: "tuan@mail.com",
+						 email: "tuananhhedspibk@gmail.com",
 						 password:              "123456",
 						 password_confirmation: "123456",
 						 phonenumber:           "0923921323",
@@ -15,7 +15,7 @@ User.create!(name:  "tuan",
 						 activated_at: Time.zone.now)
 
 User.create!(name:  "anh",
-						 email: "anh@mail.com",
+						 email: "tuananhhedspibk1@gmail.com",
 						 password:              "123456",
 						 password_confirmation: "123456",
 						 phonenumber:           "0925921323",
@@ -23,7 +23,7 @@ User.create!(name:  "anh",
 						 activated_at: Time.zone.now)
 
 User.create!(name:  "anhtt",
-						 email: "anhtt@mail.com",
+						 email: "tuan@mail.com",
 						 password:              "123456",
 						 password_confirmation: "123456",
 						 phonenumber:           "0929921323",
@@ -31,7 +31,7 @@ User.create!(name:  "anhtt",
 						 activated_at: Time.zone.now)
 
 User.create!(name:  "ttanh",
-						 email: "ttanh@mail.com",
+						 email: "anh@mail.com",
 						 password:              "123456",
 						 password_confirmation: "123456",
 						 phonenumber:           "0825921323",

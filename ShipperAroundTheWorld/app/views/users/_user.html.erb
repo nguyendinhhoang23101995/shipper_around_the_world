@@ -8,6 +8,6 @@
 	<br>
 	<%= link_to "View Profile", user, class: "btn-custom" %>
 	<% if current_user.admin? && !current_user?(user) %>
-		<%= link_to "Delete Account", user, method: :delete, data: { confirm: "You sure?" }, class: "btn-custom" %>
+		<%= link_to "Delete Account", user, method: :delete, data: { confirm: "Are you sure?" }, class: "btn-custom" %>
 	<% end %>
 </li>
