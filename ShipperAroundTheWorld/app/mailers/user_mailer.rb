@@ -11,9 +11,9 @@ class UserMailer < ApplicationMailer
 		mail to: user.email, subject: "Password reset"
 	end
 
-	def annouce_create_contract shipper, customer, contract
+	def annouce_create_contract shipper, current_user, contract
 		@shipper = shipper
-		@customer = customer
+		@current_user = current_user
 		@contract = contract
 		mail to: shipper.email, subject: "Contract has been created"
 	end
