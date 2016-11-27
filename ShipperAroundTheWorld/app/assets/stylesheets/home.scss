@@ -10,6 +10,7 @@
 .present .present-text{
 	display: inline-block;
 	padding: 60px 70px;
+	height: 100%;
 }
 
 .present .present-text h3{
@@ -21,15 +22,14 @@
 }
 
 .present .present-text a{
-	position: absolute;
-	bottom: 50px;
 	background-color: #00B437;
-	font-size: 1.3em;
+	font-size: 1.5em;
 	text-align: center;
 	color: white;
-	padding: 20px 35px;
+	padding: 20px 85px;
 	border-radius: 5px;
 	width: 300px;
+	cursor: pointer;
 	text-decoration: none;
 }
 
