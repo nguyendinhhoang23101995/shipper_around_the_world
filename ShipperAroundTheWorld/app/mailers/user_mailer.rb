@@ -20,6 +20,6 @@ class UserMailer < ApplicationMailer
 	def transaction_successful shipper, contract
 		@shipper = shipper
 		@contract = contract
-		mail to: user.email, subject: "Transaction successful"
+		mail to: @shipper.email, subject: "Transaction successful"
 	end
 end
