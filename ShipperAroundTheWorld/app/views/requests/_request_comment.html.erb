@@ -4,7 +4,7 @@
 			<%= link_to "Delete", request, method: :delete, id: "delete-post-link",
 		                               data: { confirm: "Are you sure?" } %>
 			<% if request.messages.size != 0 %>
-				<%= link_to "Create new contract", new_contract_path(:request_id => request.id), 
+				<%= link_to "Create new contract", new_contract_path(request_id: request.id), 
 										   id: "create-post-link" %>
 			<% end %>
 		</div>
@@ -15,12 +15,12 @@
 		<% @contract = Contract.find_by(request_id: request.id) %>
 		<% if current_user.id == @contract.user_id || current_user.id == request.user_id ||
 			current_user.admin? %>
-			<%= link_to "View contract", contract_path(current_user, :contract_id => @contract.id, :customer_id => @contract.user_id) %>
+			<%= link_to "View contract", contract_path(current_user, contract_id: @contract.id,  shipper_id: @contract.user_id) %>
 		<% end %>
 	</div>
 <% end %>
 <% if request.state == 1 %>
-	<% @contract = Contract.find_by( request_id: request.id) %>
+	<% @contract = Contract.find_by(request_id: request.id) %>
 		<% @shipper = User.find_by(id: @contract.user_id) %>
 	<div class="title-quote">Solved by:</div> <%= @shipper.name %>, email: <%= @shipper.email %>
 <% end %>

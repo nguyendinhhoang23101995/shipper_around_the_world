@@ -2,14 +2,14 @@
 	<%= form_for(@request) do |f| %>
 		<div class="title"><label for="#request_origin">Origin:</label></div>
 		<%= f.select(:origin_id) do %>
-			<%= content_tag(:option, "Country", value: "0") %>
+			<%= content_tag(:option, "-- Country --", value: "0") %>
 			<% Origin.order("name ASC").all.each do |c| %>
 				<%= content_tag(:option, c.name, value: c.id) %>
 			<% end %>
 		<% end %>
 		<div class="title"><label for="#request_product_type_id">Product Type:</label></div>
 		<%= f.select(:product_type_id) do %>
-			<%= content_tag(:option, "Product", value: "0") %>
+			<%= content_tag(:option, "-- Product --", value: "0") %>
 			<% ProductType.order("name ASC").all.each do |c| %>
 				<%= content_tag(:option, c.name, value: c.id) %>
 			<% end %>
