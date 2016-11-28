@@ -13,4 +13,6 @@ Rails.application.routes.draw do
 	resources :contracts
 	resources :requests,         		only: [:create, :destroy]
 	resources :password_resets,     	only: [:new, :create, :edit, :update]
+	resources :origins,					only: [:new, :create, :destroy]
+	resources :product_types,			only: [:new, :create, :destroy]
 end

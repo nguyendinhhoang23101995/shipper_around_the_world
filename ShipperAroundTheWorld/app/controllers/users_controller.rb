@@ -18,9 +18,11 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@requests = @user.requests.paginate(page: params[:page], :per_page => 6)
+		@requests = @user.requests.paginate(page: params[:page], :per_page => 5)
 		@request = current_user.requests.build
 		@message = Message.new
+		@origin = Origin.new
+		@product = ProductType.new
 	end
 
 	def create

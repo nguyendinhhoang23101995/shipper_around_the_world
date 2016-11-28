@@ -13,10 +13,10 @@ class ReportsController < ApplicationController
 				@bank_account = BankAccount.find_by(bank_account: "AAAA123")
 				@bank_account_b = BankAccount.find_by(bank_account: @contract.bank_account_b)
 
-				new_money = @bank_account.money - @request.price
+				new_money = @bank_account.money - @contract.price
 				@bank_account.update_attributes(money: new_money)
 
-				new_money = @bank_account_b.money + @request.price
+				new_money = @bank_account_b.money + @contract.price
 				@bank_account_b.update_attributes(money: new_money)
 
 				@request.update_attribute :state, 2
@@ -35,6 +35,6 @@ class ReportsController < ApplicationController
 
 	private
 		def report_params
-			params.require(:report).permit(:context,:user_id,:contract_id)
+			params.require(:report).permit(:context, :user_id, :contract_id)
 		end
 end

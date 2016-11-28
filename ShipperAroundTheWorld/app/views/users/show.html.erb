@@ -26,8 +26,71 @@
 			<h3 style="margin-left: 100px;" id="request-count">Requests <span class="badge"><%= @user.requests.count %></span></h3>
 			<ol class="list-all-requests">
 				<%= render @requests %>
+				<%= will_paginate @requests %>
 			</ol>
-			<%= will_paginate @requests %>
+		<% end %>
+		<% if current_user.admin? %>
+			<% @requests = Request.all %>
+			<div class="edit-form-and-list">
+				<div class="content">
+					<div class="title">Origin</div>
+					<div class="edit-form">
+						<%= form_for(@origin) do |f| %>
+							<%= f.text_field :name, placeholder: "Name", class: "input" %>
+							<%= f.submit "Add", class: "btn btn-primary" %>
+						<% end %>
+					</div>
+					<div class="list-all">
+						<ul>
+							<% @origins = Origin.order("name ASC").all %>
+							<% @origins.each do |origin| %>
+								<li>
+									<%= origin.name %>
+									<% count = 0 %>
+									<% @requests.each do |request| %>
+										<% if origin.id == request.origin_id %>
+											<% count += 1 %>
+										<% end %>	
+									<% end %>
+									<% if count == 0 %>
+										<%= link_to "Delete", origin, method: :delete, class: "delete-link" %>
+									<% end %>
+								</li>
+								<hr>
+							<% end %>
+						</ul>
+					</div>
+				</div>
+				<div class="content">
+					<div class="title">Product</div>
+					<div class="edit-form">
+						<%= form_for(@product) do |f| %>
+							<%= f.text_field :name, placeholder: "Name", class: "input" %>
+							<%= f.submit "Add", class: "btn btn-primary" %>
+						<% end %>
+					</div>
+					<div class="list-all">
+						<ul>
+							<% @products = ProductType.order("name ASC").all %>
+							<% @products.each do |product| %>
+								<li>
+									<%= product.name %>
+									<% count = 0 %>
+									<% @requests.each do |request| %>
+										<% if product.id == request.product_type_id %>
+											<% count += 1 %>
+										<% end %>	
+									<% end %>
+									<% if count == 0 %>
+										<%= link_to "Delete", product, method: :delete, class: "delete-link" %>
+									<% end %>
+								</li>
+								<hr>
+							<% end %>
+						</ul>
+					</div>
+				</div>
+			</div>
 		<% end %>
 	</div>
 </div>
