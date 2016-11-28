@@ -7,32 +7,12 @@ class RequestsController < ApplicationController
 	
 	def create
 		@request = current_user.requests.build(request_params)
-		if @request.state == 0
-			if @request.save
-				flash[:success] = "Request created!"
-				redirect_to user_path(current_user)
-			else
-				flash[:danger] = @request.errors.full_messages.to_sentence
-				redirect_to user_path(current_user)
-			end
-		elsif @request.state == 6
-			if @request.origin_id == 0 && @request.product_type_id != 0
-				$requests = Request.find_by_sql("select id from requests where 
-													product_type_id = #{@request.product_type_id} 
-													order by created_at DESC;")
-			elsif @request.product_type_id == 0 && @request.origin_id != 0
-				$requests = Request.find_by_sql("select id from requests where 
-													origin_id = #{@request.origin_id}
-													order by created_at DESC;")
-			elsif @request.product_type_id != 0 && @request.origin_id != 0
-				$requests = Request.find_by_sql("select id from requests where 
-											origin_id = #{@request.origin_id} 
-											and product_type_id = #{@request.product_type_id}
-											order by created_at DESC;")
-			else
-				$requests = Request.find_by_sql("select id from requests order by created_at DESC;")
-			end
-			redirect_to :action => :index
+		if @request.save
+			flash[:success] = "Request created!"
+			redirect_to user_path(current_user)
+		else
+			flash[:danger] = @request.errors.full_messages.to_sentence
+			redirect_to user_path(current_user)
 		end
 	end
 
@@ -54,14 +34,16 @@ class RequestsController < ApplicationController
 	end
 
 	def index
-		@request = Request.new
+		@requests = Request.search(params[:origin_id], params[:product_type_id])
+		@requests = @requests.paginate(:page => params[:page], :per_page => 5)
 		@message = Message.new
 	end
 
 	private
 
 		def request_params
-			params.require(:request).permit(:content, :price, :origin_id, :product_type_id, :state)
+			params.require(:request).permit(:content, :price, :origin_id, 
+											:product_type_id, :state)
 		end
     
 		def correct_user

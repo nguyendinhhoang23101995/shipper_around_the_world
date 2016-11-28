@@ -71,12 +71,29 @@
 
 .contract-form .base-infor .infor-item .infor-detail{
 	float: right;
-	margin-right: 60px;
+	margin-right: 30px;
 }
 
 .contract-form .date #date-input{
 	float: right;
-	margin-right: 60px;
+	margin-right: 30px;
+}
+
+.contract-form .price{
+	margin-bottom: 10px;
+}
+
+.contract-form .price{
+	#price-input{
+		float: right;
+		margin-right: 30px;
+		input{
+			width: 175px;
+		}
+		.input-group-addon{
+			width: 30px;
+		}
+	}
 }
 
 .contract-form .content .agreement-content-detail{

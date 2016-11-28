@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20161126093642) do
   create_table "contracts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
     t.date     "deadline"
+    t.integer  "price"
     t.string   "bank_account_a"
     t.string   "bank_account_b"
     t.integer  "state",          default: 0

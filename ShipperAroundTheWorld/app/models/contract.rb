@@ -8,12 +8,15 @@ class Contract < ApplicationRecord
 	validate :deadline_date_cannot_be_in_the_past
 	validates :user_id, presence:true
 	validates :request_id, presence:true
+	validates_numericality_of :price, presence: true, :greater_than => 0, :less_than => 50000
 
 	def deadline_date_cannot_be_in_the_past
-		if deadline.present? && deadline < Date.today
-			errors.add(:deadline, "can't be in the past")
-		elsif deadline > ( Date.today + 1.year) && deadline.present?
-			errors.add(:deadline, "can't longger than 1 year")
+		if deadline.nil? == false
+			if deadline.present? && deadline < Date.today
+				errors.add(:deadline, "can't be in the past")
+			elsif deadline > ( Date.today + 1.year) && deadline.present?
+				errors.add(:deadline, "can't longger than 1 year")
+			end
 		end
 	end
 end
