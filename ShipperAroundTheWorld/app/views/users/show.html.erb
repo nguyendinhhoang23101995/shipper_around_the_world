@@ -29,7 +29,7 @@
 				<%= will_paginate @requests %>
 			</ol>
 		<% end %>
-		<% if current_user.admin? %>
+		<% if current_user.admin? && @user.admin %>
 			<% @requests = Request.all %>
 			<div class="edit-form-and-list">
 				<div class="content">
