@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
 			flash[:success] = "Message success!"
 			redirect_to :back
 		else
-			flash[:danger] = @request.errors.full_messages.to_sentence
+			flash[:danger] = @message.errors.full_messages.to_sentence
 			redirect_to :back
 		end
 	end
