@@ -1,21 +1,47 @@
 <div class="list-messages" id="list-<%= request.id %>">
 	<h3>Mess List</h3>
-	<% @messages = request.messages %>
-	<% @messages.each do |mess| %>
-		<% @user = User.find_by(id: mess.user_id) %>
-		<%= link_to @user.name, @user %>
-		<br>
-		<div id="mess-content">
-			<%= mess.content %>
-		</div>
-		<% if current_user == @user || current_user.id == request.user_id %>
-			<%= link_to "Delete", mess, method: :delete, id: "delete-mess-link",
-				                 data: { confirm: "Are you sure?" } %>
+	<% @users = User.find_by_sql("select * from users where id in (select distinct user_id from messages where request_id = #{request.id});")%>
+	<% @users.each do |u| %>
+		<% if current_user?(u) || current_user?(request.user) %>
+			<%= link_to u.name, u %> 
+			<br>
+			Rank: <%= u.rank %>Total vote: <%= u.totalvote %>
+
+			<% if current_user?(request.user) %>
+				<% if request.state == 0 %>
+				
+					<%= link_to "Create new contract", new_contract_path(request_id: request.id, shipper_id: u.id), 
+											   id: "create-post-link" %>
+			
+				
+				<% end %>
+			<% end %>
+			<% @messages = Message.find_by_sql("select * from messages where user_id = #{u.id} and request_id = #{request.id};") %>
+
+			<% @messages.each do |m| %>
+
+				<br>
+				<% if m.from == m.user_id %>
+					name: <%= u.name %>
+				<% else %>
+					name: <%= User.find_by(id: request.user_id).name %>
+				<% end %>
+
+				<br>content: <%= m.content %>
+
+				<% if current_user == u || current_user.id == request.user_id %>
+					<%= link_to "Delete", m, method: :delete, id: "delete-mess-link", data: {confirm: "Are you sure?"} %>
+				<% end %>
+				<span class="timestamp">
+					Posted <%= time_ago_in_words(m.created_at) %> ago.
+				</span>
+			<% end %>
+			<br>
+			<% if current_user == u || current_user.id == request.user_id %>
+			 <%= render 'messages/message_form', id: request.id, from: current_user.id, user_id: u.id%>
+			<% end %>
+			<br>
 		<% end %>
-		<br>
-		<span class="timestamp">
-			Posted <%= time_ago_in_words(mess.created_at) %> ago.
-		</span>
-		<hr>
 	<% end %>
+
 </div>

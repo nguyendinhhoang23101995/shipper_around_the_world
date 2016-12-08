@@ -39,18 +39,8 @@
 						<div class="base-infor">
 							<div class="infor-item">
 								<div class="sub-title">Email:</div>
-								<p class="infor-detail">
-									<% @messages = @request.messages %>
-									<% if @messages.empty? %>
-									<% else %>
-										<%= f.select(:user_id) do %>
-											<% @messages.each do |message| %>
-												<% @user = User.find_by(id: message.user_id) %>
-												<%= content_tag(:option, @user.email, value: @user.id) %>
-											<% end %>
-										<% end %> 
-									<% end %>
-								</p>
+								<%= f.hidden_field :user_id,value: @shipper.id %>
+								<%= @shipper.email%>								
 							</div>
 							<div class="infor-item">
 								<div class="sub-title">Bank Account:</div>
@@ -94,3 +84,5 @@
 		}
 	});
 </script>
+
+

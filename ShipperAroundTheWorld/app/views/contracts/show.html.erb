@@ -105,3 +105,18 @@
 		<% end %>
 	<% end %>
 </div>
+
+<!-- comment -->
+
+<h3>Mess List</h3>
+<% @messages = Message.find_by_sql("select * from messages where user_id = #{@shipper.id} and request_id = #{@request.id}") %>
+<% @messages.each do |m| %>
+	<% if m.from == m.user_id %>
+		<%= @shipper.name %>:
+	<% else %>
+		<%= User.find_by(id: @request.user_id).name%>:
+	<% end %>
+	<%= m.content %>
+	<br>
+<% end %>
+<%= render 'messages/message_form', id: @request.id, from: current_user.id, user_id: @shipper.id, contract_id: @contract.id%>

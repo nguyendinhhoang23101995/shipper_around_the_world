@@ -3,10 +3,6 @@
 		<div class="link-list">
 			<%= link_to "Delete", request, method: :delete, id: "delete-post-link",
 		                               data: { confirm: "Are you sure?" } %>
-			<% if request.messages.size != 0 %>
-				<%= link_to "Create new contract", new_contract_path(request_id: request.id), 
-										   id: "create-post-link" %>
-			<% end %>
 		</div>
 	<% end %>
 <% end %>
@@ -28,7 +24,10 @@
 	Posted <%= time_ago_in_words(request.created_at) %> ago.
 </span>
 <% if current_user.id != request.user.id && request.state == 0 && current_user.admin? == false %>
-	<%= render 'messages/message_form', id: request.id %>
+	<% @messages = Message.find_by(user_id: current_user.id, request_id: request.id)%>
+	<% if @messages.nil? %>
+		<%= render 'messages/message_form', id: request.id, from: current_user.id, user_id: current_user.id%>
+	<% end %>
 <% end %>
 <% if request.state == 0 %>
 	<div class="mess-list-section">
