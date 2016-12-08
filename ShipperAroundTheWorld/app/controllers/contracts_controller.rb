@@ -1,8 +1,10 @@
 class ContractsController < ApplicationController
 
 	def new
+
 		@contract = Contract.new
 		@request = Request.find(params[:request_id])
+		@shipper = User.find_by(id: params[:shipper_id])
 	end
 
 	def create
@@ -53,6 +55,7 @@ class ContractsController < ApplicationController
 	end
 
 	def show
+		@message = Message.new
 		@contract = Contract.find(params[:contract_id])
 		@request = Request.find_by(id: @contract.request_id)
 		@customer = User.find_by(id: @request.user_id)

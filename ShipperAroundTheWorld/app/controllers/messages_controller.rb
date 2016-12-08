@@ -5,8 +5,13 @@ class MessagesController < ApplicationController
 		@message = Message.new(message_params)
 
 		if @message.save
+			if(params[:contract_id].nil? == false)
+				@mess = ContractComment.new(contract_id: params[:contract_id], message_id: @message.id)
+				@mess.save
+			end
 			flash[:success] = "Message success!"
 			redirect_to :back
+
 		else
 			flash[:danger] = @message.errors.full_messages.to_sentence
 			redirect_to :back
@@ -22,7 +27,7 @@ class MessagesController < ApplicationController
 
 	private
 		def message_params
-			params.require(:message).permit(:content, :user_id, :request_id)
+			params.require(:message).permit(:content, :user_id, :request_id, :from)
 		end
 
 		def correct_user
