@@ -1,0 +1,2 @@
+class ContractComment < ApplicationRecord
+end
