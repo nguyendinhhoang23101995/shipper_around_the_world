@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126093642) do
+ActiveRecord::Schema.define(version: 20161208033933) do
 
   create_table "bank_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "bank_account"
     t.integer  "money"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "contract_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "contract_id"
+    t.integer "message_id"
+    t.index ["contract_id"], name: "index_contract_comments_on_contract_id", using: :btree
+    t.index ["message_id"], name: "index_contract_comments_on_message_id", using: :btree
   end
 
   create_table "contracts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -36,6 +43,7 @@ ActiveRecord::Schema.define(version: 20161126093642) do
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
+    t.integer  "from"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
@@ -100,6 +108,8 @@ ActiveRecord::Schema.define(version: 20161126093642) do
     t.index ["phonenumber"], name: "index_users_on_phonenumber", unique: true, using: :btree
   end
 
+  add_foreign_key "contract_comments", "contracts"
+  add_foreign_key "contract_comments", "messages"
   add_foreign_key "contracts", "requests"
   add_foreign_key "contracts", "users"
   add_foreign_key "messages", "requests"
