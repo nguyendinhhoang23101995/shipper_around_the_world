@@ -1,11 +1,11 @@
 <div class="message-form">
-	<%= form_for(@message) do |f| %>
-		<%= f.label "Message" %>
-		<%= f.hidden_field :user_id, :value => user_id %>
-		<%= f.hidden_field :from, :value => from %>
-		<%= f.hidden_field :request_id, :value => id %>
-		<%= f.text_area :content, placeholder: "Content ..." %>
+	<%= form_for(@message, remote: true) do |f| %>
+		<%= f.hidden_field :user_id, value: user_id %>
+		<%= f.hidden_field :from, value: from %>
+		<%= f.hidden_field :request_id, value: id %>
+		<%= f.text_area :content, placeholder: "Message Content ..." %>
 		
-		<%= f.button :submit , class: "btn btn-primary", name: "contract_id", value: params[:contract_id]%>
+		<%= f.button submit: "Send", class: "btn btn-primary",
+					  name: "contract_id", value: params[:contract_id]%>
 	<% end %>
 </div>

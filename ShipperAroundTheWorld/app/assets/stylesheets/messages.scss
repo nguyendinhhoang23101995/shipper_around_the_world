@@ -5,6 +5,18 @@
 .message-form{
 	display: inline-block;
 	margin-top: 15px;
+	width: 100%;
+	textarea{
+		width: 70%;
+		float: left;
+		margin-top: 0;
+	}
+	.btn{
+		width: 25%;
+		margin-left: 10px;
+		margin-right: 10px;
+		float: right;
+	}
 }
 
 .mess-list-section{
@@ -33,26 +45,40 @@
 	display: none;
 	max-height: 590px;
 	overflow-y :scroll;
-}
-
-.list-messages h3{
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-
-.list-messages hr{
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border-color: #989898;
-}
-
-.list-messages #mess-content{
-	display: inline-block;
-	width: 85%;
-	word-wrap: break-word;
-	margin: 10px 0;
-}
-
-.list-messages #delete-mess-link{
-	float: right;
+	h3{
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	hr{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		border-color: #989898;
+	}
+	#mess-content{
+		display: inline-block;
+		width: 85%;
+		word-wrap: break-word;
+		margin: 10px 0;
+	}
+	#delete-mess-link{
+		float: right;
+	}
+	.rank-and-vote{
+		margin-top: 5px;
+		margin-bottom: 5px;
+		.title{
+			font-weight: bold;
+			font-size: 1.1em;
+			width: 100px;
+			display: inline-block;
+		}
+	}
+	.comments-list{
+		margin-top: 15px;
+		border: solid 1px #7d7777;
+		border-radius: 8px;
+		padding: 10px 10px 10px 15px;
+		overflow-y: scroll;
+		height: 200px;
+	}
 }

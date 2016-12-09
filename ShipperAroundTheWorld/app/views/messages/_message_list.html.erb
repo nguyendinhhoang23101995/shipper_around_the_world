@@ -1,47 +1,51 @@
 <div class="list-messages" id="list-<%= request.id %>">
 	<h3>Mess List</h3>
-	<% @users = User.find_by_sql("select * from users where id in (select distinct user_id from messages where request_id = #{request.id});")%>
-	<% @users.each do |u| %>
-		<% if current_user?(u) || current_user?(request.user) %>
-			<%= link_to u.name, u %> 
-			<br>
-			Rank: <%= u.rank %>Total vote: <%= u.totalvote %>
-
-			<% if current_user?(request.user) %>
-				<% if request.state == 0 %>
-				
-					<%= link_to "Create new contract", new_contract_path(request_id: request.id, shipper_id: u.id), 
-											   id: "create-post-link" %>
-			
-				
+	<div class="list">
+		<% @users = User.find_by_sql("select * from users where id in 
+									(select distinct user_id from messages 
+									where request_id = #{request.id});")%>
+		<% @users.each do |user| %>
+			<% if current_user?(user) || current_user?(request.user) %>
+				<%= link_to user.name, user %>
+				<div class="rank-and-vote">
+					<div class="title">Rank:</div> <%= user.rank %><br>
+					<div class="title">Total vote:</div> <%= user.totalvote %>
+				</div>
+				<% if current_user?(request.user) %>
+					<% if request.state == 0 %>
+						<%= link_to "Create new contract", new_contract_path(request_id: request.id, shipper_id: user.id), id: "create-contract-link" %>
+					<% end %>
 				<% end %>
-			<% end %>
-			<% @messages = Message.find_by_sql("select * from messages where user_id = #{u.id} and request_id = #{request.id};") %>
-
-			<% @messages.each do |m| %>
-
+				<div class="comments-list">
+					<% @messages = Message.find_by_sql("select * from messages 
+													where user_id = #{user.id} 
+													and request_id = #{request.id};") %>
+					<% @messages.each do |message| %>
+						<% if message.from == message.user_id %>
+							<%= link_to user.name, user %>
+						<% else %>
+							<%  customer = User.find_by(id: request.user_id) %>
+							<%= link_to customer.name, customer %>
+						<% end %>
+						<br>
+						<strong><%= message.content %></strong>
+						<% if current_user == user || current_user.id == request.user_id %>
+							<%= link_to "Delete", message, method: :delete, id: "delete-mess-link", data: {confirm: "Are you sure?"} %>
+						<% end %>
+						<span class="timestamp">
+							Posted <%= time_ago_in_words(message.created_at) %> ago.
+						</span>
+						<hr>
+					<% end %>
+					<br>
+				</div>
+				<% if current_user == user || current_user.id == request.user_id %>
+					<%= render 'messages/message_form', id: request.id, 
+				 				 from: current_user.id, user_id: user.id%>
+				<% end %>
 				<br>
-				<% if m.from == m.user_id %>
-					name: <%= u.name %>
-				<% else %>
-					name: <%= User.find_by(id: request.user_id).name %>
-				<% end %>
-
-				<br>content: <%= m.content %>
-
-				<% if current_user == u || current_user.id == request.user_id %>
-					<%= link_to "Delete", m, method: :delete, id: "delete-mess-link", data: {confirm: "Are you sure?"} %>
-				<% end %>
-				<span class="timestamp">
-					Posted <%= time_ago_in_words(m.created_at) %> ago.
-				</span>
 			<% end %>
-			<br>
-			<% if current_user == u || current_user.id == request.user_id %>
-			 <%= render 'messages/message_form', id: request.id, from: current_user.id, user_id: u.id%>
-			<% end %>
-			<br>
+			<hr>
 		<% end %>
-	<% end %>
-
+	</div>
 </div>

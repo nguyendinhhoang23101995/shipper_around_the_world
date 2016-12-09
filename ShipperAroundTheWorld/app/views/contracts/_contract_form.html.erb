@@ -39,8 +39,8 @@
 						<div class="base-infor">
 							<div class="infor-item">
 								<div class="sub-title">Email:</div>
-								<%= f.hidden_field :user_id,value: @shipper.id %>
-								<%= @shipper.email%>								
+								<%= f.hidden_field :user_id, value: @shipper.id %>
+								<p class="infor-detail"><%= @shipper.email%></p>
 							</div>
 							<div class="infor-item">
 								<div class="sub-title">Bank Account:</div>
@@ -72,17 +72,3 @@
 		<% end %>
 	</div>
 </div>
-
-<script type="text/javascript">
-	var usedNames = {};
-	$("select > option").each(function(){
-		if(usedNames[this.text]) {
-			$(this).remove();
-		} 
-		else {
-			usedNames[this.text] = this.value;
-		}
-	});
-</script>
-
-
