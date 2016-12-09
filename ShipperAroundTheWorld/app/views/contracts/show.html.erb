@@ -87,43 +87,49 @@
 				<% end %>
 			<% end %>
 		<% else %>
-			<div class="message-section">
+			<div class="messages-section">
 				<h3>Comments</h3>
-				<% @messages = Message.find_by_sql("select * from messages 
+				<div class="messages-list">
+					<div class="messages-list-content">
+						<% @messages = Message.find_by_sql("select * from messages 
 								where user_id = #{@shipper.id} 
 								and request_id = #{@request.id}") %>
-				<ul>
-					<% @messages.each do |message| %>
-						<li>
-							<% if message.from == message.user_id %>
-								<%= link_to @shipper.name, @shipper %>:
-							<% else %>
-								<% customer = User.find_by(id: @request.user_id) %>
-								<%= link_to customer.name, customer %>
+						<ul>
+							<% @messages.each do |message| %>
+								<li>
+									<% if message.from == message.user_id %>
+										<%= link_to @shipper.name, @shipper %>:
+									<% else %>
+										<% customer = User.find_by(id: @request.user_id) %>
+										<%= link_to customer.name, customer %>
+									<% end %>
+									<div class="message-content"><%= message.content %></div>
+									<hr>
+								</li>
 							<% end %>
-							<div class="message-content"><%= message.content %></div>
-							<hr>
-						</li>
-					<% end %>
-				</ul>
-				<%= render 'messages/message_form', id: @request.id, 
-							from: current_user.id, user_id: @shipper.id, 
-							contract_id: @contract.id%>
+						</ul>
+					</div>
+					<%= render 'messages/message_form', id: @request.id, 
+								from: current_user.id, user_id: @shipper.id, 
+								contract_id: @contract.id%>
+				</div>
 			</div>
 			<div class="confirm-section">
-				<% case @contract.state %>
-				<% when 0 %>
-					<% if current_user?(User.find_by(id: @request.user_id)) %>
-						<%= link_to "No", root_url, class: 'btn btn-success' %>
-						<button class="btn btn-danger">Cancel</button>
-					<% else %>
-						<button class="btn btn-success">Success send item</button>
-						<button class="btn btn-danger">Cancel contract</button>
-					<% end %>
-				<% when 1 %>
-				<% when 2 %>
-				<% when 3 %>
+			<h3>Confirm Agreement</h3>
+
+			<% case @contract.state %>
+			<% when 0 %>
+				<% if current_user?(User.find_by(id: @request.user_id)) %>
+					<%= link_to "No", root_url, class: 'btn btn-success' %>
+					<button class="btn btn-danger">Cancel</button>
+				<% else %>
+					<button class="btn btn-success">Success send item</button>
+					<button class="btn btn-danger">Cancel contract</button>
 				<% end %>
+			<% when 1 %>
+			<% when 2 %>
+			<% when 3 %>
+			<% end %>
 			</div>
 		<% end %>
 	<% end %>

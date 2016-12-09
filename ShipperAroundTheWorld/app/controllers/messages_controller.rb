@@ -21,8 +21,8 @@ class MessagesController < ApplicationController
 	def destroy
 		@contract_messages = ContractComment.all
 		@contract_messages.each do |contract_message|
-			if contract_mess.message_id == @mess.id
-				contract_mess.destroy
+			if contract_message.message_id == @mess.id
+				contract_message.destroy
 			end
 		end
 		@mess = Message.find(params[:id])
