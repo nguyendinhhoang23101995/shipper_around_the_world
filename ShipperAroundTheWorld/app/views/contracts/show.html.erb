@@ -111,8 +111,19 @@
 							contract_id: @contract.id%>
 			</div>
 			<div class="confirm-section">
-				<button class="btn btn-success">Agree</button>
-				<button class="btn btn-danger">Cancel</button>
+				<% case @contract.state %>
+				<% when 0 %>
+					<% if current_user?(User.find_by(id: @request.user_id)) %>
+						<%= link_to "No", root_url, class: 'btn btn-success' %>
+						<button class="btn btn-danger">Cancel</button>
+					<% else %>
+						<button class="btn btn-success">Success send item</button>
+						<button class="btn btn-danger">Cancel contract</button>
+					<% end %>
+				<% when 1 %>
+				<% when 2 %>
+				<% when 3 %>
+				<% end %>
 			</div>
 		<% end %>
 	<% end %>
