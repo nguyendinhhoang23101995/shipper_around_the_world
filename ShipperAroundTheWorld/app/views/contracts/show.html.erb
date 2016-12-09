@@ -87,32 +87,39 @@
 				<% end %>
 			<% end %>
 		<% else %>
-			<div class="message-section">
+			<div class="messages-section">
 				<h3>Comments</h3>
-				<% @messages = Message.find_by_sql("select * from messages 
+				<div class="messages-list">
+					<div class="messages-list-content">
+						<% @messages = Message.find_by_sql("select * from messages 
 								where user_id = #{@shipper.id} 
 								and request_id = #{@request.id}") %>
-				<ul>
-					<% @messages.each do |message| %>
-						<li>
-							<% if message.from == message.user_id %>
-								<%= link_to @shipper.name, @shipper %>:
-							<% else %>
-								<% customer = User.find_by(id: @request.user_id) %>
-								<%= link_to customer.name, customer %>
+						<ul>
+							<% @messages.each do |message| %>
+								<li>
+									<% if message.from == message.user_id %>
+										<%= link_to @shipper.name, @shipper %>:
+									<% else %>
+										<% customer = User.find_by(id: @request.user_id) %>
+										<%= link_to customer.name, customer %>
+									<% end %>
+									<div class="message-content"><%= message.content %></div>
+									<hr>
+								</li>
 							<% end %>
-							<div class="message-content"><%= message.content %></div>
-							<hr>
-						</li>
-					<% end %>
-				</ul>
-				<%= render 'messages/message_form', id: @request.id, 
-							from: current_user.id, user_id: @shipper.id, 
-							contract_id: @contract.id%>
+						</ul>
+					</div>
+					<%= render 'messages/message_form', id: @request.id, 
+								from: current_user.id, user_id: @shipper.id, 
+								contract_id: @contract.id%>
+				</div>
 			</div>
 			<div class="confirm-section">
-				<button class="btn btn-success">Agree</button>
-				<button class="btn btn-danger">Cancel</button>
+				<h3>Confirm Agreement</h3>
+				<div class="confirm-section-btn">
+					<button class="btn btn-success">Agree</button>
+					<button class="btn btn-danger">Cancel</button>
+				</div>
 			</div>
 		<% end %>
 	<% end %>

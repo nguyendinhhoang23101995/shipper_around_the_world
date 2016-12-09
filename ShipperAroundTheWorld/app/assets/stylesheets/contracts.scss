@@ -102,40 +102,52 @@
 	margin-left: 30px;
 }
 
-.message-section{
+.messages-section{
 	background-color: white;
 	border-radius: 6px;
 	border: solid 1px #696969;
 	display: inline-block;
 	width: 300px;
 	margin-top: 30px;
-	padding: 10px 10px;
 	h3{
-		margin-top: 10px;
-		margin-bottom: 20px;
-	}
-	ul{
-		padding-left: 0;
-		margin-bottom: 0;
-		text-align: left;
-		li{
-			list-style: none;
-			padding-left: 10px;
-		}
-	}
-	.message-content{
-		float: right;
-		margin-right: 20px;
+		margin-top: 0px;
+		margin-bottom: 10px;
+		color: white;
+		width: 100%;
+		background-color: #337ab7;
 		font-weight: bold;
+		padding: 10px 10px;
+		font-size: 1.5em;
 	}
-	.message-form {
-		textarea{
-			width: 100%;
+	.messages-list{
+		padding: 10px 10px;
+		.messages-list-content{
+			overflow-y: scroll;
+			height: 195px;
+			ul{
+				padding-left: 0;
+				margin-bottom: 0;
+				text-align: left;
+				li{
+					list-style: none;
+					padding-left: 10px;
+				}
+			}
+			.message-content{
+				float: right;
+				margin-right: 20px;
+				font-weight: bold;
+			}
 		}
-		.btn{
-			float: left;
-			width: 100%;
-			margin-left: 0;
+		.message-form {
+			textarea{
+				width: 100%;
+			}
+			.btn{
+				float: left;
+				width: 100%;
+				margin-left: 0;
+			}
 		}
 	}
 }
@@ -147,7 +159,10 @@
 	width: 300px;
 	margin-top: 30px;
 	display: inline-block;
-	padding: 10px 15px;
+	h3{
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
 	.btn-success{
 		float: left;
 		width: 45%;
@@ -155,5 +170,10 @@
 	.btn-danger{
 		float: right;
 		width: 45%;
+	}
+	.confirm-section-btn{
+		padding: 5px 15px 10px 15px;
+		display: inline-block;
+		width: 100%;
 	}
 }

@@ -1,6 +1,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+::-webkit-scrollbar{
+	background-color: rgba(0, 0, 0, 0.2);
+	width: 5px;
+	border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 6px;
+}
+
 /* sidebar */
 
 @mixin style_name_email{
