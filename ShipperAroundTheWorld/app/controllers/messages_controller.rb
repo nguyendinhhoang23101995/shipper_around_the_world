@@ -5,13 +5,13 @@ class MessagesController < ApplicationController
 		@message = Message.new(message_params)
 
 		if @message.save
-			if(params[:contract_id].nil? == false)
-				@mess = ContractComment.new(contract_id: params[:contract_id], message_id: @message.id)
-				@mess.save
+			if(params[:contract_id] != '')
+				@contract_mess = ContractComment.new(contract_id: params[:contract_id],
+											message_id: @message.id)
+				@contract_mess.save
 			end
-			flash[:success] = "Message success!"
+			flash[:success] = "Message Success!"
 			redirect_to :back
-
 		else
 			flash[:danger] = @message.errors.full_messages.to_sentence
 			redirect_to :back
@@ -19,6 +19,12 @@ class MessagesController < ApplicationController
 	end
 
 	def destroy
+		@contract_messages = ContractComment.all
+		@contract_messages.each do |contract_message|
+			if contract_mess.message_id == @mess.id
+				contract_mess.destroy
+			end
+		end
 		@mess = Message.find(params[:id])
 		@mess.destroy
 		flash[:success] = "Message deleted!"

@@ -1,7 +1,6 @@
 class ContractsController < ApplicationController
 
 	def new
-
 		@contract = Contract.new
 		@request = Request.find(params[:request_id])
 		@shipper = User.find_by(id: params[:shipper_id])
