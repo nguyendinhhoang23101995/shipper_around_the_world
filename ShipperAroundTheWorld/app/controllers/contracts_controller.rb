@@ -58,19 +58,8 @@ class ContractsController < ApplicationController
 		@contract = Contract.find(params[:contract_id])
 		@request = Request.find_by(id: @contract.request_id)
 		@customer = User.find_by(id: @request.user_id)
-		@shipper = User.find(params[:shipper_id])
+		@shipper = User.find_by(id: @contract.user_id)
 
-		@shipper_report = Report.find_by(user_id: params[:shipper_id], 
-										 contract_id: params[:contract_id])
-
-		if current_user.id == @request.user_id
-			if @shipper_report.nil?
-				customer_report = Report.new
-			else
-				@customer_report = Report.find_by(user_id: @request_id,
-												  contract_id: params[:contract_id])
-			end
-		end
 	end
 
 	def destroy
@@ -82,8 +71,27 @@ class ContractsController < ApplicationController
 		@contract.destroy
 	end
 
+	def shipper_confirm_agreement
+		@contract = Contract.find_by(id: params[contract_id])
+		@contract.update_attribute(state: 3)
+		redirect_to contract_path(current_user, contract_id: @contract.id, shipper_id: @contract.user_id )
+	end
+
+	def shipper_cancel
+		@contract = Contract.find_by(id: params[contract_id])
+		@contract.update_attribute(state: 1)
+		
+	end
 	private
 
+
+
+		def customer_confirm_agreement
+		end
+		def customer_cancel
+		end
+		def ask_shipper
+		end
 		def contract_params
 			params.require(:contract).permit(:price, :content, :deadline, :bank_account_a, 
 											:bank_account_b, :user_id, :request_id)
