@@ -10,11 +10,11 @@ class MessagesController < ApplicationController
 											message_id: @message.id)
 				@contract_mess.save
 			end
-			flash[:success] = "Message Success!"
-			redirect_to :back
-		else
-			flash[:danger] = @message.errors.full_messages.to_sentence
-			redirect_to :back
+		end
+		respond_to do |format|
+			format.html { redirect_to :back }
+			format.json { head :ok }
+			format.js   { render :layout => false }
 		end
 	end
 
@@ -27,8 +27,11 @@ class MessagesController < ApplicationController
 		end
 		@mess = Message.find(params[:id])
 		@mess.destroy
-		flash[:success] = "Message deleted!"
-		redirect_to :back
+		respond_to do |format|
+			format.html { redirect_to :back }
+			format.json { head :ok }
+			format.js   { render :layout => false }
+		end
 	end
 
 	private

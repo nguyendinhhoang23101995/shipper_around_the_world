@@ -109,7 +109,7 @@
 	display: inline-block;
 	width: 300px;
 	margin-top: 30px;
-	h3{
+	.title{
 		margin-top: 0px;
 		margin-bottom: 10px;
 		color: white;
@@ -118,25 +118,68 @@
 		font-weight: bold;
 		padding: 10px 10px;
 		font-size: 1.5em;
+		display: inline-block;
+		position: relative;
+		button{
+			background-color: transparent;
+			float: left;
+			border: none;
+			outline: 0;
+			display: inline-block;
+		}
+		h3{
+			display: inline-block;
+			margin-bottom: 0;
+			margin-top: 0;
+			float: left;
+			margin-left: 60px;
+		}
+		.glyphicon{
+			display: inline-block;
+			font-size: 0.8em;
+			float: left;
+			margin-top: 3px;
+		}
+		#notif-count{
+			z-index: 10; 
+			position: absolute; 
+			left: 28px; 
+			background-color: #ff4a4a; 
+			display: inline-block; 
+			font-size: 0.5em; 
+			padding: 0 3px;
+		}
+		.popover{
+			padding: 0 0;
+			.popover-title{
+				width: 100%;
+				margin-left: 0;
+				background-color: #337ab7;
+			}
+			.popover-content{
+				color: black;
+				display: inline-block;
+			}
+		}
 	}
 	.messages-list{
 		padding: 10px 10px;
-		.messages-list-content{
-			overflow-y: scroll;
-			height: 195px;
-			ul{
-				padding-left: 0;
-				margin-bottom: 0;
-				text-align: left;
+		ul{
+			padding-left: 0;
+			margin-bottom: 0;
+			text-align: left;
+			.messages-list-content{
+				overflow-y: scroll;
+				height: 195px;
 				li{
 					list-style: none;
 					padding-left: 10px;
+					.message-content{
+						float: right;
+						margin-right: 20px;
+						font-weight: bold;
+					}
 				}
-			}
-			.message-content{
-				float: right;
-				margin-right: 20px;
-				font-weight: bold;
 			}
 		}
 		.message-form {

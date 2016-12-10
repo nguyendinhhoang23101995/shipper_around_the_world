@@ -17,6 +17,12 @@
 		margin-right: 10px;
 		float: right;
 	}
+	p.error-mess{
+		display: inline-block;
+		margin-top: 10px;
+		margin-bottom: 5px;
+		color: red;
+	}
 }
 
 .mess-list-section{
@@ -60,7 +66,7 @@
 		word-wrap: break-word;
 		margin: 10px 0;
 	}
-	#delete-mess-link{
+	.delete-mess-link{
 		float: right;
 	}
 	.rank-and-vote{
@@ -73,12 +79,23 @@
 			display: inline-block;
 		}
 	}
-	.comments-list{
-		margin-top: 15px;
-		border: solid 1px #7d7777;
-		border-radius: 8px;
-		padding: 10px 10px 10px 15px;
-		overflow-y: scroll;
-		height: 200px;
+	ul{
+		padding-left: 0;
+		.comments-list{
+			margin-top: 15px;
+			border: solid 1px #7d7777;
+			border-radius: 8px;
+			padding: 10px 10px 10px 15px;
+			overflow-y: scroll;
+			height: 200px;
+			li{
+				list-style: none;
+			}
+		}
+	}
+	.message-form{
+		p.error-mess{
+			float: left;
+		}
 	}
 }

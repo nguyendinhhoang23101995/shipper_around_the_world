@@ -1,0 +1,30 @@
+<% @user = User.find_by(id: @request.user_id) %>
+<% @requests = @user.requests.paginate(page: params[:page], :per_page => 5) %>
+
+$("ol.list-all-requests")
+	.prepend('<li id="request-<%= @request.id %>">'
+			+	'<%= link_to gravatar_for(@request.user, size: 50), @request.user %>'
+			+	'<span class="content">'
+			+	'<span class="user"><%= link_to @request.user.name, @request.user %></span>'
+			+	'<div class="title-quote">Want to buy:</div><%= ProductType.find(@request.product_type_id).name %>'
+			+	'<br>'
+			+	'<% @origin = Origin.find_by(id: @request.origin_id) %>'
+			+	'<div class="title-quote">From:</div><%= @origin.name %>'
+			+	'<br>'
+			+	'<div class="title-quote">Features:</div><%= @request.content %>'
+			+	'<br>'
+			+	'<div class="title-quote">Price:</div><%= @request.price %> $'
+			+	'<br>'
+			+	'<%= escape_javascript( render partial: "requests/request_comment", locals: {request: @request} ) %>'
+			+	'</span>'
+			+	'<hr>'
+			+'</li>');
+
+$("#request-count")
+	.html('Requests <span class="badge"><%= @user.requests.count %></span');
+
+$(".alert").fadeOut();
+$(".request-form").find("textarea").val('');
+$("#request_price").val('0');
+$("#request_origin_id").val('2');
+$("#request_product_type_id").val('6');

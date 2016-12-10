@@ -1,0 +1,43 @@
+<% if @message.content.length >= 6 %>
+	$("div.messages-list-content")
+		.append('<li>'
+				+ '<% if @message.from == @message.user_id %>'
+				+   '<% shipper = User.find_by(id: @message.user_id) %>'
+				+	'<%= link_to shipper.name, shipper %>:'
+				+ '<% else %>'
+				+   '<% request = Request.find_by(id: @message.request_id) %>'
+				+	'<% customer = User.find_by(id: request.user_id) %>'
+				+	'<%= link_to customer.name, customer %>'
+				+ '<% end %>' 
+				+ '<div class="message-content"><%= @message.content %></div>'
+				+ '<hr>'
+				+ '</li>');
+
+	$("div.comments-list")
+		.append('<li>'
+				+	'<% if @message.from == @message.user_id %>'
+				+   	'<% user = User.find_by(id: @message.user_id) %>'
+				+		'<%= link_to user.name, user %>'
+				+	'<% else %>'
+				+		'<% request = Request.find_by(id: @message.request_id) %>'
+				+		'<% customer = User.find_by(id: request.user_id) %>'
+				+		'<%= link_to customer.name, customer %>'
+				+	'<% end %>'
+				+	'<br>'
+				+	'<strong><%= @message.content %></strong>'
+				+	'<% if current_user == user || current_user.id == request.user_id %>'
+				+		'<%= link_to "Delete", @message, method: :delete, class: "delete-mess-link", data: {confirm: "Are you sure?"}, remote: true%>'
+				+	'<% end %>'
+				+	'<span class="timestamp">'
+				+		'Posted <%= time_ago_in_words(@message.created_at) %> ago.'
+				+	'</span>'
+				+	'<hr>'
+				+'</li>');
+	$(".message-form").find("p.error-mess").text('');
+<% else %>
+	if($(".message-form").find('p.error-mess').text() == ''){
+		$(".message-form").append("<p class='error-mess'><%= @message.errors.full_messages.to_sentence %></p>")	
+	}
+<% end %>
+
+$(".message-form").find('textarea').val('');

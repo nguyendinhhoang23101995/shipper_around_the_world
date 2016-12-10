@@ -7,17 +7,30 @@ class RequestsController < ApplicationController
 	
 	def create
 		@request = current_user.requests.build(request_params)
-		if @request.save
-			flash[:success] = "Request created!"
-			redirect_to user_path(current_user)
+		if params[:request][:content].length >= 6 && params[:request][:price] != '0'
+			if @request.save
+				respond_to do |format|
+					format.html { redirect_to :back }
+					format.json { head :ok }
+					format.js   { render :layout => false }
+				end
+			end
 		else
-			flash[:danger] = @request.errors.full_messages.to_sentence
-			redirect_to user_path(current_user)
+			error_string = ""
+			if params[:request][:content].length < 6 
+				error_string += "Content's length must great than 6."
+			end
+			if params[:request][:price] == '0'
+				error_string += " Price must great than 0."
+			end
+			flash[:danger] = error_string
+			redirect_to :back
 		end
 	end
 
 	def destroy
 		@request = Request.find(params[:id])
+		@user = User.find_by(id: @request.user_id)
 		@messages = @request.messages
 		@contract = @request.contract
 		unless @contract.nil?
@@ -28,8 +41,11 @@ class RequestsController < ApplicationController
 		end
 		if @request.state == 0
 			@request.destroy
-		    flash[:success] = "Request deleted"
-		    redirect_to request.referrer || root_url
+		    respond_to do |format|
+				format.html { redirect_to :back }
+				format.json { head :ok }
+				format.js   { render :layout => false }
+			end
 		end
 	end
 

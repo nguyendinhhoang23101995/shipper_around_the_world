@@ -1,8 +1,8 @@
 <% if current_user?(request.user) %>
 	<% if request.state == 0 %>
 		<div class="link-list">
-			<%= link_to "Delete", request, method: :delete, id: "delete-post-link",
-		                               data: { confirm: "Are you sure?" } %>
+			<%= link_to "Delete", request, method: :delete, class: "delete-post-link",
+		                               data: { confirm: "Are you sure?" }, remote: true %>
 		</div>
 	<% end %>
 <% end %>

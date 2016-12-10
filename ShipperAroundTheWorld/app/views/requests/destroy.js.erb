@@ -1,0 +1,6 @@
+$(".delete-post-link").bind('ajax:success', function(){
+	$(this).closest('li').fadeOut();
+});
+
+$("#request-count")
+	.html('Requests <span class="badge"><%= @user.requests.count %></span');
