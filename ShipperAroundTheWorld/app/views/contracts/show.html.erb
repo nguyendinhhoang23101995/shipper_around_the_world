@@ -88,13 +88,20 @@
 			<% end %>
 		<% else %>
 			<div class="messages-section">
-				<h3>Comments</h3>
+				<div class="title" style="position: relative;">
+					<button id="notif-btn" type="button" data-toggle="popover" title="Notifications"
+							data-content="Hello World !Hello World !Hello World !" data-placement="bottom">
+						<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+					</button>
+					<p id="notif-count">1</p>
+					<h3>Comments</h3>
+				</div>
 				<div class="messages-list">
-					<div class="messages-list-content">
-						<% @messages = Message.find_by_sql("select * from messages 
-								where user_id = #{@shipper.id} 
-								and request_id = #{@request.id}") %>
-						<ul>
+					<ul>
+						<div class="messages-list-content">
+							<% @messages = Message.find_by_sql("select * from messages 
+									where user_id = #{@shipper.id} 
+									and request_id = #{@request.id}") %>
 							<% @messages.each do |message| %>
 								<li>
 									<% if message.from == message.user_id %>
@@ -107,8 +114,8 @@
 									<hr>
 								</li>
 							<% end %>
-						</ul>
-					</div>
+						</div>
+					</ul>
 					<%= render 'messages/message_form', id: @request.id, 
 								from: current_user.id, user_id: @shipper.id, 
 								contract_id: @contract.id%>
@@ -124,3 +131,17 @@
 		<% end %>
 	<% end %>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$('button[data-toggle="popover"]').popover();
+	});
+	$('#notif-btn').click(function(event){
+		console.log(1);
+		var display = $("#notif-count").css('display');
+		console.log(display);
+		if(display == 'block'){
+			$("#notif-count").css('display', 'none');
+		}
+	});
+</script>	

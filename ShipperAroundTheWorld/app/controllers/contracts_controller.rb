@@ -39,7 +39,8 @@ class ContractsController < ApplicationController
 
 							UserMailer.annouce_create_contract(@shipper, @contract).deliver_now
 							flash[:success] = "Contract created!"
-							redirect_to user_path(current_user)
+							redirect_to contract_path(current_user, contract_id: @contract.id, 
+													  shipper_id: @contract.user_id)
 						else
 							flash[:danger] = @contract.errors.full_messages.to_sentence
 							redirect_to :back
@@ -59,26 +60,10 @@ class ContractsController < ApplicationController
 		@request = Request.find_by(id: @contract.request_id)
 		@customer = User.find_by(id: @request.user_id)
 		@shipper = User.find(params[:shipper_id])
-
-		@shipper_report = Report.find_by(user_id: params[:shipper_id], 
-										 contract_id: params[:contract_id])
-
-		if current_user.id == @request.user_id
-			if @shipper_report.nil?
-				customer_report = Report.new
-			else
-				@customer_report = Report.find_by(user_id: @request_id,
-												  contract_id: params[:contract_id])
-			end
-		end
 	end
 
 	def destroy
 		@contract = Contract.find_by(id: contract.id)
-		@reports = @contract.reports
-		@reports.each do |report|
-			report.destroy
-		end
 		@contract.destroy
 	end
 
