@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
 			t.float   :rank, 			default: 0
 			t.integer :totalvote, 		default: 0
 			t.boolean :admin, 			default: false
-
+			t.integer :total_fail_transaction, default: 0
 			t.timestamps
 		end
 	end
