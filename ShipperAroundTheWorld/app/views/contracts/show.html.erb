@@ -120,47 +120,46 @@
 			<% case @contract.state %>
 			<% when 0 %>
 				<% if current_user?(@customer) %>
-					<%= link_to "Ask shipper", root_url, class: 'btn btn-danger' %>
+					<%= link_to "Ask shipper", :controller=> :contracts,:action =>:ask_shipper,:contract_id => @contract.id %>
 				<% else %>
-					<%= button_to "Success send item",:controller => :contracts, :action => :shipper_confirm_agreement, :contract_id => @contract.id ,class: 'btn btn-success'%>
-					<%= link_to "Cancel transaction!" ,contract_path(current_user, contract_id: @contract.id, shipper_id: @contract.user_id),:controller => :contracts, :action => :shipper_cancel, :contract_id => @contract_id, class: 'btn btn-danger' %>
+					<%= link_to "Success send item",:controller => :contracts, :action => :shipper_confirm_agreement, :contract_id => @contract.id %>
+					<%= link_to "Cancel transaction!",:controller => :contracts, :action => :shipper_cancel, :contract_id => @contract.id %>
 				<% end %>
 			<% when 1 %>
 				<% if current_user?(@customer) %>
-					<%= link_to "Cancel transaction!", root_url, class: 'btn btn-danger' %>
+					<%= link_to "Cancel transaction!",:controller => :contracts,:action => :customer_cancel, :contract_id => @contract.id  %>
 				<% end %>
 			<% when 2 %>
 			<% when 3 %>
 				<% if current_user?(@customer) %>
-				
-					<%= link_to "cancel transaction!", class: 'btn btn-danger' %>
-					<%= link_to "Done!",class: 'btn btn-danger', :controller => :contracts, :action => :customer_confirm_agreement %>
+					<%= link_to "Done!",:controller => :contracts, :action => :customer_confirm_agreement, :contract_id => @contract.id %>
+					<%= link_to "cancel transaction!", :controller=> :contracts,:action =>:customer_cancel, :contract_id => @contract.id %>
 				<% end %>
 			<% when 4 %>
 			<% when 5 %>
 				<% if current_user?(@shipper) %>
-					<% link_to "yes",class: 'btn btn-success', :controller => :contracts %>
-					<% link_to "no",class: 'btn btn-danger',:controller => :contracts %>
+					<%= link_to "yes",:controller => :contracts, :action => :shipper_already_buy_item,:contract_id => @contract.id %>
+					<%= link_to "no",:controller => :contracts,:action => :shipper_doesnt_buy_item,:contract_id => @contract.id %>
 				<% end %>
 			<% when 6 %>
 				<% if current_user?(@customer) %>
-					<% link_to "cancel",class: 'btn btn-danger' %>
+					<%= link_to "cancel",:controller => :contracts,:action =>:customer_cancel, :contract_id => @contract.id %>
 				<% else %>
-					<%= link_to "Success send tiem", class: 'btn btn-success', :controller => :contracts, :action => :shipper_confirm_agreement, :contract_id => @contract.id %>
-					<%= link_to "Cancel transaction!", class: 'btn btn-danger', :controller => :contracts, :action => :shipper_cancel, :contract => @contract %>
+					<%= link_to "Success send tiem", :controller => :contracts, :action => :shipper_confirm_agreement, :contract_id => @contract.id %>
+					<%= link_to "Cancel transaction!", :controller => :contracts, :action => :shipper_cancel, :contract_id => @contract_id %>
 				<% end %>
 			<% when 7 %>
 				<% if current_user?(@customer) %>
-					<% link_to "cancel",class: 'btn btn-danger' %>
-					<%= link_to "Ask shipper", root_url, class: 'btn btn-danger' %>
+					<%= link_to "cancel",:controller => :contracts,:action =>:customer_cancel, :contract_id => @contract.id %>
+					<%= link_to "Ask shipper",:controller => :contracts,:action =>:ask_shipper, :contract_id => @contract.id%>
 				<% else %>
-					<%= link_to "Success send tiem", class: 'btn btn-success', :controller => :contracts, :action => :shipper_confirm_agreement, :contract_id => @contract.id %>
-					<%= link_to "Cancel transaction!", class: 'btn btn-danger', :controller => :contracts, :action => :shipper_cancel, :contract => @contract %>
+					<%= link_to "Success send tiem", :controller => :contracts, :action => :shipper_confirm_agreement, :contract_id => @contract.id %>
+					<%= link_to "Cancel transaction!", :controller => :contracts, :action => :shipper_cancel, :contract_id => @contract.id %>
 				<% end %>
 			<% when 8 %>
 			<% when 9 %>
 				<% if current_user?(@shipper) %>
-					<%= link_to "cancel", class: 'btn btn-danger' %>
+					<%= link_to "cancel", :controller => :contracts,:action =>:shipper_cancel, :contract_id => @contract.id %>
 				<% end %>
 			<% end %>
 			</div>
