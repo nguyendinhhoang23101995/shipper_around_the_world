@@ -6,6 +6,16 @@ Rails.application.routes.draw do
 	get  '/signup',    to: 'users#new'
 	post '/signup',	   to: 'users#create'
 	get '/index', 	   to: 'requests#index'
+
+	get 'contracts/shipper_confirm_agreement', to: 'contracts#shipper_confirm_agreement'
+	get 'contracts/shipper_cancel', to: 'contracts#shipper_cancel'
+	get 'contracts/customer_confirm_agreement', to: 'contracts#customer_confirm_agreement'
+	get 'contracts/customer_cancel', to: 'contracts#customer_cancel'
+	get 'contracts/ask_shipper', to: 'contracts#ask_shipper'
+	get 'contracts/shipper_already_buy_item', to: 'contracts#shipper_already_buy_item'
+	get 'contracts/shipper_doesnt_buy_item', to: 'contracts#shipper_doesnt_buy_item'
+
+	
 	resources :reports
 	resources :users
 	resources :account_activations, 	only: [:edit]
