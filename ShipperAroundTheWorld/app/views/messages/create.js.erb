@@ -23,7 +23,7 @@ $(document).ready(function(){
 		<% @messages = Message.find_by_sql("select * from messages where user_id = #{current_user.id} and request_id = #{@request.id};") %>
 		<% if @messages.size == 1 %>
 			if($("#list_<%= @request.id %>").find("div.messages-list#mess-list-<%= @request.id %>").length == 0){
-				$("div.list-messages#list-<%= @request.id %>")
+				$("#list_<%= @request.id %>")
 					.append('<% @users = User.find_by_sql("select * from users where id in (select distinct user_id from messages where request_id = #{@request.id});")%>'
 						+	'<% @users.each do |user| %>'
 						+	'<% if current_user?(user) || current_user?(@request.user) %>'
