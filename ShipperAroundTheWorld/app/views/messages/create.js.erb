@@ -1,43 +1,95 @@
-<% if @message.content.length >= 6 %>
-	$("div.messages-list-content")
-		.append('<li>'
-				+ '<% if @message.from == @message.user_id %>'
-				+   '<% shipper = User.find_by(id: @message.user_id) %>'
-				+	'<%= link_to shipper.name, shipper %>:'
-				+ '<% else %>'
-				+   '<% request = Request.find_by(id: @message.request_id) %>'
-				+	'<% customer = User.find_by(id: request.user_id) %>'
-				+	'<%= link_to customer.name, customer %>'
-				+ '<% end %>' 
-				+ '<div class="message-content"><%= @message.content %></div>'
-				+ '<hr>'
-				+ '</li>');
-
-	$("div.comments-list")
-		.append('<li>'
-				+	'<% if @message.from == @message.user_id %>'
-				+   	'<% user = User.find_by(id: @message.user_id) %>'
-				+		'<%= link_to user.name, user %>'
-				+	'<% else %>'
-				+		'<% request = Request.find_by(id: @message.request_id) %>'
-				+		'<% customer = User.find_by(id: request.user_id) %>'
-				+		'<%= link_to customer.name, customer %>'
-				+	'<% end %>'
-				+	'<br>'
-				+	'<strong><%= @message.content %></strong>'
-				+	'<% if current_user == user || current_user.id == request.user_id %>'
-				+		'<%= link_to "Delete", @message, method: :delete, class: "delete-mess-link", data: {confirm: "Are you sure?"}, remote: true%>'
-				+	'<% end %>'
-				+	'<span class="timestamp">'
-				+		'Posted <%= time_ago_in_words(@message.created_at) %> ago.'
-				+	'</span>'
-				+	'<hr>'
-				+'</li>');
-	$(".message-form").find("p.error-mess").text('');
-<% else %>
-	if($(".message-form").find('p.error-mess').text() == ''){
-		$(".message-form").append("<p class='error-mess'><%= @message.errors.full_messages.to_sentence %></p>")	
+function toggleMessList(id){
+	if($(".list-messages#" + id).is(":visible") == false){
+		$(".list-messages#" + id).toggle();
+		$(".toggle-link#" + id).html("<a onclick=\"toggleMessList("+ "'" + id + "'" +")\">" + 
+							   "Message List" + 
+							   "<span class=\"glyphicon " +
+		 					   "glyphicon-chevron-up\" aria-hidden=\"true\"></span></a>");
 	}
-<% end %>
+	else{
+		$(".list-messages#" + id).toggle();
+		$(".toggle-link#" + id).html("<a onclick=\"toggleMessList("+ "'" + id + "'" +")\">" + 
+							   "Message List" + 
+							   "<span class=\"glyphicon " +
+		 					   "glyphicon-chevron-down\" aria-hidden=\"true\"></span></a>");
+	}
+}
 
-$(".message-form").find('textarea').val('');
+$(document).ready(function(){
+	if($("#list_<%= @request.id %>").parent().is(":visible") == false){
+		toggleMessList($("#list_<%= @request.id %>").parent().attr('id'));
+	}
+	<% if @message.content.length >= 6 %>
+		<% @messages = Message.find_by_sql("select * from messages where user_id = #{current_user.id} and request_id = #{@request.id};") %>
+		<% if @messages.size == 1 %>
+			if($("#list_<%= @request.id %>").find("div.messages-list#mess-list-<%= @request.id %>").length == 0){
+				$("div.list-messages#list-<%= @request.id %>")
+					.append('<% @users = User.find_by_sql("select * from users where id in (select distinct user_id from messages where request_id = #{@request.id});")%>'
+						+	'<% @users.each do |user| %>'
+						+	'<% if current_user?(user) || current_user?(@request.user) %>'
+						+		'<hr>'
+						+		'<%= link_to user.name, user %>'
+						+		'<div class="rank-and-vote">'
+						+			'<div class="title">Rank:</div> <%= user.rank %><br>'
+						+			'<div class="title">Total vote:</div> <%= user.totalvote %><br>'
+						+			'<div class="title">Transac Failed:</div> <%= user.total_fail_transaction %>'
+						+		'</div>'
+						+		'<% if current_user?(@request.user) %>'
+						+			'<% if @request.state == 0 %>'
+						+				'<%= link_to "Create new contract", new_contract_path(request_id: @request.id, shipper_id: user.id), id: "create-contract-link" %>'
+						+			'<% end %>'
+						+		'<% end %>'
+						+		'<ul>'
+						+			'<div class="messages-list" id="mess-list-<%= @request.id %>">'
+						+			'</div>'
+						+		'</ul>'
+						+	'<% end %>'
+						+'<% end %>'
+						+'</div>');
+			}
+		<% end %>
+		$("div.contract-comments-list-content")
+			.append('<li>'
+					+ '<% if @message.from == @message.user_id %>'
+					+   '<% shipper = User.find_by(id: @message.user_id) %>'
+					+	'<%= link_to shipper.name, shipper %>:'
+					+ '<% else %>'
+					+   '<% request = Request.find_by(id: @message.request_id) %>'
+					+	'<% customer = User.find_by(id: request.user_id) %>'
+					+	'<%= link_to customer.name, customer %>'
+					+ '<% end %>' 
+					+ '<div class="contract-comment-content"><%= @message.content %></div>'
+					+ '</li>');
+		$("div.messages-list#mess-list-<%= @request.id %>")
+			.append('<li>'
+					+	'<% if @message.from == @message.user_id %>'
+					+   	'<% user = User.find_by(id: @message.user_id) %>'
+					+		'<%= link_to user.name, user %>'
+					+	'<% else %>'
+					+		'<% request = Request.find_by(id: @message.request_id) %>'
+					+		'<% customer = User.find_by(id: request.user_id) %>'
+					+		'<%= link_to customer.name, customer %>'
+					+	'<% end %>'
+					+	'<br>'
+					+	'<div class="message-content"><%= @message.content %></div>'
+					+	'<% if current_user == user || current_user.id == request.user_id %>'
+					+		'<%= link_to "Delete", @message, method: :delete, class: "delete-mess-link", data: {confirm: "Are you sure?"}, remote: true%>'
+					+	'<% end %>'
+					+	'<span class="timestamp">'
+					+		'Posted <%= time_ago_in_words(@message.created_at) %> ago.'
+					+	'</span>'
+					+'</li>');
+		$("#form-<%= @request.id %>").find(".message-form").find("p.error-mess").text('');
+		$(".contract-comments-list").find(".message-form").find("p.error-mess").text('');
+	<% else %>
+		if($("#form-<%= @request.id %>").find(".message-form").find('p.error-mess').text() == ''){
+			$("#form-<%= @request.id %>").find(".message-form")
+			.append("<p class='error-mess'><%= @message.errors.full_messages.to_sentence %></p>");
+			$(".contract-comments-list").find(".message-form")
+			.append("<p class='error-mess'><%= @message.errors.full_messages.to_sentence %></p>");
+		}
+	<% end %>
+
+	$("#form-<%= @request.id %>").find(".message-form").find('textarea').val('');
+	$(".contract-comments-list").find(".message-form").find("textarea").val('');
+});
