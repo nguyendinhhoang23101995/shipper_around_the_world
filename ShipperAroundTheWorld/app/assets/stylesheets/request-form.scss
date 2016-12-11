@@ -13,41 +13,38 @@ section.request-form-section{
 	text-align: center;
 	border: solid 1px #8a8a8a;
 	border-radius: 6px;
-}
-
-.request-form{
 	#request_origin_id, #request_product_type_id{
 		width: 170px;
 		background-color: white;
 		padding: 5px 15px;
 		float: right;
 	}
-}
-
-.request-form .input-group{
-	width: 170px;
-	float: right;
-}
-
-.request-form .form-control{
-	width: 130px;
-}
-
-.request-form .form-item{
-	margin-top: 5px;
-	display: inline-block;
-	width: 100%;
-	margin-bottom: 20px;
-}
-
-.request-form .form-item .title{
-	font-size: 1.2em;
-	font-weight: bold;
-	display: inline-block;
-	float: left;
-}
-
-.request-form .btn{
-	width: 100%;
-	margin: 10px auto;
+	.input-group{
+		width: 170px;
+		float: right;
+	}
+	.form-control{
+		width: 130px;
+	}
+	.form-item{
+		margin-top: 5px;
+		display: inline-block;
+		width: 100%;
+		margin-bottom: 20px;
+		.title{
+			font-size: 1.2em;
+			font-weight: bold;
+			display: inline-block;
+			float: left;
+		}
+	}
+	textarea{
+		width: 100%;
+		font-size: 1.2em;
+		padding: 10px 10px;
+	}
+	.btn{
+		width: 100%;
+		margin: 10px auto;
+	}
 }

@@ -10,6 +10,9 @@
 		width: 70%;
 		float: left;
 		margin-top: 0;
+		height: 65px;
+		font-size: 1.2em;
+		padding: 8px 10px;
 	}
 	.btn{
 		width: 25%;
@@ -29,15 +32,13 @@
 	width: 100%;
 	margin-top: 20px;
 	margin-bottom: 15px;
-}
-
-.mess-list-section .toggle-link{
-	font-size: 1.2em;
-	cursor: pointer;
-}
-
-.mess-list-section .toggle-link .glyphicon{
-	margin-left: 10px;
+	.toggle-link{
+		font-size: 1.2em;
+		cursor: pointer;
+		.glyphicon{
+			margin-left: 10px;
+		}
+	}
 }
 
 .list-messages{
@@ -52,19 +53,13 @@
 	max-height: 590px;
 	overflow-y :scroll;
 	h3{
-		margin-top: 10px;
+		margin-top: 5px;
 		margin-bottom: 10px;
 	}
 	hr{
 		margin-top: 10px;
 		margin-bottom: 10px;
 		border-color: #989898;
-	}
-	#mess-content{
-		display: inline-block;
-		width: 85%;
-		word-wrap: break-word;
-		margin: 10px 0;
 	}
 	.delete-mess-link{
 		float: right;
@@ -75,21 +70,33 @@
 		.title{
 			font-weight: bold;
 			font-size: 1.1em;
-			width: 100px;
+			width: 200px;
 			display: inline-block;
 		}
 	}
 	ul{
 		padding-left: 0;
-		.comments-list{
+		margin-bottom: 10px;
+		.messages-list{
 			margin-top: 15px;
 			border: solid 1px #7d7777;
 			border-radius: 8px;
 			padding: 10px 10px 10px 15px;
 			overflow-y: scroll;
-			height: 200px;
+			height: 250px;
 			li{
 				list-style: none;
+				padding: 10px 10px 20px 10px;
+				border-bottom: solid 1px #eeeeee;
+				display: inline-block;
+				width: 100%;
+				.message-content{
+					max-width: 350px;
+					margin-right: 10px;
+					word-wrap: break-word;
+					display: inline-block;
+					font-weight: bold;
+				}
 			}
 		}
 	}

@@ -5,24 +5,20 @@ footer{
 	height: 60px;
 	text-align: center;
 	position: fixed-bottom;
-}
-
-footer .copyright{
-	display: inline-block;
-	float: left;
-}
-
-footer .contact-information{
-	display: inline-block;
-	float: right;
-	font-size: 1.1em;
-}
-
-.contact-information .glyphicon{
-	margin-right: 10px;
-}
-
-.contact-information .infor-detail{
-	display: inline-block;
-	margin-right: 70px;
+	.copyright{
+		display: inline-block;
+		float: left;
+	}
+	.contact-information{
+		display: inline-block;
+		float: right;
+		font-size: 1.1em;
+		.glyphicon{
+			margin-right: 10px;
+		}
+		.infor-detail{
+			display: inline-block;
+			margin-right: 70px;
+		}
+	}
 }

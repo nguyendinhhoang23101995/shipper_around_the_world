@@ -1,108 +1,100 @@
 // Place all the styles related to the contracts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .contract-content {
 	width: 100%;
 	text-align: center;
 	display: inline-block;
-}
-
-.contract-content .contract-form{
-	background-color: white;
-	display: inline-block;
-	width: 600px;
-	margin-top: 30px;
-	border: solid 1px #848080;
-	border-radius: 5px;
-	padding: 20px 20px;
-	margin-bottom: 20px;
-	text-align: left;
-	float: left;
-}
-
-.contract-content .contract-form .title{
-	text-transform: uppercase;
-	font-weight: bold;
-	font-size: 1.2em;
-	margin-top: 10px;
-	margin-bottom: 5px;
-	display: inline-block;
-}
-
-.contract-content .contract-form .btn{
-	width: 100%;
-	font-size: 1.2em;
-}
-
-.contract-content .contract-form select{
-	background-color: white;
-	padding: 5px 5px;
-}
-
-.contract-content .contract-form h1{
-	text-transform: uppercase;
-	text-align: center;
-}
-
-.contract-content .contract-form textarea{
-	border-radius: 5px;
-}
-
-.contract-content .contract-form input{
-	padding: 5px 20px;
-}
-
-.contract-content .contract-form ul > li{
-	list-style: none;
-}
-
-.contract-content .contract-form .base-infor .infor-item{
-	display: inline-block;
-	width: 100%;
-}
-
-.contract-form .base-infor .infor-item .sub-title{
-	display: inline-block;
-	font-weight: bold;
-	font-size: 1.1em;
-	float: left;
-	margin-left: 30px;
-}
-
-.contract-form .base-infor .infor-item .infor-detail{
-	float: right;
-	margin-right: 30px;
-}
-
-.contract-form .date #date-input{
-	float: right;
-	margin-right: 30px;
-}
-
-.contract-form .price{
-	margin-bottom: 10px;
-}
-
-.contract-form .price{
-	#price-input{
-		float: right;
-		margin-right: 30px;
-		input{
-			width: 175px;
+	.contract-form{
+		background-color: white;
+		display: inline-block;
+		width: 600px;
+		margin-top: 30px;
+		border: solid 1px #848080;
+		border-radius: 5px;
+		padding: 20px 20px;
+		margin-bottom: 20px;
+		text-align: left;
+		float: left;
+		.title{
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 1.2em;
+			margin-top: 10px;
+			margin-bottom: 5px;
+			display: inline-block;
 		}
-		.input-group-addon{
-			width: 30px;
+		.btn{
+			width: 100%;
+			font-size: 1.2em;
+		}
+		h1{
+			text-transform: uppercase;
+			text-align: center;
+		}
+		textarea{
+			border-radius: 5px;
+			width: 100%;
+			margin: 5px 0;
+			height: 65px;
+			font-size: 1.2em;
+			padding: 5px 10px;
+		}
+		input{
+			padding: 5px 20px;
+			outline: 0;
+		}
+		ul > li{
+			list-style: none;
+		}
+		.base-infor {
+			.infor-item{
+				display: inline-block;
+				width: 100%;
+				.sub-title{
+					display: inline-block;
+					font-weight: bold;
+					font-size: 1.1em;
+					float: left;
+					margin-left: 30px;
+				}
+				.infor-detail{
+					float: right;
+					margin-right: 30px;
+				}
+			}
+		}
+		.date{
+			#date-input{
+				float: right;
+				margin-right: 30px;
+			}
+		}
+		.price{
+			margin-bottom: 10px;
+			#price-input{
+				float: right;
+				margin-right: 30px;
+				input{
+					width: 175px;
+				}
+				.input-group-addon{
+					width: 30px;
+				}
+			}
+		}
+		.content {
+			.agreement-content-detail{
+				font-size: 1.3em;
+				margin-top: 10px;
+				margin-left: 30px;
+			}
 		}
 	}
 }
 
-.contract-form .content .agreement-content-detail{
-	font-size: 1.3em;
-	margin-top: 10px;
-	margin-left: 30px;
-}
-
-.messages-section{
+.contract-comments-section{
 	background-color: white;
 	border-radius: 6px;
 	border: solid 1px #696969;
@@ -111,7 +103,6 @@
 	margin-top: 30px;
 	.title{
 		margin-top: 0px;
-		margin-bottom: 10px;
 		color: white;
 		width: 100%;
 		background-color: #337ab7;
@@ -162,21 +153,27 @@
 			}
 		}
 	}
-	.messages-list{
+	.contract-comments-list{
 		padding: 10px 10px;
 		ul{
 			padding-left: 0;
 			margin-bottom: 0;
 			text-align: left;
-			.messages-list-content{
+			.contract-comments-list-content{
 				overflow-y: scroll;
-				height: 195px;
+				max-height: 195px;
 				li{
 					list-style: none;
-					padding-left: 10px;
-					.message-content{
+					padding: 20px 10px;
+					border-bottom: solid 1px #eeeeee;
+					display: inline-block;
+					width: 100%;
+					.contract-comment-content{
 						float: right;
-						margin-right: 20px;
+						max-width: 150px;
+						margin-right: 10px;
+						word-wrap: break-word;
+						display: block;
 						font-weight: bold;
 					}
 				}
@@ -185,6 +182,7 @@
 		.message-form {
 			textarea{
 				width: 100%;
+				margin-bottom: 15px;
 			}
 			.btn{
 				float: left;
@@ -202,21 +200,19 @@
 	width: 300px;
 	margin-top: 30px;
 	display: inline-block;
+	text-align: center;
 	h3{
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
-	.btn-success{
-		float: left;
-		width: 45%;
-	}
-	.btn-danger{
-		float: right;
-		width: 45%;
-	}
-	.confirm-section-btn{
-		padding: 5px 15px 10px 15px;
-		display: inline-block;
-		width: 100%;
+	.btn{
+		margin-bottom: 10px;
+		margin-left: 8px;
+		margin-right: 8px;
+		a{
+			color: white;
+			font-weight: bold;
+			text-decoration: none;
+		}
 	}
 }
