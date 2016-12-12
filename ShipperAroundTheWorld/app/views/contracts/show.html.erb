@@ -11,6 +11,9 @@
 			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>nhom495ITSS@gmail.com
 		</div>
 	</div>
+	<% if @contract.state == 4 %>
+			<h3 id="transact-notif">Transaction Success</h3>
+		<% end %>
 	<div class="contract-form">
 		<h1>Contract Agreement</h1>
 		<hr>
@@ -203,7 +206,6 @@
 		$('button[data-toggle="popover"]').popover();
 	});
 	$('#notif-btn').click(function(event){
-		console.log(1);
 		var display = $("#notif-count").css('display');
 		console.log(display);
 		if(display == 'block'){

@@ -43,9 +43,7 @@ class UsersController < ApplicationController
 			@shipper.update_attributes(rank: new_rank)
 			@shipper.update_attributes(totalvote: total_vote +1)
 
-			@contract = Contract.find(params[:user][:contract_id])
-			@contract.update_attributes(state: 2)
-			redirect_to root_url
+			redirect_to :back
 		end
 	end
 
