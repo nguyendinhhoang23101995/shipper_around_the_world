@@ -22,7 +22,8 @@
 		</section>
 	</aside>
 	<div class="col-md-8">
-		<% if current_user.admin? == false %>
+		<% current_uri = request.env['PATH_INFO'] %>
+		<% if current_uri != '/users/1' %>
 			<h3 style="margin-left: 100px;" id="request-count">Requests <span class="badge"><%= @user.requests.count %></span></h3>
 			<ol class="list-all-requests">
 				<%= render @requests %>
