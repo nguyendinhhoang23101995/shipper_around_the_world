@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 	get 'contracts/shipper_doesnt_buy_item', to: 'contracts#shipper_doesnt_buy_item'
 
 	
-	resources :reports
 	resources :users
 	resources :account_activations, 	only: [:edit]
 	resources :messages,		  		only: [:create, :destroy]

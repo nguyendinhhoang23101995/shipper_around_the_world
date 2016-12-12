@@ -64,6 +64,62 @@ class ContractsController < ApplicationController
 		@request = Request.find_by(id: @contract.request_id)
 		@customer = User.find_by(id: @request.user_id)
 		@shipper = User.find_by(id: @contract.user_id)
+		
+		@noti = case @contract.state
+		when 0
+			"New contract been created"
+		when 1
+			if current_user == @customer
+				"Shipper want to cancel transaction, please comfirm!"
+			else
+				"You just cancel transaction! wait respond from customer"
+			end
+		when 2
+			
+		when 3
+			if current_user == @customer
+				"Shipper just send item, please confirm!"
+			else
+				"You just send item, wait respond from customer"
+			end
+		when 4
+			if current_user == @customer
+				"successful transaction"
+			else
+				"successful transaction"
+			end
+		when 5
+			if current_user == @customer
+				"You just aks shipper, wait reply from shipper"
+			else
+				"You just recv a question from customer, please reply!"
+			end
+		when 6
+			if current_user == @customer
+				"Shipper already bought item!"
+			else	
+				"You just answer customer!"
+			end
+		when 7
+			if current_user == @customer
+				"Shipper haven't bought item yet"
+			else
+				"You just answer customer!"
+			end
+		when 8
+			
+		when 9
+			if current_user == @customer
+				"You just cancel transaction, wait respond from shipper!"
+			else
+				"Customer want to cancel transaction, please confirm!"
+			end
+		when 10
+			"10"
+		when 11
+			"11"
+		end
+
 	end
 
 	def destroy

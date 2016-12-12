@@ -70,7 +70,7 @@
 	<% if current_user.admin? == false %>
 		<% if @request.state == 2 %>
 			<% if current_user.id == @request.user_id%>
-				<% if @contract.state != 2 %>
+				<% if @contract.state != 12 %>
 					<% @user = User.new %>
 					<div class="rate-form">
 						<h3>Rate</h3>
@@ -93,7 +93,7 @@
 			<div class="contract-comments-section">
 				<div class="title" style="position: relative;">
 					<button id="notif-btn" type="button" data-toggle="popover" title="Notifications"
-							data-content="Hello World !Hello World !Hello World !" data-placement="bottom">
+							data-content= "<%= @noti %>" data-placement="bottom">
 						<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 					</button>
 					<p id="notif-count">1</p>
@@ -138,23 +138,24 @@
 						<%= link_to "Send Item Success",:controller => :contracts, :action => :shipper_confirm_agreement, contract_id: @contract.id %>
 					</div>
 					<div class="btn btn-danger">
-						<%= link_to "Cancel Transaction",:controller => :contracts, :action => :shipper_cancel, contract_id: @contract.id %>
+						<%= link_to "Cancel Transaction",:controller => :contracts, :action => :shipper_cancel, contract_id: @contract.id ,data: { confirm: "Do you want to drop this transaction? "}%>
 					</div>
 				<% end %>
 			<% when 1 %>
 				<% if current_user?(@customer) %>
 					<div class="btn btn-danger">
-						<%= link_to "Cancel Transaction",:controller => :contracts,:action => :customer_cancel, contract_id: @contract.id  %>
+						<%= link_to "Cancel Transaction",:controller => :contracts,:action => :customer_cancel, contract_id: @contract.id,data:{confirm: "You will recv your money !"} %>
 					</div>
 				<% end %>
 			<% when 2 %>
 			<% when 3 %>
 				<% if current_user?(@customer) %>
 					<div class="btn btn-success">
-						<%= link_to "Done",:controller => :contracts, :action => :customer_confirm_agreement, contract_id: @contract.id %>
+						<%= link_to "Done",:controller => :contracts, :action => :customer_confirm_agreement, contract_id: @contract.id,data:{confirm:"Successful transaction? This step will close transaction"}%>
 					</div>
 					<div class="btn btn-danger">
-						<%= link_to "Cancel Transaction", :controller=> :contracts,:action =>:customer_cancel, contract_id: @contract.id %>
+						<!--<%= link_to "Cancel Transaction", :controller=> :contracts,:action =>:customer_cancel, contract_id: @contract.id %> -->
+						<%= link_to "cancel transaction" %>
 					</div>
 				<% end %>
 			<% when 4 %>
@@ -170,14 +171,14 @@
 			<% when 6 %>
 				<% if current_user?(@customer) %>
 					<div class="btn btn-danger">
-						<%= link_to "Cancel",:controller => :contracts,:action =>:customer_cancel, contract_id: @contract.id %>
+						<%= link_to "Cancel",:controller => :contracts,:action =>:customer_cancel, contract_id: @contract.id, data:{confirm:"Do you want to cancel transaction? You will lose your money!"}%>
 					</div>
 				<% else %>
 					<div class="btn btn-success">
 						<%= link_to "Send Item Success", :controller => :contracts, :action => :shipper_confirm_agreement, contract_id: @contract.id %>
 					</div>
 					<div class="btn btn-danger">
-						<%= link_to "Cancel Transaction", :controller => :contracts, :action => :shipper_cancel, contract_id: @contract.id %>
+						<%= link_to "Cancel Transaction", :controller => :contracts, :action => :shipper_cancel, contract_id: @contract.id, data:{confirm:"Do you want to cancel transaction?"} %>
 					</div>
 				<% end %>
 			<% when 7 %>
@@ -186,14 +187,14 @@
 						<%= link_to "Ask Shipper",:controller => :contracts,:action =>:ask_shipper, contract_id: @contract.id%>
 					</div>
 					<div class="btn btn-danger">
-						<%= link_to "Cancel Transaction",:controller => :contracts,:action =>:customer_cancel, contract_id: @contract.id %>
+						<%= link_to "Cancel Transaction",:controller => :contracts,:action =>:customer_cancel, contract_id: @contract.id, params:{confirm:"Do you want to cancel transaction? You will recv 90% of price!"} %>
 					</div>
 				<% end %>
 			<% when 8 %>
 			<% when 9 %>
 				<% if current_user?(@shipper) %>
 					<div class="btn btn-danger">
-						<%= link_to "Cancel Transaction", :controller => :contracts,:action =>:shipper_cancel, contract_id: @contract.id %>
+						<%= link_to "Cancel Transaction", :controller => :contracts,:action =>:shipper_cancel, contract_id: @contract.id,data: { confirm:"This transaction will be drop, you will recv 5% of price"} %>
 					</div>
 				<% end %>
 			<% end %>

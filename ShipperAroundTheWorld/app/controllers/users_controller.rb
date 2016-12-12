@@ -42,8 +42,10 @@ class UsersController < ApplicationController
 			new_rank = (rank * total_vote + @user.rank)/(total_vote +1)
 			@shipper.update_attributes(rank: new_rank)
 			@shipper.update_attributes(totalvote: total_vote +1)
-
-			redirect_to :back
+			
+			@contract = Contract.find(params[:user][:contract_id])
+			@contract.update_attributes(state: 12)
+			redirect_to root_url
 		end
 	end
 
