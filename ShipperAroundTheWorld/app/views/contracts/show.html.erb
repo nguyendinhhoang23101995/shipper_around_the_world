@@ -128,7 +128,7 @@
 			<% when 0 %>
 				<% if current_user?(@customer) %>
 					<div class="btn btn-warning">
-						<%= link_to "Ask Shipper", :controller => :contracts,:action =>:ask_shipper,contract_id: @contract.id %>
+						<%= link_to "Ask Shipper", :controller => :contracts,:action =>:ask_shipper, contract_id: @contract.id %>
 					</div>
 				<% else %>
 					<div class="btn btn-success">
@@ -148,7 +148,7 @@
 			<% when 3 %>
 				<% if current_user?(@customer) %>
 					<div class="btn btn-success">
-						<%= link_to "Done",:controller => :contracts, :action => :customer_confirm_agreement, :contract_id => @contract.id %>
+						<%= link_to "Done",:controller => :contracts, :action => :customer_confirm_agreement, contract_id: @contract.id %>
 					</div>
 					<div class="btn btn-danger">
 						<%= link_to "Cancel Transaction", :controller=> :contracts,:action =>:customer_cancel, contract_id: @contract.id %>
@@ -161,7 +161,7 @@
 						<%= link_to "Yes",:controller => :contracts, :action => :shipper_already_buy_item, contract_id: @contract.id %>	
 					</div>
 					<div class="btn btn-danger">
-						<%= link_to "No",:controller => :contracts,:action => :shipper_doesnt_buy_item,contract_id: @contract.id %>
+						<%= link_to "No",:controller => :contracts,:action => :shipper_doesnt_buy_item, contract_id: @contract.id %>
 					</div>
 				<% end %>
 			<% when 6 %>
@@ -174,7 +174,7 @@
 						<%= link_to "Send Item Success", :controller => :contracts, :action => :shipper_confirm_agreement, contract_id: @contract.id %>
 					</div>
 					<div class="btn btn-danger">
-						<%= link_to "Cancel Transaction", :controller => :contracts, :action => :shipper_cancel, contract_id: @contract_id %>
+						<%= link_to "Cancel Transaction", :controller => :contracts, :action => :shipper_cancel, contract_id: @contract.id %>
 					</div>
 				<% end %>
 			<% when 7 %>
@@ -183,21 +183,14 @@
 						<%= link_to "Ask Shipper",:controller => :contracts,:action =>:ask_shipper, contract_id: @contract.id%>
 					</div>
 					<div class="btn btn-danger">
-						<%= link_to "Cancel",:controller => :contracts,:action =>:customer_cancel, contract_id: @contract.id %>
-					</div>
-				<% else %>
-					<div class="btn btn-success">
-						<%= link_to "Send Item Success", :controller => :contracts, :action => :shipper_confirm_agreement, contract_id: @contract.id %>
-					</div>
-					<div class="btn btn-danger">
-						<%= link_to "Cancel Transaction", :controller => :contracts, :action => :shipper_cancel, contract_id: @contract.id %>
+						<%= link_to "Cancel Transaction",:controller => :contracts,:action =>:customer_cancel, contract_id: @contract.id %>
 					</div>
 				<% end %>
 			<% when 8 %>
 			<% when 9 %>
 				<% if current_user?(@shipper) %>
 					<div class="btn btn-danger">
-						<%= link_to "Cancel", :controller => :contracts,:action =>:shipper_cancel, contract_id: @contract.id %>
+						<%= link_to "Cancel Transaction", :controller => :contracts,:action =>:shipper_cancel, contract_id: @contract.id %>
 					</div>
 				<% end %>
 			<% end %>

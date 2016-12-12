@@ -147,7 +147,7 @@ class ContractsController < ApplicationController
 
 			@contract.destroy
 
-			redirect_to root_path
+			redirect_to user_path(id: current_user.id)
 		else
 			flash[:danger] = "Someone changed contract state"
 			redirect_to contract_path(current_user,contract_id: @contract.id,shipper_id: @contract.user_id)
@@ -193,10 +193,10 @@ class ContractsController < ApplicationController
 
 			@contract.destroy
 
-			redirect_to root_path
+			redirect_to user_path(id: current_user.id)
 		when 3
 			@contract.update_attributes(state: 11)
-			redirect_to root_path
+			redirect_to :back
 		when 6
 			@contract.update_attributes(state: 8)
 			@bank_account = BankAccount.find_by(bank_account: "AAAA123")
@@ -226,10 +226,10 @@ class ContractsController < ApplicationController
 
 			@contract.destroy
 
-			redirect_to root_path
+			redirect_to user_path(id: current_user.id)
 		when 7
 			@contract.update_attributes(state: 9)
-			redirect_to root_path
+			redirect_to :back
 		else
 			flash[:danger] = "Someone changed contract state"
 			redirect_to contract_path(current_user,contract_id: @contract.id,shipper_id: @contract.user_id)
@@ -257,7 +257,7 @@ class ContractsController < ApplicationController
 			@shipper = User.find_by(id: @contract.user_id)
 			
 			UserMailer.transaction_successful(@shipper, @contract).deliver_now
-			redirect_to root_path
+			redirect_to :back
 		else 
 			flash[:danger] = "Someone changed contract state"
 			redirect_to contract_path(current_user,contract_id: @contract.id,shipper_id: @contract.user_id)
@@ -269,7 +269,7 @@ class ContractsController < ApplicationController
 		case @contract.state 
 		when 0,7
 			@contract.update_attributes(state: 5)
-			redirect_to root_path
+			redirect_to :back
 		else
 			flash[:danger] = "Someone changed contract state"
 			redirect_to contract_path(current_user,contract_id: @contract.id,shipper_id: @contract.user_id)

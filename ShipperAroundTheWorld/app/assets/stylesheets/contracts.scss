@@ -2,10 +2,68 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+@mixin form_style{
+	width: 300px;
+	background-color: white;
+	border: solid 1px #8c8b8b;
+	border-radius: 5px;
+	padding: 10px 15px;
+	text-align: center;
+	display: inline-block;
+	margin-left: 20px;
+	float: left;
+	margin-top: 30px;
+	margin-right: 20px;
+	h3{
+		margin-top: 10px;
+		text-transform: uppercase;
+	}
+	.btn{
+		width: 100%;
+		margin-bottom: 10px;
+	}
+}
+
+@mixin infor_detail{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	.glyphicon{
+		margin-right: 10px;
+		color: #0083bb;
+		font-weight: bold;
+	}
+}
+
 .contract-content {
 	width: 100%;
 	text-align: center;
 	display: inline-block;
+	.rate-form{
+		@include form_style;
+		select{
+			background-color: white;
+			padding: 5px 10px;
+			font-size: 1.1em;
+			border-radius: 5px;
+			margin-bottom: 20px;
+			margin-top: 10px;
+		}
+	}
+	.contract-note{
+		@include form_style;
+		text-align: left;
+		h3{
+			color: #0083bb;
+			font-weight: bold;
+		}
+		.phone-number{
+			@include infor_detail;
+		}
+		.email{
+			@include infor_detail;
+		}
+	}
 	.contract-form{
 		background-color: white;
 		display: inline-block;
@@ -209,10 +267,14 @@
 		margin-bottom: 10px;
 		margin-left: 8px;
 		margin-right: 8px;
+		display: inline-block;
+		padding: 0 0;
 		a{
 			color: white;
 			font-weight: bold;
 			text-decoration: none;
+			display: inline-block;
+			padding: 8px 12px;
 		}
 	}
 }
