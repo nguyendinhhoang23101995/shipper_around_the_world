@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 			@shipper.update_attributes(totalvote: total_vote +1)
 
 			@contract = Contract.find(params[:user][:contract_id])
-			@contract.update_attributes(state: 2)
+			@contract.update_attributes(state: 12)
 			redirect_to root_url
 		end
 	end
