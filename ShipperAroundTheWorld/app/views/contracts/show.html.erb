@@ -11,7 +11,7 @@
 			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>nhom495ITSS@gmail.com
 		</div>
 	</div>
-	<% if @contract.state == 4 %>
+	<% if @contract.state == 4 || @contract.state == 12 %>
 			<h3 id="transact-notif">Transaction Success</h3>
 		<% end %>
 	<div class="contract-form">

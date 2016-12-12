@@ -39,6 +39,19 @@
 	width: 100%;
 	text-align: center;
 	display: inline-block;
+	#transact-notif{
+		background-color: #3cbd3c;
+		color: white;
+		font-weight: bold;
+		display: inline-block;
+		padding: 10px 20px;
+		border-radius: 6px;
+		font-size: 1.4em;
+		position: absolute;
+		top: 300px;
+		left: 20px;
+		width: 300px;
+	}
 	.rate-form{
 		@include form_style;
 		select{
