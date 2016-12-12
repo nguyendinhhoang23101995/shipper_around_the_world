@@ -188,8 +188,6 @@ class ContractsController < ApplicationController
 			@request.update_attribute :state, 0
 
 			@shipper = User.find_by(id: @contract.user_id)
-			
-			UserMailer.transaction_successful(@shipper, @contract).deliver_now
 
 			@comments = ContractComment.find_by_sql("select * from contract_comments where contract_id = #{@contract.id}");
 			@comments.each do |e|
@@ -234,8 +232,6 @@ class ContractsController < ApplicationController
 			@request.update_attribute :state, 0
 
 			@shipper = User.find_by(id: @contract.user_id)
-			
-			UserMailer.transaction_successful(@shipper, @contract).deliver_now
 
 			@comments = ContractComment.find_by_sql("select * from contract_comments where contract_id = #{@contract.id}");
 			@comments.each do |e|
