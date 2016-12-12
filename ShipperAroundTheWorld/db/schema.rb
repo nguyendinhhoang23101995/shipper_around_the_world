@@ -92,11 +92,12 @@ ActiveRecord::Schema.define(version: 20161208033933) do
     t.string   "name"
     t.string   "email"
     t.string   "phonenumber"
-    t.float    "rank",              limit: 24, default: 0.0
-    t.integer  "totalvote",                    default: 0
-    t.boolean  "admin",                        default: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.float    "rank",                   limit: 24, default: 0.0
+    t.integer  "totalvote",                         default: 0
+    t.boolean  "admin",                             default: false
+    t.integer  "total_fail_transaction",            default: 0
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.string   "activation_digest"
