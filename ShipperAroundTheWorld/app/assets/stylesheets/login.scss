@@ -8,54 +8,45 @@
 	padding: 0 0;
 	border: solid 1px #989898;
 	border-radius: 6px;
-}
-
-.login-form:hover{
-	box-shadow: 0 1px 1px 1px #989898;
-	transition: box-shadow .5s ease;
-}
-
-.login-form .login-form-title{
-	background-color: #0083bb;
-	color: white;
-	text-align: left;
-	padding: 20px 30px;
-}
-
-.login-form .login-form-title h2{
-	display: inline-block;
-	margin: 0 0;
-}
-
-.login-form .login-form-title .glyphicon-lock{
-	font-size: 1.5em;
-	margin-right: 20px;
-}
-
-.login-form .login-form-content{
-	padding: 0 20px;
-}
-
-.login-form .login-form-content label{
-	float: left;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.login-form .login-form-content #btn-login{
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.login-form .login-form-content label.inline{
-	width: 100%;
-	margin-bottom: 0;
-	text-align: left;
-	padding-left: 25px;
-}
-
-.login-form .login-form-content #forgot-pass-link{
-	float: left;
-	margin-top: 20px;
-	margin-left: 10px;
+	&:hover{
+		box-shadow: 0 1px 1px 1px #989898;
+		transition: box-shadow .5s ease;
+	}
+	.login-form-title{
+		background-color: #0083bb;
+		color: white;
+		text-align: left;
+		padding: 20px 30px;
+		h2{
+			display: inline-block;
+			margin: 0 0;
+		}
+		.glyphicon-lock{
+			font-size: 1.5em;
+			margin-right: 20px;
+		}
+	}
+	.login-form-content{
+		padding: 0 20px;
+		label{
+			float: left;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		#btn-login{
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		label.inline{
+			width: 100%;
+			margin-bottom: 0;
+			text-align: left;
+			padding-left: 25px;
+		}
+		#forgot-pass-link{
+			float: left;
+			margin-top: 20px;
+			margin-left: 10px;
+		}
+	}
 }

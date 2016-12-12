@@ -87,7 +87,7 @@
 				<% end %>
 			<% end %>
 		<% else %>
-			<div class="messages-section">
+			<div class="contract-comments-section">
 				<div class="title" style="position: relative;">
 					<button id="notif-btn" type="button" data-toggle="popover" title="Notifications"
 							data-content= <%= @noti %> data-placement="bottom">
@@ -96,9 +96,9 @@
 					<p id="notif-count">1</p>
 					<h3>Comments</h3>
 				</div>
-				<div class="messages-list">
+				<div class="contract-comments-list">
 					<ul>
-						<div class="messages-list-content">
+						<div class="contract-comments-list-content">
 							<% @messages = Message.find_by_sql("select * from messages 
 									where user_id = #{@shipper.id} 
 									and request_id = #{@request.id}") %>
@@ -110,8 +110,7 @@
 										<% customer = User.find_by(id: @request.user_id) %>
 										<%= link_to customer.name, customer %>
 									<% end %>
-									<div class="message-content"><%= message.content %></div>
-									<hr>
+									<div class="contract-comment-content"><%= message.content %></div>
 								</li>
 							<% end %>
 						</div>
@@ -119,6 +118,7 @@
 					<%= render 'messages/message_form', id: @request.id, 
 								from: current_user.id, user_id: @shipper.id, 
 								contract_id: @contract.id%>
+					<p></p>
 				</div>
 			</div>
 			<div class="confirm-section">
@@ -127,44 +127,72 @@
 			<% case @contract.state %>
 			<% when 0 %>
 				<% if current_user?(@customer) %>
-					<%= link_to "Ask shipper", :controller=> :contracts,:action =>:ask_shipper,:contract_id => @contract.id %>
+					<div class="btn btn-warning">
+						<%= link_to "Ask Shipper", :controller => :contracts,:action =>:ask_shipper, contract_id: @contract.id %>
+					</div>
 				<% else %>
-					<%= link_to "Success send item",:controller => :contracts, :action => :shipper_confirm_agreement, :contract_id => @contract.id %>
-					<%= link_to "Cancel transaction!",:controller => :contracts, :action => :shipper_cancel, :contract_id => @contract.id %>
+					<div class="btn btn-success">
+						<%= link_to "Send Item Success",:controller => :contracts, :action => :shipper_confirm_agreement, contract_id: @contract.id %>
+					</div>
+					<div class="btn btn-danger">
+						<%= link_to "Cancel Transaction",:controller => :contracts, :action => :shipper_cancel, contract_id: @contract.id %>
+					</div>
 				<% end %>
 			<% when 1 %>
 				<% if current_user?(@customer) %>
-					<%= link_to "Cancel transaction!",:controller => :contracts,:action => :customer_cancel, :contract_id => @contract.id  %>
+					<div class="btn btn-danger">
+						<%= link_to "Cancel Transaction",:controller => :contracts,:action => :customer_cancel, contract_id: @contract.id  %>
+					</div>
 				<% end %>
 			<% when 2 %>
 			<% when 3 %>
 				<% if current_user?(@customer) %>
-					<%= link_to "Done!",:controller => :contracts, :action => :customer_confirm_agreement, :contract_id => @contract.id %>
-					<!--<%= link_to "cancel transaction!", :controller=> :contracts,:action =>:customer_cancel, :contract_id => @contract.id %> -->
-					<%= link_to "cancel transaction" %>
+					<div class="btn btn-success">
+						<%= link_to "Done",:controller => :contracts, :action => :customer_confirm_agreement, contract_id: @contract.id %>
+					</div>
+					<div class="btn btn-danger">
+						<!--<%= link_to "Cancel Transaction", :controller=> :contracts,:action =>:customer_cancel, contract_id: @contract.id %> -->
+						<%= link_to "cancel transaction" %>
+					</div>
 				<% end %>
 			<% when 4 %>
 			<% when 5 %>
 				<% if current_user?(@shipper) %>
-					<%= link_to "yes",:controller => :contracts, :action => :shipper_already_buy_item,:contract_id => @contract.id %>
-					<%= link_to "no",:controller => :contracts,:action => :shipper_doesnt_buy_item,:contract_id => @contract.id %>
+					<div class="btn btn-success">
+						<%= link_to "Yes",:controller => :contracts, :action => :shipper_already_buy_item, contract_id: @contract.id %>	
+					</div>
+					<div class="btn btn-danger">
+						<%= link_to "No",:controller => :contracts,:action => :shipper_doesnt_buy_item, contract_id: @contract.id %>
+					</div>
 				<% end %>
 			<% when 6 %>
 				<% if current_user?(@customer) %>
-					<%= link_to "cancel",:controller => :contracts,:action =>:customer_cancel, :contract_id => @contract.id %>
+					<div class="btn btn-danger">
+						<%= link_to "Cancel",:controller => :contracts,:action =>:customer_cancel, contract_id: @contract.id %>
+					</div>
 				<% else %>
-					<%= link_to "Success send tiem", :controller => :contracts, :action => :shipper_confirm_agreement, :contract_id => @contract.id %>
-					<%= link_to "Cancel transaction!", :controller => :contracts, :action => :shipper_cancel, :contract_id => @contract.id %>
+					<div class="btn btn-success">
+						<%= link_to "Send Item Success", :controller => :contracts, :action => :shipper_confirm_agreement, contract_id: @contract.id %>
+					</div>
+					<div class="btn btn-danger">
+						<%= link_to "Cancel Transaction", :controller => :contracts, :action => :shipper_cancel, contract_id: @contract.id %>
+					</div>
 				<% end %>
 			<% when 7 %>
 				<% if current_user?(@customer) %>
-					<%= link_to "cancel",:controller => :contracts,:action =>:customer_cancel, :contract_id => @contract.id %>
-					<%= link_to "Ask shipper",:controller => :contracts,:action =>:ask_shipper, :contract_id => @contract.id%>
+					<div class="btn btn-warning">
+						<%= link_to "Ask Shipper",:controller => :contracts,:action =>:ask_shipper, contract_id: @contract.id%>
+					</div>
+					<div class="btn btn-danger">
+						<%= link_to "Cancel Transaction",:controller => :contracts,:action =>:customer_cancel, contract_id: @contract.id %>
+					</div>
 				<% end %>
 			<% when 8 %>
 			<% when 9 %>
 				<% if current_user?(@shipper) %>
-					<%= link_to "cancel", :controller => :contracts,:action =>:shipper_cancel, :contract_id => @contract.id %>
+					<div class="btn btn-danger">
+						<%= link_to "Cancel Transaction", :controller => :contracts,:action =>:shipper_cancel, contract_id: @contract.id %>
+					</div>
 				<% end %>
 			<% end %>
 			</div>

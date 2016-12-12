@@ -1,15 +1,17 @@
 <div class="list-messages" id="list-<%= request.id %>">
 	<h3>Mess List</h3>
-	<div class="list">
+	<div class="list" id="list_<%= request.id %>">
 		<% @users = User.find_by_sql("select * from users where id in 
 									(select distinct user_id from messages 
 									where request_id = #{request.id});")%>
 		<% @users.each do |user| %>
-			<% if current_user?(user) || current_user?(request.user) %>
+			<% if current_user?(user) || current_user?(request.user) || current_user.admin? %>
+				<hr>
 				<%= link_to user.name, user %>
 				<div class="rank-and-vote">
 					<div class="title">Rank:</div> <%= user.rank %><br>
-					<div class="title">Total vote:</div> <%= user.totalvote %>
+					<div class="title">Total vote:</div> <%= user.totalvote %><br>
+					<div class="title">Transac Failed:</div> <%= user.total_fail_transaction %>
 				</div>
 				<% if current_user?(request.user) %>
 					<% if request.state == 0 %>
@@ -17,7 +19,7 @@
 					<% end %>
 				<% end %>
 				<ul>
-					<div class="comments-list">
+					<div class="messages-list" id="mess-list-<%= request.id %>">
 						<% @messages = Message.find_by_sql("select * from messages 
 														where user_id = #{user.id} 
 														and request_id = #{request.id};") %>
@@ -30,25 +32,24 @@
 									<%= link_to customer.name, customer %>
 								<% end %>
 								<br>
-								<strong><%= message.content %></strong>
+								<div class="message-content"><%= message.content %></div>
 								<% if current_user == user || current_user.id == request.user_id %>
 									<%= link_to "Delete", message, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "delete-mess-link" %>
 								<% end %>
 								<span class="timestamp">
 									Posted <%= time_ago_in_words(message.created_at) %> ago.
 								</span>
-								<hr>
 							</li>
 						<% end %>
 					</div>
 				</ul>
-				<% if current_user == user || current_user.id == request.user_id %>
-					<%= render 'messages/message_form', id: request.id, 
-				 				 from: current_user.id, user_id: user.id%>
+				<% if current_user.id == request.user_id %>
+					<div class="message-form-section" id="form-<%= request.id %>">
+						<%= render 'messages/message_form', id: request.id, 
+					 				 from: current_user.id, user_id: user.id%>
+					</div>
 				<% end %>
-				<br>
 			<% end %>
-			<hr>
 		<% end %>
 	</div>
 </div>

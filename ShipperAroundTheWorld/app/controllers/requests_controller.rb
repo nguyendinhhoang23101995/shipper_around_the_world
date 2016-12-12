@@ -41,11 +41,8 @@ class RequestsController < ApplicationController
 		end
 		if @request.state == 0
 			@request.destroy
-		    respond_to do |format|
-				format.html { redirect_to :back }
-				format.json { head :ok }
-				format.js   { render :layout => false }
-			end
+			flash[:success] = "Post deleted!"
+			redirect_to :back
 		end
 	end
 

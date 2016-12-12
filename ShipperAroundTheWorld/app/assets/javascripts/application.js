@@ -38,15 +38,17 @@ function internal_link_click (link) {
 }
 
 function toggleMessList(id){
-	if($("#list-" + id).is(":visible") == false){
-		$("#list-" + id).toggle();
-		$("div#" + id).html("<a onclick=\"toggleMessList("+ id +")\">Message List" + 
+	if($(".list-messages#" + id).is(":visible") == false){
+		$(".list-messages#" + id).toggle();
+		$(".toggle-link#" + id).html("<a onclick=\"toggleMessList("+ "'" + id + "'" +")\">" + 
+							   "Message List" + 
 							   "<span class=\"glyphicon " +
 		 					   "glyphicon-chevron-up\" aria-hidden=\"true\"></span></a>");
 	}
 	else{
-		$("#list-" + id).toggle();
-		$("div#" + id).html("<a onclick=\"toggleMessList("+ id +")\">Message List" + 
+		$(".list-messages#" + id).toggle();
+		$(".toggle-link#" + id).html("<a onclick=\"toggleMessList("+ "'" + id + "'" +")\">" + 
+							   "Message List" + 
 							   "<span class=\"glyphicon " +
 		 					   "glyphicon-chevron-down\" aria-hidden=\"true\"></span></a>");
 	}

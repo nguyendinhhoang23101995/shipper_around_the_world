@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
 
 	def create
 		@message = Message.new(message_params)
+		@request = Request.find_by(id: params[:message][:request_id])
 
 		if @message.save
 			if(params[:contract_id] != '')

@@ -29,9 +29,6 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.rank == 0
 			if @user.save
-				# log_in @user
-				# flash[:success] = "Welcome to the SAW!"
-				# redirect_to @user
 				UserMailer.account_activation(@user).deliver_now
 				flash[:info] = "Please check your email to activate your account."
 				redirect_to root_url
@@ -70,6 +67,13 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@messages = @user.messages
 		@messages.each do |mess|
+			@contract_messages = ContractComment.all
+			@contract_messages.each do |contract_message|
+				if contract_message.message_id == mess.id
+					contract_message.destroy
+					break
+				end
+			end
 			mess.destroy
 		end
 		@requests = @user.requests
@@ -78,9 +82,11 @@ class UsersController < ApplicationController
 			@messages = @request.messages
 			@contract = @request.contract
 			unless @contract.nil?
-				@reports = @contract.reports
-				@reports.each do |report|
-					report.destroy
+				@contract_messages = ContractComment.all
+				@contract_messages.each do |contract_message|
+					if contract_message.contract_id == @contract.id
+						contract_message.destroy
+					end
 				end
 				@contract.destroy
 			end
@@ -94,9 +100,11 @@ class UsersController < ApplicationController
 			if contract.user_id == @user.id
 				@request = Request.find_by(id: contract.request_id)
 				@request.update_attribute  :state, 0
-				@reports = contract.reports
-				@reports.each do |report|
-					report.destroy
+				@contract_messages = ContractComment.all
+				@contract_messages.each do |contract_message|
+					if contract_message.contract_id == contract.id
+						contract_message.destroy
+					end
 				end
 				contract.destroy
 			end

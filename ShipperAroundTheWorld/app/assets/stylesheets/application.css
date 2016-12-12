@@ -25,6 +25,7 @@ textarea{
 	resize: none;
 	border: solid 1px #555;
 	border-radius: 5px;
+	outline: 0;
 }
 
 select{
