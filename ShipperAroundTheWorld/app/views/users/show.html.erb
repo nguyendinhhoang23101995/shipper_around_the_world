@@ -22,11 +22,13 @@
 		</section>
 	</aside>
 	<div class="col-md-8">
-		<h3 style="margin-left: 100px;" id="request-count">Requests <span class="badge"><%= @user.requests.count %></span></h3>
-		<ol class="list-all-requests">
-			<%= render @requests %>
-			<%= will_paginate @requests %>
-		</ol>
+		<% if current_user.admin? == false %>
+			<h3 style="margin-left: 100px;" id="request-count">Requests <span class="badge"><%= @user.requests.count %></span></h3>
+			<ol class="list-all-requests">
+				<%= render @requests %>
+				<%= will_paginate @requests %>
+			</ol>
+		<% end %>
 		<% if current_user.admin? && @user.admin %>
 			<% @requests = Request.all %>
 			<div class="edit-form-and-list">
